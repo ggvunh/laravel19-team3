@@ -9,4 +9,9 @@ class User_Code extends Model
     protected $table = 'user_codes';
     protected $title = ['username', 'code', 'user_id'];
     public $timestamps = false;
+
+    public function users()
+    {
+    	return $this->hasOne('App\Users', 'user_id', 'id');
+    }
 }
