@@ -178,9 +178,11 @@
       </ol>
     </section>
  <!--    //hien thi noi dung tai day -->
-
+  <section class="content">
+       @yield('content_admin')
+  </section>
 {{--  DISPLAY CONTENT OF ADMIN PAGE --}}
-    @yield('content_admin')
+
 
   </div>
   <!-- /.content-wrapper -->

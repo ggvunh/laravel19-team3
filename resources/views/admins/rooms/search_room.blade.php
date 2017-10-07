@@ -1,13 +1,6 @@
 @extends('admins.layouts.master')
 @section('content_admin')
 <div class="container table-responsive">
-	<form action="admins/search" method="get" class="sidebar-form">
-		<div class="input-group">
-			<input type="text" name="key_search" class="form-control" placeholder="Search...">
-		    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-		    </button>
-		</div>
-	</form>
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
 			<tr>
