@@ -8,10 +8,10 @@ class Image extends Model
 {
     protected $table = 'images';
     protected $fillable = ['url','description'];
-    public $timestamps = fales;
+    public $timestamps = false;
     
     public function room()
     {
-    	return $this->belongsTo('App\Room', 'image_id', 'id');
+    	return $this->hasMany('App\Room', 'image_id', 'id');
     }
 }

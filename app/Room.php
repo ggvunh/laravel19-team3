@@ -8,23 +8,23 @@ class Room extends Model
 {
     protected $table = 'rooms';
 
-    protected $fillable = ['room_name', 'room_price', 'room_status', 'description', 'amount_people', 'room_type_id', 'service_hotel_id', 'image_id'];
+    protected $fillable = ['id', 'room_name', 'room_price', 'room_status', 'description', 'amount_people', 'room_type_id', 'service_hotel_id', 'image_id'];
 
     public $timestamps = false;
 
     public function images()
     {
-    	return $this->hasMany('App\Image', 'image_id', 'id');
+    	return $this->belongsTo('App\Image', 'image_id', 'id');
     }
 
     public function room_types()
     {
-    	return $this->hasMany('App\Room_Type', 'room_type_id', 'id');
+    	return $this->belongsTo('App\Room_Type' , 'room_type_id');
     }
     
     public function service_hotels()
     {
-    	return $this->hasMany('App\Service_Hotel', 'service_hotel_id', 'service_hotel_id');
+    	return $this->belongsTo('App\Service_Hotel', 'service_hotel_id', 'id');
     }
 
     public function bookings()
