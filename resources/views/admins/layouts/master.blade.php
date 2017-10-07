@@ -8,6 +8,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -34,7 +35,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+  <link rel="stylesheet" type="text/css" href="{!!asset('css/style2.css')!!}">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -133,7 +134,7 @@
          <li class="header">MANAGEMENT ROOM</li>
          <li>
            <a href="pages/calendar.html">
-            <i class="fa"></i> <span>ROOMS </span>
+            <i class="fa"></i> <span><a href="{!!asset('admins')!!}">ROOMS</a> </span>
           </a>
           <a href="pages/calendar.html">
             <i class="fa"></i> <span>ROOM TYPE</span>
@@ -178,15 +179,9 @@
     </section>
  <!--    //hien thi noi dung tai day -->
 
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
-        <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-      </div>
-    </form>
+{{--  DISPLAY CONTENT OF ADMIN PAGE --}}
+    @yield('content_admin')
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

@@ -1,0 +1,10 @@
+@extends('admins.layouts.master')
+@section('content_admin')
+	<h1>{!!$room->room_name!!}</h1>
+	<p>{!!number_format($room->room_price)!!}</p>
+	<p>{!!$room->room_status!!}</p>
+	<p>{!!$room->description!!}</p>
+	<p>{!!$room->amount_people!!}</p>
+	<p>{!!$room->room_types->type_of_bed!!}</p>
+	<p>{!!$room->service_hotels->service_name!!}</p>
+@stop

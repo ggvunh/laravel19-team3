@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Room_Type extends Model
 {
     protected $table = 'room_types';
-    protected $fillable = ['type_of_bed', 'description'];
-    public $timestamps = fales;
+    protected $fillable = ['id', 'type_of_bed', 'description'];
+    public $timestamps = false;
 
     public function room()
     {
-    	return $this->belongsTo('App\Room', 'room_type_id', 'id');
+    	return $this->hasMany('App\Room',  'room_type_id');
     }
 }
