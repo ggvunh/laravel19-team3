@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/admins', 'RoomController@listall_room');
+Route::get('admins/search','RoomController@search_room');
+Route::get('/admins/{room}','RoomController@detail_room');
