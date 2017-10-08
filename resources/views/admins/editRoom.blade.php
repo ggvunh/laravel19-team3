@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('header')
-	<h1>Create Room</h1>
+	<h1>Edit {{$room->room_name}}</h1>
 @stop
 @section('content')
-	{!! Form::open(['url'=>'admins']) !!}
+	{!! Form::model($room,['url'=>'admins','method'=>'put']) !!}
 		@include('partials.forms.form')
 	{!! Form::close() !!}
 @stop

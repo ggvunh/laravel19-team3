@@ -30,5 +30,11 @@ Route::get('admins/search','RoomController@search_room');
 Route::get('admins/create','RoomController@createRoom');
 
 Route::post('admins','RoomController@saveRoom');
+<<<<<<< HEAD
 
+=======
+Route::get('admins/{room}/edit','RoomController@editRoom');
+Route::put('admins','RoomController@updateRoom');
+Route::get('admins/{room}/delete','RoomController@deleteRoom');
+>>>>>>> 1f19475b3605d6a08b5d25d031298b3c9f0c12dd
 Route::get('/admins/{room}','RoomController@detail_room');
