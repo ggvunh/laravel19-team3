@@ -197,6 +197,11 @@ desired effect
         {{ Session::get('success') }}
       </div>
       @endif
+      @if (Session::has('failed'))
+      <div class="alert alert-warning">
+        {{ Session::get('failed')}}
+      </div>
+      @endif
       @yield('content')
 
     </section>

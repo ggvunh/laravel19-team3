@@ -50,5 +50,23 @@ class RoomController extends Controller
         $room=Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }
+    public function editRoom(Room $room)
+    {
+        $roomTypes=Room_type::all()->pluck('type_of_bed','id');
+        $images=Image::all()->pluck('url','id');
+        $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
+        return view('admins.editRoom',compact('roomTypes', 'images', 'serviceHotels','room'));
+    }
+    public function updateRoom(Room $room)
+    {
+        $data=Input::all();
+        $room->update($data);
+        return redirect('admins/')->withSuccess('Room has been updated');
+    }
+    public function deleteRoom(Room $room)
+    {
+        $room->delete();
+        return redirect('admins/')->withSuccess('Room has been deleted');
+    }
 }
 
