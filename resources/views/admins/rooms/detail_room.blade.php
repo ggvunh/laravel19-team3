@@ -1,6 +1,8 @@
-@extends('admins.layouts.master')
-@section('content_admin')
-	<h1>{!!$room->room_name!!}</h1>
+@extends('layouts.admin')
+@section('header')
+	<h1>{!!$room->room_name!!}</h1>	
+@stop
+@section('content')
 	<p>{!!number_format($room->room_price)!!}</p>
 	<p>{!!$room->room_status!!}</p>
 	<p>{!!$room->description!!}</p>

@@ -1,5 +1,8 @@
-@extends('admins.layouts.master')
-@section('content_admin')
+@extends('layouts.admin')
+@section('header')
+	<h1>All room</h1>
+@stop
+@section('content')
 <div class="container table-responsive">
 	<form action="admins/search" method="get" class="sidebar-form">
 		<div class="input-group">
