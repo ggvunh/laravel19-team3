@@ -14,18 +14,18 @@
     <link href='http://fonts.googleapis.com/css?family=Hind:400,300,500,600%7cMontserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- CSS LIBRARY -->
-    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/settings.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/font-lotusicon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/jquery-ui.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/magnific-popup.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/settings.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

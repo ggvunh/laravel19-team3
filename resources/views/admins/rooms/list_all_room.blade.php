@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('header')
 	<h1>All room</h1>
+	<a href="{{ url('admins/create') }}" class="btn btn-primary">Create Room</a>	
 @stop
 @section('content')
 <div class="container table-responsive">

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Room;
 use App\Room_Type;
 use App\Service_Hotel;
-
+use App\Image;
 
 class RoomController extends Controller
 {
@@ -35,6 +36,19 @@ class RoomController extends Controller
                         })
                         ->get();
         return view('admins.rooms.search_room', compact('rooms', 'dem', 'search'));
+    }
+    public function createRoom()
+    {
+        $roomTypes=Room_type::all()->pluck('type_of_bed','id');
+        $images=Image::all()->pluck('url','id');
+        $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
+        return view('admins.createRoom',compact('roomTypes', 'images', 'serviceHotels'));
+    }
+    public function saveRoom()
+    {
+        $data=Input::all();
+        $room=Room::create($data);
+        return redirect('admins/')->withSuccess('Room has been created');
     }
 }
 
