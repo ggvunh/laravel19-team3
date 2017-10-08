@@ -10,8 +10,8 @@ class Room_Type extends Model
     protected $fillable = ['id', 'type_of_bed', 'description'];
     public $timestamps = false;
 
-    public function room()
+    public function rooms()
     {
-    	return $this->hasMany('App\Room',  'room_type_id');
+    	return $this->hasMany('App\Room',  'room_type_id', 'id');
     }
 }
