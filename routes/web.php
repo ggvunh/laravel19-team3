@@ -11,11 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+//--------------------------Home Page-------------------------
+Route::get('/', 'RoomController@listAll');
+
+Route::get('/lotus/', 'RoomController@listAll');
+
+Route::get('/lotus/type/{name}', 'RoomController@listRoomTypeByName');
+
+Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
+
+//----------------------------Admin----------------------------
+
 Route::get('/admins', 'RoomController@listall_room');
+
 Route::get('admins/search','RoomController@search_room');
+
 Route::get('admins/create','RoomController@createRoom');
+
 Route::post('admins','RoomController@saveRoom');
+
 Route::get('/admins/{room}','RoomController@detail_room');

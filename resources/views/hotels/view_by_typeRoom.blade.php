@@ -1,10 +1,8 @@
 @extends('layouts.master')
 @section('menu')
 	@foreach ($rooms as $rm)
-			@if(isset($rm->room_types))
-				<li><a href="{!!url('/lotus/type/'.$rm->type_of_bed)!!}">{!!$rm->room_types->type_of_bed!!}</a></li>
-			@endif
-	@endforeach	
+		<li><a href="{!!url('/lotus/type/'.$rm->type_of_bed)!!}">{!!$rm->room_types->type_of_bed!!}</a></li>
+	@endforeach
 @stop                      
 @section('content-index')
 	<div class="col-md-12">
