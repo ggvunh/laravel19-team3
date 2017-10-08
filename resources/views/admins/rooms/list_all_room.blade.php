@@ -41,8 +41,8 @@
 					<td>{!!$room->room_types->type_of_bed!!}</td>
 					<td><a href="{!!url('admins/service_hotels/'.
 					$room->service_hotels->service_name)!!}">{!!$room->service_hotels->service_name!!}</a></td>
-					<td><a href="">Edit</a></td>
-					<td><a href="">Delete</a></td>
+					<td><a href="{{url('admins/'.$room->id.'/edit')}}">Edit</a></td>
+					<td><a href="{{url('admins/'.$room->id.'/delete')}}">Delete</a></td>
 				</tr>			
 			</tbody>
 		@endforeach
