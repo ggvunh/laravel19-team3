@@ -137,46 +137,27 @@ desired effect
 
       <!-- Sidebar Menu -->
        <ul class="sidebar-menu" data-widget="tree">
-         <li class="header">MANAGEMENT BOOKING</li>
-         <li>
-          <a href="#">
-            <i class="fa"></i> <span>BOOKING</span>
-          </a>
-        </li>
       
-         <li class="header">MANAGEMENT ROOM</li>
-         <li>
-           <a href="{!!asset('admins')!!}">
-            <i class="fa"></i> <span>ROOMS </span>
-          </a></li>
+        <li class="header">MANAGEMENT</li>
           <li>
-          <a href="#">
-            <i class="fa"></i> <span>ROOM TYPE</span>
-          </a>
-        </li>
-          <li class="header">MANAGEMENT SERVICE</li>
-         <li>
-          <a href="#">
-            <i class="fa"></i> <span>SERVICE FOOD</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa"></i> <span>SERVICE ORTHER</span>
-          </a>
-        </li>
-        <li class="header">MANAGEMENT USER</li>
+             <a href="{!!asset('admins')!!}">
+              <i class="fa"></i> <span>ROOMS </span>
+            </a></li>
           <li>
-          <a href="#">
-            <i class="fa"></i> <span>USERS</span>
-          </a>
-        </li>
-         <li class="header">MANAGEMENT REPORT</li>
+            <a href="{{url('admins/service')}}">
+              <i class="fa"></i> <span>SERVICE</span>
+            </a>
+          </li>
           <li>
-          <a href="#">
-            <i class="fa"></i> <span>REPORT</span>
-          </a>
-        </li>
+            <a href="#">
+              <i class="fa"></i> <span>USERS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa"></i> <span>REPORT</span>
+            </a>
+          </li>
      </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -197,10 +178,14 @@ desired effect
         {{ Session::get('success') }}
       </div>
       @endif
-      @if (Session::has('failed'))
-      <div class="alert alert-warning">
-        {{ Session::get('failed')}}
-      </div>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
       @endif
       @yield('content')
 

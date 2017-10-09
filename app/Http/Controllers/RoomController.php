@@ -9,6 +9,7 @@ use App\Room_Type;
 use App\Service_Hotel;
 use App\Image;
 use Illuminate\Pagination\Paginator;
+use App\Http\Requests\roomRequest;
 
 class RoomController extends Controller
 {
@@ -71,9 +72,10 @@ class RoomController extends Controller
         return view('admins.createRoom',compact('roomTypes', 'images', 'serviceHotels'));
     }
 
-    public function saveRoom()
+    public function saveRoom(roomRequest $requuest)
     {
         $data = Input::all();
+        $data1 = $request->data;
         $room = Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }
@@ -84,7 +86,7 @@ class RoomController extends Controller
         $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
         return view('admins.editRoom',compact('roomTypes', 'images', 'serviceHotels','room'));
     }
-    public function updateRoom(Room $room)
+    public function updateRoom(Room $room, roomRequest $requuest)
     {
         $data=Input::all();
         $room->update($data);
