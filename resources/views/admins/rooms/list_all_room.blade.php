@@ -39,7 +39,9 @@
                 @foreach ($rooms as $room)
                 <tr>
 					<th scope="row">{!!$dem++!!}</th>
-					<td>{!!$room->images->url!!}</td>
+					<td>
+						<img src="{!!url('/images/upload/rooms/'.$room->images->url)!!}" alt="" style='width: 50px; height: 30px;''>
+					</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
 					<td>{!!number_format($room->room_price)!!}VND</td>
 					<td>{!!$room->room_status!!}</td>

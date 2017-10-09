@@ -1,5 +1,4 @@
-@extends('layouts.master')
-                     
+@extends('layouts.master')                    
 @section('content-index')
 	<div class="col-md-12">
 		<div class="accomd-modations-header">

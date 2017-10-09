@@ -17,7 +17,7 @@ Route::get('/', 'RoomController@listAll');
 
 Route::get('/lotus/', 'RoomController@listAll');
 
-Route::get('/lotus/type/{name}', 'RoomController@listRoomTypeByName');
+Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
 
 Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
 

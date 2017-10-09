@@ -95,7 +95,7 @@
                                 <li>
                                         <a href="#">Room <span class="fa fa-caret-down"></span></a>
                                     <ul class="sub-menu">
-                                        @yield('menu')                                   
+                                        @include('layouts.menu')                                 
                                     </ul>
                                 </li>
                                 <li><a href="about.html">Contact</a></li>
