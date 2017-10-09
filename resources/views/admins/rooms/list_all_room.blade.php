@@ -4,17 +4,26 @@
 	<a href="{{ url('admins/create') }}" class="btn btn-primary">Create Room</a>	
 @stop
 @section('content')
-<div class="container table-responsive">
-	<form action="admins/search" method="get" class="sidebar-form">
-		<div class="input-group">
-			<input type="text" name="key_search" class="form-control" placeholder="Search...">
-		    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-		    </button>
-		</div>
-	</form>
-	<table class="table table-striped table-hover ">
-		<thead class="table-inverse">
-			<tr>
+	<div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Responsive Hover Table</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-striped table-hover">
+                <tr>
 				<th>#</th>
 				<th>Image</th>
 				<th>Room Name</th>
@@ -27,10 +36,8 @@
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
-		</thead>
-		@foreach ($rooms as $room)
-			<tbody>
-				<tr>
+                @foreach ($rooms as $room)
+                <tr>
 					<th scope="row">{!!$dem++!!}</th>
 					<td>{!!$room->images->url!!}</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
@@ -43,9 +50,14 @@
 					$room->service_hotels->service_name)!!}">{!!$room->service_hotels->service_name!!}</a></td>
 					<td><a href="{{url('admins/'.$room->id.'/edit')}}">Edit</a></td>
 					<td><a href="{{url('admins/'.$room->id.'/delete')}}">Delete</a></td>
-				</tr>			
-			</tbody>
-		@endforeach
-	</table>
+				</tr>
+				@endforeach			
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
 </div>
 @stop
