@@ -75,7 +75,6 @@ class RoomController extends Controller
     public function saveRoom(roomRequest $requuest)
     {
         $data = Input::all();
-        $data1 = $request->data;
         $room = Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }
