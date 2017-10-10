@@ -38,6 +38,14 @@ Route::get('admins/create','RoomController@createRoom');
 
 Route::post('admins','RoomController@saveRoom');
 
+<<<<<<< HEAD
+//-----Booking Room-----
+Route::get('/admins/bookings', 'BookingController@getBooking');
+
+//-----Room Management-----
+
+=======
+>>>>>>> e9a99dce6ee612309b54e4818cbb856b12c3b40f
 Route::get('admins/{room}/edit','RoomController@editRoom');
 
 Route::put('admins','RoomController@updateRoom');
@@ -45,8 +53,11 @@ Route::put('admins','RoomController@updateRoom');
 Route::get('admins/{room}/delete','RoomController@deleteRoom');
 
 Route::get('/admins/{room}','RoomController@detail_room');
+
 //-----Service Management-----
 
+<<<<<<< HEAD
+=======
 Route::get('admins/service/create','ServiceFoodController@createService');
 
 Route::post('admins/service','ServiceFoodController@saveService');
@@ -58,3 +69,4 @@ Route::put('admins/service/{service}','ServiceFoodController@updateService');
 Route::get('admins/service/{service}/delete','ServiceFoodController@deleteService');
 
 Route::get('admins/service/{service}','ServiceFoodController@detailService');
+>>>>>>> e9a99dce6ee612309b54e4818cbb856b12c3b40f

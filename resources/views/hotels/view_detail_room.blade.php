@@ -16,6 +16,9 @@
 								<p>{!! $room->description !!}</p>
 								<ul>
 									<li>Amount: {!! $room->amount_people !!} Person(s)</li>
+									<li>Size: 35 m2 / 376 ft2</li>
+									<li>View: Ocen</li>
+									<li>Bed: King-size or twin beds</li>
 								</ul>
 							</div>
 

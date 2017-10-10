@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}"/>
 
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Hind:400,300,500,600%7cMontserrat:400,700' rel='stylesheet' type='text/css'>
@@ -93,7 +93,7 @@
                                 </li>
                                 <li><a href="#">About</a></li>                           
                                 <li>
-                                        <a href="#">Room <span class="fa fa-caret-down"></span></a>
+                                        <a href="{!!url('/')!!}">Room <span class="fa fa-caret-down"></span></a>
                                     <ul class="sub-menu">
                                         @include('layouts.menu')                                 
                                     </ul>
