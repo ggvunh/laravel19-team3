@@ -59,6 +59,7 @@
             </div>
             <!-- /.box-body -->
           </div>
+         	{!! $rooms->links()!!}
           <!-- /.box -->
         </div>
       </div>

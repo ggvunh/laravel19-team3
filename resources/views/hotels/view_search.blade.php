@@ -2,7 +2,7 @@
 @section('content-index')
 	<div class="col-md-12">
 		<div class="accomd-modations-header">
-				
+			<strong>About {!!count($rooms)!!} results</strong>
 			 <h2 class="heading">ROOMS</h2>
 
 			<img src="{!!asset('images/icon-accmod.png')!!}" alt="icon">

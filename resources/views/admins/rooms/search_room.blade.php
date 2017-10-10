@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container table-responsive">
+	<span><strong>About: {!!count($rooms)!!} results<strong></span>
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
 			<tr>
