@@ -12,21 +12,11 @@ class Room extends Model
 
     public $timestamps = false;
 
-    public function images()
-    {
-    	return $this->belongsTo('App\Image', 'image_id', 'id');
-    }
-
     public function room_types()
     {
     	return $this->belongsTo('App\Room_Type' , 'room_type_id');
     }
     
-    public function service_hotels()
-    {
-    	return $this->belongsTo('App\Service_Hotel', 'service_hotel_id');
-    }
-
     public function booking()
     {
         return $this->belongsToMany('App\Booking', 'book_rooms');

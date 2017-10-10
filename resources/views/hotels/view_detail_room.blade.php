@@ -9,7 +9,7 @@
 							<h2><a href="#">{!! $room->room_types->type_of_bed !!}</a></h2>
 
 							<div class="img">
-								<a href="#"><img src="{!! url('images/upload/rooms/'.$room->images->url) !!}" alt=""></a>
+								<a href="#"><img src="{!! url('images/upload/rooms/'.$room->images) !!}" alt=""></a>
 							</div>
 
 							<div class="desc">

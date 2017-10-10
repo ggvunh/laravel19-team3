@@ -15,7 +15,7 @@
 		            <div class="col-xs-4">
 		                <div class="accomd-modations-room">
 		                    <div class="img">
-		                        <a href="{!!url('/lotus/'.$rm->id)!!}"><img src="{!!url('/images/upload/rooms/'.$rm->images->url)!!}" alt="" style="width: 550px; height: 230px;"></a>
+		                        <a href="{!!url('/lotus/'.$rm->id)!!}"><img src="{!!url('/images/upload/rooms/'.$rm->images)!!}" alt="" style="width: 550px; height: 230px;"></a>
 		                    </div>
 		                    <div class="text">
 		                        <h2><a href="{!!url('/lotus/'.$rm->id)!!}">{!!$rm->room_types->type_of_bed!!}</a></h2>
