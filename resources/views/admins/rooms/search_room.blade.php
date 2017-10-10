@@ -1,5 +1,5 @@
-@extends('admins.layouts.master')
-@section('content_admin')
+@extends('layouts.admin')
+@section('content')
 <div class="container table-responsive">
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
@@ -24,7 +24,7 @@
 					<td>{!!$room->images->url!!}</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
 					<td>{!!number_format($room->room_price)!!}VND</td>
-					<td>{!!$room->room_status!!}</td>
+					<td>{!!$room->room_status ? 'Available' : 'Not Available'!!}</td>
 					<td>{!!$room->description!!}</td>
 					<td>{!!$room->amount_people!!}</td>
 					<td>{!!$room->room_types->type_of_bed!!}</td>

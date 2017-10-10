@@ -3,6 +3,7 @@
 	<h1>All room</h1>
 	<a href="{{ url('admins/create') }}" class="btn btn-primary">Create Room</a>	
 @stop
+
 @section('content')
 	<div class="row">
         <div class="col-xs-12">
@@ -10,7 +11,7 @@
             <div class="box-header">
               <h3 class="box-title">Responsive Hover Table</h3>
 
-              <div class="box-tools">
+              <form class="box-tools" action="admins/search" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
 
@@ -18,7 +19,7 @@
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -44,7 +45,7 @@
 					</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
 					<td>{!!number_format($room->room_price)!!}VND</td>
-					<td>{!!$room->room_status!!}</td>
+					<td>{!!$room->room_status ? 'Available' : 'Not Available'!!}</td>
 					<td>{!!$room->description!!}</td>
 					<td>{!!$room->amount_people!!}</td>
 					<td>{!!$room->room_types->type_of_bed!!}</td>
