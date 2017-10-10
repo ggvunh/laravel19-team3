@@ -17,7 +17,7 @@ class RoomController extends Controller
     //list all room
     public function listAll()
     {
-        $rooms = Room::paginate(9);
+        $rooms = Room::OrderBy('id' , 'desc')->paginate(9);
         return view('index', compact('rooms'));
 
     }
@@ -41,7 +41,7 @@ class RoomController extends Controller
     public function listall_room()
     {
     	$dem = 1;
-    	$rooms = Room::all();
+    	$rooms = Room::OrderBy('id' , 'desc')->paginate(9);
     	return view('admins.rooms.list_all_room',compact('rooms', 'dem'));
     }
 
