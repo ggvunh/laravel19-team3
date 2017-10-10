@@ -78,31 +78,15 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="{{asset('dist/img/user2-160x160.png')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">Admin Name</span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  Admin name
-                </p>
-              </li>
-              <!-- Menu Footer-->
+          </li>
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
+                  <a href="#" class="btn btn-default bg-navy fa fa-sign-out">Sign out</a>
               </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+
         </ul>
       </div>
     </nav>
@@ -116,7 +100,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{asset('dist/img/user2-160x160.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Admin Name</p>
@@ -141,21 +125,21 @@ desired effect
         <li class="header">MANAGEMENT</li>
           <li>
              <a href="{!!asset('admins')!!}">
-              <i class="fa"></i> <span>ROOMS </span>
+              <i class="fa fa-building"></i> <span>ROOMS </span>
             </a></li>
           <li>
             <a href="{{url('admins/service')}}">
-              <i class="fa"></i> <span>SERVICE</span>
+              <i class="fa fa-star"></i> <span>SERVICE</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa"></i> <span>USERS</span>
+              <i class="fa fa-users"></i> <span>USERS</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="fa"></i> <span>REPORT</span>
+              <i class="fa fa-exclamation-triangle"></i> <span>REPORT</span>
             </a>
           </li>
      </ul>
