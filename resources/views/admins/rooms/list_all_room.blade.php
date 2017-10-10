@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('header')
 	<h1>All room</h1>
-	<a href="{{ url('admins/create') }}" class="btn btn-primary pull-right">Create Room</a>	
+	<a href="{{ url('admins/create') }}" class="btn btn-primary pull-right fa fa-plus"> Create Room</a>	
 @stop
 
 @section('content')
@@ -34,8 +34,7 @@
 				<th>Amount People</th>
 				<th>Room Type</th>
 				<th>Services</th>
-				<th>Edit</th>
-				<th>Delete</th>
+				<th>Action</th>
 			</tr>
                 @foreach ($rooms as $room)
                 <tr>
@@ -45,14 +44,15 @@
 					</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
 					<td>{!!number_format($room->room_price)!!}VND</td>
-					<td>{!!$room->room_status ? 'Available' : 'Not Available'!!}</td>
+					<td>						
+						{!!$room->room_status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
+					</td>
 					<td>{!!$room->description!!}</td>
 					<td>{!!$room->amount_people!!}</td>
 					<td>{!!$room->room_types->type_of_bed!!}</td>
 					<td><a href="{!!url('admins/service_hotels/'.
 					$room->service_hotels->service_name)!!}">{!!$room->service_hotels->service_name!!}</a></td>
-					<td><a href="{{url('admins/'.$room->id.'/edit')}}">Edit</a></td>
-					<td><a href="{{url('admins/'.$room->id.'/delete')}}">Delete</a></td>
+					<td><a href="{{url('admins/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
 				</tr>
 				@endforeach			
               </table>
