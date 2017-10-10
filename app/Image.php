@@ -10,8 +10,5 @@ class Image extends Model
     protected $fillable = ['url','description'];
     public $timestamps = false;
     
-    public function room()
-    {
-    	return $this->hasMany('App\Room', 'image_id', 'id');
-    }
+
 }

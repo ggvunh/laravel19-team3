@@ -10,8 +10,4 @@ class Service_Hotel extends Model
     protected $fillable = ['service_name','service_price', 'description'];
     public $timestamps = false;
 
-    public function room()
-    {
-    	return $this->hasMany('App\Room', 'service_hotel_id', 'id');
-    }
 }
