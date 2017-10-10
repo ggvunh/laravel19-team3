@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="col-md-12">
-	    <div class="accomd-modations-content owl-single">                               
+	    <div class="accomd-modations-content owl-single">                             
 	        <div class="row">
 	            <!-- ITEM -->
 	            @foreach ($rooms as $rm)

@@ -8,10 +8,15 @@ class Booking extends Model
 {
     protected $table = 'bookings';
     protected $fillable = ['user_id', 'check_in_date', 'check_out_date', 'status'];
-    public $timestamps = fales;
+    public $timestamps = false;
 
-     public function rooms()
+    public function room()
     {
-        return $this->belongsToMany('App\Room', 'App\Book_Room', 'room_id', 'booking_id');
+        return $this->belongsToMany('App\Room', 'book_rooms');
+    }
+
+    public function user()
+    {
+    	return $this->belongsTo('App\Users', 'user_id');
     }
 }

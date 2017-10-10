@@ -11,10 +11,7 @@ class Room extends Model
     protected $fillable = ['id', 'room_name', 'room_price', 'room_status', 'description', 'amount_people', 'room_type_id', 'service_hotel_id', 'image_id'];
 
     public $timestamps = false;
-    public function setRoomType()
-    {
 
-    }
     public function images()
     {
     	return $this->belongsTo('App\Image', 'image_id', 'id');
@@ -30,8 +27,8 @@ class Room extends Model
     	return $this->belongsTo('App\Service_Hotel', 'service_hotel_id');
     }
 
-    public function bookings()
+    public function booking()
     {
-        return $this->belongsToMany('App\Booking', 'App\Book_Room', 'room_id', 'booking_id');
+        return $this->belongsToMany('App\Booking', 'book_rooms');
     }
 }

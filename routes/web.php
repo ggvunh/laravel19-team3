@@ -32,7 +32,12 @@ Route::get('admins/search','RoomController@search_room');
 Route::get('admins/create','RoomController@createRoom');
 
 Route::post('admins','RoomController@saveRoom');
+
+//-----Booking Room-----
+Route::get('/admins/bookings', 'BookingController@getBooking');
+
 //-----Room Management-----
+
 Route::get('admins/{room}/edit','RoomController@editRoom');
 
 Route::put('admins','RoomController@updateRoom');
@@ -40,4 +45,6 @@ Route::put('admins','RoomController@updateRoom');
 Route::get('admins/{room}/delete','RoomController@deleteRoom');
 
 Route::get('/admins/{room}','RoomController@detail_room');
+
 //-----Service Management-----
+

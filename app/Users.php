@@ -19,5 +19,10 @@ class Users extends Model
     {
     	return $this->belongsTo('App\User_Code', 'user_id', 'id');
     }
+
+    public function booings()
+    {
+        return $this->hasMany('App\Booking', 'user_id');
+    }
 }
 
