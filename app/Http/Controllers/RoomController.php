@@ -73,10 +73,10 @@ class RoomController extends Controller
         $roomTypes = Room_type::all()->pluck('type_of_bed','id');
         $images = Image::all()->pluck('url','id');
         $serviceHotels = Service_Hotel::all()->pluck('service_name','id');
-        return view('admins.createRoom',compact('roomTypes', 'images', 'serviceHotels'));
+        return view('admins.rooms.createRoom',compact('roomTypes', 'images', 'serviceHotels'));
     }
 
-    public function saveRoom(roomRequest $requuest)
+    public function saveRoom(roomRequest $request)
     {
         $data = Input::all();
         $room = Room::create($data);
@@ -87,9 +87,9 @@ class RoomController extends Controller
         $roomTypes=Room_type::all()->pluck('type_of_bed','id');
         $images=Image::all()->pluck('url','id');
         $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
-        return view('admins.editRoom',compact('roomTypes', 'images', 'serviceHotels','room'));
+        return view('admins.rooms.editRoom',compact('roomTypes', 'images', 'serviceHotels','room'));
     }
-    public function updateRoom(Room $room, roomRequest $requuest)
+    public function updateRoom(Room $room, roomRequest $request)
     {
         $data=Input::all();
         $room->update($data);

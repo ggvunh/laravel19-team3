@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('header')
 	<h1>All room</h1>
-	<a href="{{ url('admins/create') }}" class="btn btn-primary">Create Room</a>	
+	<a href="{{ url('admins/create') }}" class="btn btn-primary pull-right">Create Room</a>	
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+              <h3 class="box-title">All Rooms Table</h3>
 
               <form class="box-tools" action="admins/search" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">

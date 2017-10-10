@@ -25,14 +25,19 @@ Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
 
 //----------------------------Admin----------------------------
 
-Route::get('/admins', 'RoomController@listall_room');
+Route::get('/admins', 'RoomController@listall_room'); ///List All Room
 
-Route::get('admins/search','RoomController@search_room');
+Route::get('admins/service','ServiceFoodController@viewService');// List All Service
+
+
+Route::get('admins/search','RoomController@search_room');// Search Room
+
+//-----Room Management-----
 
 Route::get('admins/create','RoomController@createRoom');
 
 Route::post('admins','RoomController@saveRoom');
-//-----Room Management-----
+
 Route::get('admins/{room}/edit','RoomController@editRoom');
 
 Route::put('admins','RoomController@updateRoom');
@@ -41,3 +46,15 @@ Route::get('admins/{room}/delete','RoomController@deleteRoom');
 
 Route::get('/admins/{room}','RoomController@detail_room');
 //-----Service Management-----
+
+Route::get('admins/service/create','ServiceFoodController@createService');
+
+Route::post('admins/service','ServiceFoodController@saveService');
+
+Route::get('admins/service/{service}/edit','ServiceFoodController@editService');
+
+Route::put('admins/service/{service}','ServiceFoodController@updateService');
+
+Route::get('admins/service/{service}/delete','ServiceFoodController@deleteService');
+
+Route::get('admins/service/{service}','ServiceFoodController@detailService');
