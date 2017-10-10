@@ -1,17 +1,14 @@
-@extends('layouts.master')
-@section('menu')
-	@foreach ($rooms as $rm)
-		<li><a href="{!!url('/lotus/type/'.$rm->type_of_bed)!!}">{!!$rm->room_types->type_of_bed!!}</a></li>
-	@endforeach
-@stop                      
+@extends('layouts.master')                    
 @section('content-index')
 	<div class="col-md-12">
 		<div class="accomd-modations-header">
-			<h2 class="heading">ROOMS </h2>
-			<img src="images/icon-accmod.png" alt="icon">
+				
+			 <h2 class="heading">ROOMS</h2>
+
+			<img src="{!!asset('images/icon-accmod.png')!!}" alt="icon">
 			<p>Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
 		</div>
-	</div>
+	</div>	
 	<div class="col-md-12">
 	    <div class="accomd-modations-content owl-single">                               
 	        <div class="row">
@@ -34,6 +31,5 @@
 	            <!-- END / ITEM -->
 	        </div>
 	    </div>
-	    {{$rooms->links()}}
 	</div>
 @stop

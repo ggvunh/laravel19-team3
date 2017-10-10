@@ -19,6 +19,8 @@ Route::get('/lotus/', 'RoomController@listAll');
 
 Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
 
+Route::get('/lotus/search','RoomController@search');
+
 Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
 
 //----------------------------Admin----------------------------
@@ -32,7 +34,10 @@ Route::get('admins/create','RoomController@createRoom');
 Route::post('admins','RoomController@saveRoom');
 //-----Room Management-----
 Route::get('admins/{room}/edit','RoomController@editRoom');
+
 Route::put('admins','RoomController@updateRoom');
+
 Route::get('admins/{room}/delete','RoomController@deleteRoom');
+
 Route::get('/admins/{room}','RoomController@detail_room');
 //-----Service Management-----
