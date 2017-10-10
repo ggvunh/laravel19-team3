@@ -8,5 +8,4 @@
 	<p>{!!$room->description!!}</p>
 	<p>{!!$room->amount_people!!}</p>
 	<p>{!!$room->room_types->type_of_bed!!}</p>
-	<p>{!!$room->service_hotels->service_name!!}</p>
 @stop
