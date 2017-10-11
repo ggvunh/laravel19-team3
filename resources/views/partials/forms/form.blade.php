@@ -47,7 +47,7 @@
 
 	{!! Form::label('images','Upload Image') !!}
 	<div class="form-controls">
-		{!! Form::file('images',['class'=>'form-control']) !!}
+		{!! Form::file('images',['class'=>'form-control', 'id' => 'imageUpload']) !!}
 	</div>
 
 </div>

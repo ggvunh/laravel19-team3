@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container table-responsive">
+	<span>About {!!count($rooms)!!} results</span>
+
 	<table class="table table-striped table-hover ">
 		<thead class="table-inverse">
 			<tr>
@@ -35,5 +37,6 @@
 			</tbody>
 		@endforeach
 	</table>
+	{!!$rooms->links()!!}
 </div>
 @stop

@@ -1,3 +1,4 @@
+
 <form class="box-tools" action="admins/search" method="get">
   <div class="input-group input-group-sm" style="width: 350px;">
     <input type="text" name="key_search" class="form-control pull-right" placeholder="Search" >

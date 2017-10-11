@@ -40,10 +40,8 @@
 	</div>
 @stop                    
 @section('content-index')	
-	<div class="col-md-12">
-		<div class="accomd-modations-header">
-			<form class="box-tools" action="{{url('/lotus/search')}}" method="get">
-				<div class="input-group input-group-sm" style="width: 150px;">
+ <form class="box-tools" action="{{url('/lotus/search')}}" method="get" style="float: right; padding-right: 15px;">
+				<div class="input-group input-group-sm" style="width: 350px;">
 					  <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
 
 					  <div class="input-group-btn">
@@ -51,14 +49,18 @@
 					  </div>
 				</div>
 			</form>
-			 <h2 class="heading">ROOMS</h2>
 
+	<div class="col-md-12">
+		<div class="accomd-modations-header">			
+			 <h2 class="heading">ROOMS</h2>
+			
 			<img src="{!!asset('images/icon-accmod.png')!!}" alt="icon">
 			<p>Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
 		</div>
 	</div>
 
 	<div class="col-md-12">
+		 {{$rooms->links()}}
 	    <div class="accomd-modations-content owl-single">                             
 	        <div class="row">
 	            <!-- ITEM -->
