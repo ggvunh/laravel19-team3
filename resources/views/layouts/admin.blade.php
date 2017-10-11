@@ -173,6 +173,7 @@ desired effect
             </ul>
         </div>
       @endif
+      @yield('search')
       @yield('content')
 
     </section>

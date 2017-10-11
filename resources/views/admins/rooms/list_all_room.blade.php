@@ -2,9 +2,11 @@
 @section('header')
 	<h1>All room</h1>
 @stop
-
+@section('search')
+	@include('layouts.search')
+@stop
 @section('content')
-	<div class="row">
+  <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">

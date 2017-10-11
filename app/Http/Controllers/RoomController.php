@@ -61,9 +61,6 @@ class RoomController extends Controller
             ->OrwhereHas('room_types', function($query) use($search){
                 $query->where('type_of_bed', 'like', '%'.$search->key_search.'%');
             })
-            ->OrwhereHas('service_hotels', function($query) use($search){
-                $query->where('service_name', 'like', '%'.$search->key_search.'%');
-            })
             ->get();
         return view('admins.rooms.search_room', compact('rooms', 'dem', 'search'));
     }
