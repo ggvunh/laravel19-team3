@@ -1,17 +1,25 @@
 @extends('layouts.admin')
 @section('header')
 	<h1>All room</h1>
-	<a href="{{ url('admins/create') }}" class="btn btn-primary pull-right fa fa-plus"> Create Room</a>	
 @stop
 @section('search')
 	@include('layouts.search')
 @stop
 @section('content')
-	<div class="row">
+  <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">All Rooms Table</h3>
+              <a href="{{ url('admins/create') }}" class="btn btn-primary fa fa-plus"> Create Room</a>	
+              <form class="box-tools" action="admins/search" method="get">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -41,7 +49,11 @@
 					<td>{!!$room->description!!}</td>
 					<td>{!!$room->amount_people!!}</td>
 					<td>{!!$room->room_types->type_of_bed!!}</td>
-					<td><a href="{{url('admins/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
+					<td><a href="{{url('admins/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete<script>
+    $(".delete").on("submit", function(){
+        return confirm("Do you want to delete this item?");
+    });
+</script></a></td>
 				</tr>
 				@endforeach			
               </table>

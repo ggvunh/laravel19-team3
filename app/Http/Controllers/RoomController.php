@@ -68,9 +68,7 @@ class RoomController extends Controller
     public function createRoom()
     {
         $roomTypes = Room_type::all()->pluck('type_of_bed','id');
-        $images = Image::all()->pluck('url','id');
-        $serviceHotels = Service_Hotel::all()->pluck('service_name','id');
-        return view('admins.rooms.createRoom',compact('roomTypes', 'images', 'serviceHotels'));
+        return view('admins.rooms.createRoom',compact('roomTypes'));
     }
 
     public function saveRoom(roomRequest $request)

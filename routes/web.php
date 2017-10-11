@@ -34,7 +34,7 @@ Route::get('contact', function(){
 
 Route::get('/admins', 'RoomController@listall_room'); ///List All Room
 
-Route::get('admins/service','ServiceFoodController@viewService');// List All Service
+Route::get('admins/service','ServiceHotelController@viewService');// List All Service
 
 
 Route::get('admins/search','RoomController@search_room');// Search Room
@@ -64,15 +64,15 @@ Route::get('/admins/{room}','RoomController@detail_room');
 //-----Service Management-----
 
 
-Route::get('admins/service/create','ServiceFoodController@createService');
+Route::get('admins/service/create','ServiceHotelController@createService');
 
-Route::post('admins/service','ServiceFoodController@saveService');
+Route::post('admins/service','ServiceHotelController@saveService');
 
-Route::get('admins/service/{service}/edit','ServiceFoodController@editService');
+Route::get('admins/service/{service}/edit','ServiceHotelController@editService');
 
-Route::put('admins/service/{service}','ServiceFoodController@updateService');
+Route::put('admins/service/{service}','ServiceHotelController@updateService');
 
-Route::get('admins/service/{service}/delete','ServiceFoodController@deleteService');
+Route::get('admins/service/{service}/delete','ServiceHotelController@deleteService');
 
-Route::get('admins/service/{service}','ServiceFoodController@detailService');
+Route::get('admins/service/{service}','ServiceHotelController@detailService');
 
