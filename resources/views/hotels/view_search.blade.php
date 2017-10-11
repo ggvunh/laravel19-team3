@@ -1,5 +1,6 @@
 @extends('layouts.master')                    
 @section('content-index')
+	<span>About {!!count($rooms)!!} results</span>
 	<div class="col-md-12">
 		<div class="accomd-modations-header">
 			<strong>About {!!count($rooms)!!} results</strong>
@@ -8,8 +9,10 @@
 			<img src="{!!asset('images/icon-accmod.png')!!}" alt="icon">
 			<p>Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
 		</div>
-	</div>	
+	</div>
+
 	<div class="col-md-12">
+		{!!$rooms->links()!!}	
 	    <div class="accomd-modations-content owl-single">                               
 	        <div class="row">
 	            <!-- ITEM -->
@@ -31,5 +34,6 @@
 	            <!-- END / ITEM -->
 	        </div>
 	    </div>
+	    {!!$rooms->links()!!}
 	</div>
 @stop

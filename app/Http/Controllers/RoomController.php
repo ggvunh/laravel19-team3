@@ -29,11 +29,20 @@ class RoomController extends Controller
 
     public function search(Request $search)
     {
-        $rooms = Room::where('room_price', '=', $search->key_search)
-            ->orwhereHas('room_types', function($query) use($search){
-                $query->where('type_of_bed', 'like', '%'.$search->key_search.'%');
-            })->get();
-        return view('hotels.view_search', compact('rooms', 'search'));
+        $data = Input::all();
+        if($data['key_search'] != '')
+        {
+              $rooms = Room::where('room_price', '=', $search->key_search)
+                 ->orwhereHas('room_types', function($query) use($search){
+                    $query->where('type_of_bed', 'like', '%'.$search->key_search.'%');
+                 })->paginate(6);
+            return view('hotels.view_search', compact('rooms', 'search'));
+        }
+        else
+        {
+            return redirect('/');
+        }
+      
     }
 
 
@@ -52,17 +61,23 @@ class RoomController extends Controller
 
     public function search_room(Request $search)
     {
-        $dem = 1;
-        $rooms = Room::where('room_name', 'like', '%'.$search->key_search.'%')
-            ->Orwhere('room_price', '=', $search->key_search)
-            ->Orwhere('room_status', '=', $search->key_search)
-            ->Orwhere('description', 'like', '%'.$search->key_search.'%')
-            ->Orwhere('amount_people', '=', $search->key_search)
-            ->OrwhereHas('room_types', function($query) use($search){
-                $query->where('type_of_bed', 'like', '%'.$search->key_search.'%');
-            })
-            ->get();
-        return view('admins.rooms.search_room', compact('rooms', 'dem', 'search'));
+        $data = Input::all();
+        
+        if($data['key_search'] != '')
+        {
+            $dem = 1;
+            $rooms = Room::where('rooms.room_name', 'like', $search->key_search)
+                ->Orwhere('room_price', '=', $search->key_search)
+                ->Orwhere('room_status', 'like', $search->key_search)          
+                ->Orwhere('amount_people', '=', $search->key_search)
+                ->OrwhereHas('room_types', function($query) use($search){
+                    $query->where('type_of_bed', 'like', '%'.$search->key_search.'%');
+                })
+                ->paginate(4);
+            return view('admins.rooms.search_room', compact('rooms', 'dem', 'search'));
+        }
+        else
+            return redirect('/admins');
     }
 
     public function createRoom()
