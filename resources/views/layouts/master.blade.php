@@ -54,10 +54,32 @@
                         <span><i class="lotus-icon-phone"></i> 0916-790-052</span>
                     </div>
                     <div class="header_right float-right">
+                        @if (!Auth::check())
                         <span class="login-register">
-                            <a href="login.html">Login</a>
-                            <a href="register.html">register</a>
+                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">register</a>
                         </span>
+                        @else
+                        <div class="dropdown currency">
+                            <span>{{ Auth::user()->first_name .' '. Auth::user()->last_name }}  <i class="fa fa"></i></span>
+                            <ul>
+                                <li class="active"><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a><form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form></li>
+                            </ul>
+                        </div>
+                        @endif
+                        <div class="dropdown language">
+                            <span>ENG</span>
+                            <ul>
+                                <li class="active"><a href="#">ENG</a></li>
+                                <li><a href="#">VND</a></li>
+                            </ul>
+                        </div>
                         <div class="dropdown currency">
                             <span>USD <i class="fa fa"></i></span>
                             <ul>

@@ -36,3 +36,7 @@ Route::put('admins','RoomController@updateRoom');
 Route::get('admins/{room}/delete','RoomController@deleteRoom');
 Route::get('/admins/{room}','RoomController@detail_room');
 //-----Service Management-----
+Route::get('/user/test', 'UserController@test_get_user_data');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
