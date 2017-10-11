@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img">
-                        <a href="#"><img src="{!!asset('images/home/about/img-1.jpg')!!}" alt=""></a>
+                        <a href="{!!asset('/about')!!}"><img src="{!!asset('images/home/about/img-1.jpg')!!}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -98,11 +98,39 @@
                         <h2 class="heading">ABOUT US</h2>
                         <span class="box-border"></span>
                         <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source</p>
-                        <a href="#" class="awe-btn awe-btn-default">READ MORE</a>
+                        <a href="{!!asset('/about')!!}" class="awe-btn awe-btn-default">READ MORE</a>
                     </div>
                 </div>                    
             </div>
         </div>
     </div>
 	</section>
+@stop
+@section('outbest')
+    <div class="our-best">
+        <div class="row">
+
+            <div class="col-md-6 col-md-push-6">
+                <div class="img">
+                    <img src="{!!asset('images/slider/img-4.jpg')!!}" style="height: 350px;" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-md-pull-6 ">
+                <div class="text">
+                    <h2 class="heading">Our Best</h2>
+                    <p>One of Catalina Island's best-loved hotels, Hotel Vista Del Mar is recognized as one of Avalon's leading hotels with gracious island hospitality, thoughtful amenities and distinctive .</p>
+                    <ul>
+                        <li><img src="images/home/ourbest/icon-3.png" alt="icon">250 Best Rooms  5 Star</li>
+                        <li><img src="images/home/ourbest/icon-2.png" alt="icon">Wet Bar with Refrigerator</li>
+                        <li><img src="images/home/ourbest/icon-4.png" alt="icon">Double Whirlpool Jacuzzi Tub</li>
+                        <li><img src="images/home/ourbest/icon-5.png" alt="icon">Luxurious High Thread Count </li>
+                        <li><img src="images/home/ourbest/icon-1.png" alt="icon">Breakfast each morning</li>
+                        <li><img src="images/home/ourbest/icon-6.png" alt="icon">Ocean Views to lotus Hotel</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @stop
