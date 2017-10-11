@@ -4,7 +4,7 @@
 			<div class="room-wrap-1">
 				<div class="row">
 				<!-- ITEM -->
-					<div class="col-md-6">
+					<div class="col-md-7">
 						<div class="room_item-1">
 							<h2><a href="#">{!! $room->room_types->type_of_bed !!}</a></h2>
 
@@ -28,7 +28,46 @@
 							</div>
 					</div>
 				</div>
-			<!-- END / ITEM -->
+				<!-- END / ITEM -->
+				<div class="col-md-5">
+				<!-- FORM BOOK -->
+				    <div class="room-detail_book">
+
+				        <div class="room-detail_total">
+				            <img src="images/icon-logo.png" alt="" class="icon-logo">
+				            
+				            <h6>STARTING ROOM FROM</h6>
+				            
+				            <p class="price">
+				                <span class="amout">$260</span>  /days
+				            </p>
+				        </div>
+				        
+				        <div class="room-detail_form">
+				            <label>Arrive</label>
+				            <input type="text" class="awe-calendar" placeholder="Arrive Date">
+				            <label>Depature</label>
+				            <input type="text" class="awe-calendar" placeholder="Departure Date">
+				            <label>Adult</label>
+				            <select class="awe-select">
+				                <option>1</option>
+				                <option>2</option>
+				                <option selected>3</option>
+				                <option>4</option>
+				            </select>
+				            <label>Chirld</label>
+				            <select class="awe-select">
+				                <option>1</option>
+				                <option>2</option>
+				                <option selected>3</option>
+				                <option>4</option>
+				            </select>
+				            <button class="awe-btn awe-btn-13">Book Now</button>
+				        </div>
+
+				    </div>
+				    <!-- END / FORM BOOK -->
+				</div>
 			</div>
 		</div>
 	</div>

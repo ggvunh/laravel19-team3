@@ -25,4 +25,5 @@
 			<strong>Decription </strong>:{!!$room->description!!}
 		</li>
 	</ul>
+	
 @stop

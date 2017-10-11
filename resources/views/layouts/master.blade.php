@@ -81,7 +81,7 @@
                 <div class="container">
                     <!-- HEADER LOGO -->
                     <div class="header_logo">
-                        <a href="/"><img src="{!!asset('images/logo-header.png')!!}" alt=""></a>
+                        <a href="{{asset('/')}}"><img src="{!!asset('images/logo-header.png')!!}" alt=""></a>
                     </div>
                     <!-- END / HEADER LOGO -->
                     
@@ -91,14 +91,14 @@
                                 <li class="current-menu-item">
                                     <a href="{!!url('/')!!}">Home <span class=""></span></a>
                                 </li>
-                                <li><a href="#">About</a></li>                           
+                                <li><a href="{{asset('about')}}">About</a></li>                           
                                 <li>
                                         <a href="{!!url('/')!!}">Room <span class="fa fa-caret-down"></span></a>
                                     <ul class="sub-menu">
                                         @include('layouts.menu')                                 
                                     </ul>
                                 </li>
-                                <li><a href="about.html">Contact</a></li>
+                                <li><a href="{{asset('contact')}}">Contact</a></li>
                                 <li>
 
                                 </li>
@@ -164,7 +164,6 @@
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- END / ACCOMD ODATIONS -->
 
@@ -173,6 +172,14 @@
 
         @show
         <!-- END / ABOUT -->
+       
+        <!-- OUR BEST -->
+        <section class="section-our-best bg-white">
+            <div class="container">
+                @yield('outbest')
+            </div>
+        </section>
+        <!-- END / OUR BEST -->
         <!-- FOOTER -->
         <footer id="footer">
             <!-- FOOTER TOP -->

@@ -22,7 +22,14 @@ Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
 Route::get('/lotus/search','RoomController@search');
 
 Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
+//-----------------About------------
+Route::get('about', function(){
+	return view('hotels.about');
+});
 
+Route::get('contact', function(){
+	return view('hotels.contact');
+});
 //----------------------------Admin----------------------------
 
 Route::get('/admins', 'RoomController@listall_room'); ///List All Room
