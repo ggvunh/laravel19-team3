@@ -88,22 +88,14 @@ class RoomController extends Controller
 
     public function saveRoom(roomRequest $request)
     {
-        $data = Input::all();
-        if($request->hasFile('images'))
-        {
-            //<input type="file" name="images">
-            $file = $request->file('images');
-            $filename = $file->getClientOriginalExtension();
-            $request->file = $filename;
-            $images = time().".".$filename;
-            $destinationPath = public_path('/images/upload/rooms');
-            $file->move($destinationPath, $images);
-            $data['images'] = $images;
-        }
-        else
-        {
-            $request->file = "";
-        }
+        $data = Input::except('images');
+        $file = $request->file('images');
+        $filename = $file->getClientOriginalExtension();
+        $request->file = $filename;
+        $images = time().".".$filename;
+        $destinationPath = public_path('/images/upload/rooms');
+        $file->move($destinationPath, $images);
+        $data['images'] = $images;
         $room = Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }

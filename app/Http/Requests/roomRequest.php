@@ -25,8 +25,9 @@ class roomRequest extends FormRequest
     {
         return [
             'room_name' => 'required|unique:rooms,room_name',
-            'room_price'=> 'required|numeric|min:7',
+            'room_price'=> 'required|numeric',
             'amount_people'=>'required|max:2',
+            'images'=>'required',
         ];
     }
 }
