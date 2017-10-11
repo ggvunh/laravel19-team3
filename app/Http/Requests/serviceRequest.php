@@ -24,8 +24,8 @@ class serviceRequest extends FormRequest
     public function rules()
     {
         return [
-            'service_name' => 'required',
-            'service_price'=> 'required|numeric',            
+            'service_name' => 'required|unique:service_hotels,service_name',
+            'service_price'=> 'required|numeric|min:6',            
         ];
     }
 }

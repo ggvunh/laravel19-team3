@@ -162,8 +162,10 @@ desired effect
         {{ Session::get('success') }}
       </div>
       @endif
-      @if ($errors->any())
+      @if ($errors->any()) 
         <div class="alert alert-danger">
+            <strong>Oops!!!</strong> There is something wrong with your form
+            <br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
