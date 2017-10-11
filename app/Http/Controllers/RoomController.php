@@ -74,6 +74,21 @@ class RoomController extends Controller
     public function saveRoom(roomRequest $request)
     {
         $data = Input::all();
+        if($request->hasFile('images'))
+        {
+            //<input type="file" name="images">
+            $file = $request->file('images');
+            $filename = $file->getClientOriginalExtension();
+            $request->file = $filename;
+            $images = time().".".$filename;
+            $destinationPath = public_path('/images/upload/rooms');
+            $file->move($destinationPath, $images);
+            $data['images'] = $images;
+        }
+        else
+        {
+            $request->file = "";
+        }
         $room = Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }
@@ -87,7 +102,23 @@ class RoomController extends Controller
     public function updateRoom(Room $room, roomRequest $request)
     {
         $data=Input::all();
+         if($request->hasFile('images'))
+        {
+            //<input type="file" name="images">
+            $file = $request->file('images');
+            $filename = $file->getClientOriginalExtension();
+            $request->file = $filename;
+            $images = time().".".$filename;
+            $destinationPath = public_path('/images/upload/rooms');
+            $file->move($destinationPath, $images);
+            $data['images'] = $images;
+        }
+        else
+        {
+            $request->file = "";
+        }
         $room->update($data);
+
         return redirect('admins/')->withSuccess('Room has been updated');
     }
     public function deleteRoom(Room $room)
