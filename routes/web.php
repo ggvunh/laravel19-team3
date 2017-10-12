@@ -76,3 +76,7 @@ Route::get('admins/service/{service}/delete','ServiceHotelController@deleteServi
 
 Route::get('admins/service/{service}','ServiceHotelController@detailService');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

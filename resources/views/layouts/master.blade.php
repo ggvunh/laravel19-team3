@@ -55,8 +55,18 @@
                     </div>
                     <div class="header_right float-right">
                         <span class="login-register">
-                            <a href="login.html">Login</a>
-                            <a href="register.html">register</a>
+                        @if(Auth::guest())<a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">register</a>
+                        @else
+                            <a href="">{{ Auth::user()->username}}</a>
+                            <a href="{{ route('logout') }}"
+                                             onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                             Logout
+                                        </a><form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                                             {{ csrf_field() }}
+                            </form></li>
+                        @endif    
                         </span>
                         <div class="dropdown currency">
                             <span>USD <i class="fa fa"></i></span>
