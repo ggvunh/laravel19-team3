@@ -88,7 +88,7 @@ class RoomController extends Controller
 
     public function saveRoom(roomRequest $request)
     {
-        $data = Input::except('images');
+        $data = Input::except('images','images1','images2');
         $file = $request->file('images');
         $filename = $file->getClientOriginalExtension();
         $request->file = $filename;
@@ -96,34 +96,70 @@ class RoomController extends Controller
         $destinationPath = public_path('/images/upload/rooms');
         $file->move($destinationPath, $images);
         $data['images'] = $images;
+        if ($request->hasFile('images1') )
+        {    
+            $file1 = $request->file('images1');
+            $filename1 = $file1->getClientOriginalExtension();
+            $request->file = $filename1;
+            $images1 = time().".".$filename;
+            $destinationPath1 = public_path('/images/upload/rooms');
+            $file1->move($destinationPath1, $images1);
+            $data['images1'] = $images1;
+        }
+
+        if ($request->hasFile('images2') )
+        {    
+            $file2 = $request->file('images2');
+            $filename2 = $file2->getClientOriginalExtension();
+            $request->file = $filename2;
+            $images2 = time().".".$filename;
+            $destinationPath2 = public_path('/images/upload/rooms');
+            $file2->move($destinationPath2, $images2);
+            $data['images2'] = $images2;
+        }
+
         $room = Room::create($data);
         return redirect('admins/')->withSuccess('Room has been created');
     }
     public function editRoom(Room $room)
     {
         $roomTypes=Room_type::all()->pluck('type_of_bed','id');
-        $images=Image::all()->pluck('url','id');
         $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
-        return view('admins.rooms.editRoom',compact('roomTypes', 'images', 'serviceHotels','room'));
+        return view('admins.rooms.editRoom',compact('roomTypes','serviceHotels','room'));
     }
     public function updateRoom(Room $room, roomRequest $request)
     {
-        $data=Input::all();
-         if($request->hasFile('images'))
-        {
-            //<input type="file" name="images">
-            $file = $request->file('images');
-            $filename = $file->getClientOriginalExtension();
-            $request->file = $filename;
-            $images = time().".".$filename;
-            $destinationPath = public_path('/images/upload/rooms');
-            $file->move($destinationPath, $images);
-            $data['images'] = $images;
+        $data=Input::except('images');
+        $file = $request->file('images');
+        $filename = $file->getClientOriginalExtension();
+        $request->file = $filename;
+        $images = time().".".$filename;
+        $destinationPath = public_path('/images/upload/rooms');
+        $file->move($destinationPath, $images);
+        $data['images'] = $images;
+        
+        if ($request->hasFile('images1') )
+        {    
+            $file1 = $request->file('images1');
+            $filename1 = $file1->getClientOriginalExtension();
+            $request->file = $filename1;
+            $images1 = time().".".$filename;
+            $destinationPath1 = public_path('/images/upload/rooms');
+            $file1->move($destinationPath1, $images1);
+            $data['images1'] = $images1;
         }
-        else
-        {
-            $request->file = "";
+
+        if ($request->hasFile('images2') )
+        {    
+            $file2 = $request->file('images2');
+            $filename2 = $file2->getClientOriginalExtension();
+            $request->file = $filename2;
+            $images2 = time().".".$filename;
+            $destinationPath2 = public_path('/images/upload/rooms');
+            $file2->move($destinationPath2, $images2);
+            $data['images2'] = $images2;
         }
+
         $room->update($data);
 
         return redirect('admins/')->withSuccess('Room has been updated');

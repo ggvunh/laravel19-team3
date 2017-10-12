@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-	{!! Form::open(['url'=>'admins','files' => true,'enctype' => 'multipart/form-data', 'id' => 'newHotnessForm']) !!}
+	{!! Form::open(['url'=>'admins','files' => true,'enctype' => 'multipart/form-data']) !!}
 		@include('partials.forms.form')
 	{!! Form::close() !!}
 @stop

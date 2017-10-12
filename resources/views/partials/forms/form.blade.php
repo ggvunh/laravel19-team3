@@ -55,5 +55,15 @@
   	@endif
 	</div>
 
+	{!! Form::label('images1','Upload Image 1') !!}
+	<div class="form-controls">
+		{!! Form::file('images1',['class'=>'form-control']) !!}
+	</div>
+
+	{!! Form::label('images2','Upload Image 2') !!}
+	<div class="form-controls">
+		{!! Form::file('images2',['class'=>'form-control']) !!}
+	</div>
+
 </div>
 {!! Form::submit('Save Room',['class'=>'btn btn-primary pull-left']) !!}
