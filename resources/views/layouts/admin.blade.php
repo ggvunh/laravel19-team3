@@ -80,7 +80,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="{{asset('dist/img/user2-160x160.png')}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Admin Name</span>
+              <span class="hidden-xs">{{ Auth::user()->username}}</span>
             </a>
           </li>
               <li class="user-footer">
@@ -103,7 +103,7 @@ desired effect
           <img src="{{asset('dist/img/user2-160x160.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Name</p>
+          <p>{{ Auth::user()->username}}</p>
         </div>
       </div>
 

@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
 class RegisterController extends Controller
 {
     /*
@@ -19,16 +16,13 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -38,7 +32,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -48,12 +41,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
+            'first_name' => 'required|string|max:55',
+            'last_name' => 'required|string|max:55',
             'password' => 'required|string|min:6|confirmed',
+            'phone_number' => 'required|string|max:50',
+            'address' => 'required|string|max:100',
+            'province' => 'required|string|max:55',
+            'country' => 'required|string|max:55',
+            'deposit' => 'integer',
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -62,10 +61,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $data['password'] = bcrypt($data['password']);
+        $data['role'] = 0;
+       
+        return User::create($data);
     }
 }
