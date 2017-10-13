@@ -16,6 +16,9 @@
 Route::get('/', 'RoomController@listAll');
 
 Route::get('/lotus/', 'RoomController@listAll');
+//------------------------Booking-------------------------
+Route::get('/lotus/bookings/search/', 'BookingController@search');
+//-------------------------------------------------------------------
 
 Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
 
@@ -48,6 +51,7 @@ Route::post('admins','RoomController@saveRoom');
 
 //-----Booking Room-----
 Route::get('/admins/bookings', 'BookingController@getBooking');
+
 
 //-----Room Management-----
 
