@@ -143,18 +143,13 @@
                 <div class="check-availability">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="ajax-form-search-room" action="search_step_2.php" method="post">
+                            <form action="{!!url('/lotus/bookings/search')!!}" method="get">
                                 <div class="availability-form">
-                                    <input type="text" name="arrive" class="awe-calendar from" placeholder="Arrival Date">
+                                    <input type="text" name="arrival" class="awe-calendar from" placeholder="Arrival Date">
                                     <input type="text" name="departure" class="awe-calendar to" placeholder="Departure Date"> 
-                                   <select class="awe-select" name="adults">
-                                        <option>Person</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>                           
+                                   <input type="text" name="person" class="awe-select" placeholder="Persons"">                                                        
                                     <div class="vailability-submit">
-                                        <button class="awe-btn awe-btn-13">FIND ROOM</button>
+                                        <input type="submit" name="btnsearch" value="check-availability" class="awe-btn awe-btn-13">
                                     </div>
                                 </div>
                             </form>

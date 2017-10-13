@@ -5,10 +5,10 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Responsive Hover Table</h3>
-              <form class="box-tools" action="admins/search" method="get">
+              <form class="box-tools" action="{!!asset('admins/bookings/search')!!}" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
-
+                  
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
@@ -25,8 +25,6 @@
           					<th>Status</th>
           					<th>User</th>
           					<th>Room</th>
-          					<th>Edit</th>
-          					<th>Delete</th>
 			         	</tr>
                 @foreach ($bookings as $bk)
                  <tr>
@@ -36,9 +34,11 @@
           					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
           					<td>{!!$bk->user->username!!}</td>
           					<td>
+                      <ul>
                         @foreach ($bk->room as $rm)
-                          {!!$rm->room_name!!}
+                        <li> {!!$rm->room_name!!}</li>                        
                         @endforeach
+                        </ul>
                     </td>
           				</tr>
 				        @endforeach			
