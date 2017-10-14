@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Room;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Pagination\Paginator;
 
 class BookingController extends Controller
 {
@@ -41,6 +42,19 @@ class BookingController extends Controller
   			})
 			->get();
   		return view('hotels.bookings.search_booking', compact('rooms'));
+  }
+  public function searchName()
+  {
+        $data = Input::all();        
+        if($data['key_search'] != '')
+        {
+            $dem = 1;
+            $bookings = Booking::where('bookings.user_id', 'like', $search->key_search)
+                ->paginate(4);
+            return view('admins.bookings.search', compact('bookings', 'dem'));
+        }
+        else
+            return redirect('/admins');
   }
 }
 

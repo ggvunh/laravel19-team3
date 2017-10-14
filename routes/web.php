@@ -39,7 +39,7 @@ Route::get('/admins', 'RoomController@listall_room'); ///List All Room
 
 Route::get('admins/service','ServiceHotelController@viewService');// List All Service
 
-
+Route::get('admins/roomtypes','RoomTypeController@viewRoomType');// List All Room Type
 Route::get('admins/search','RoomController@search_room');// Search Room
 
 //-----Room Management-----
@@ -48,22 +48,32 @@ Route::get('admins/create','RoomController@createRoom');
 
 Route::post('admins','RoomController@saveRoom');
 
+Route::get('admins/{room}/edit','RoomController@editRoom');
+
+Route::put('admins/{room}','RoomController@updateRoom');
+
+Route::get('admins/{room}/delete','RoomController@deleteRoom');
+
+Route::get('/admins/{room}','RoomController@detail_room');
+
 
 //-----Booking Room-----
 Route::get('/admins/bookings', 'BookingController@getBooking');
 
 
-//-----Room Management-----
+//-----Room Type Management-----
 
+Route::get('admins/roomtypes/create','RoomTypeController@createRoomType');
 
+Route::post('admins/roomtypes','RoomTypeController@saveRoomType');
 
-Route::get('admins/{room}/edit','RoomController@editRoom');
+Route::get('admins/roomtypes/{roomtype}/edit','RoomTypeController@editRoomType');
 
-Route::put('admins','RoomController@updateRoom');
+Route::put('admins/roomtypes/{roomtype}','RoomTypeController@updateRoomType');
 
-Route::get('admins/{room}/delete','RoomController@deleteRoom');
+Route::get('admins/roomtypes/{roomtype}/delete','RoomTypeController@deleteRoomType');
 
-Route::get('/admins/{room}','RoomController@detail_room');
+Route::get('admins/roomtypes/{roomtype}','RoomTypeController@detailRoomType');
 
 //-----Service Management-----
 

@@ -128,10 +128,20 @@ desired effect
               <i class="fa fa-building"></i> <span>ROOMS </span>
             </a></li>
           <li>
+          <li>
+              <a href="{!!url('admins/roomtypes')!!}">
+              <i class="fa fa-bookmark"></i> <span>ROOM TYPES </span>
+              </a></li>
+          <li>
             <a href="{{url('admins/service')}}">
-              <i class="fa fa-star"></i> <span>SERVICE</span>
+              <i class="fa fa-star"></i> <span>SERVICES</span>
             </a>
           </li>
+          <li>
+             <a href="{{url('admins/bookings')}}">
+              <i class="fa fa-bars"></i> <span>BOOKINGS </span>
+            </a></li>
+          <li>
           <li>
             <a href="#">
               <i class="fa fa-users"></i> <span>USERS</span>
@@ -139,7 +149,7 @@ desired effect
           </li>
           <li>
             <a href="#">
-              <i class="fa fa-exclamation-triangle"></i> <span>REPORT</span>
+              <i class="fa fa-exclamation-triangle"></i> <span>REPORTS</span>
             </a>
           </li>
      </ul>
