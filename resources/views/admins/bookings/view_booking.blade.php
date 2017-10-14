@@ -1,10 +1,13 @@
 @extends('layouts.admin')
+@section('header')
+  <h1>All Bookings List</h1>
+@stop
 @section('content')
 	<div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+              <h3 class="box-title">Bookings Table</h3>
               <form class="box-tools" action="{!!asset('admins/bookings/search')!!}" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">

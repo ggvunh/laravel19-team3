@@ -10,6 +10,7 @@ use App\Service_Hotel;
 use App\Image;
 use Illuminate\Pagination\Paginator;
 use App\Http\Requests\roomRequest;
+use App\Http\Requests\editRoomRequest;
 
 class RoomController extends Controller
 {
@@ -127,17 +128,20 @@ class RoomController extends Controller
         $serviceHotels=Service_Hotel::all()->pluck('service_name','id');
         return view('admins.rooms.editRoom',compact('roomTypes','serviceHotels','room'));
     }
-    public function updateRoom(Room $room, roomRequest $request)
+    public function updateRoom(Room $room, editRoomRequest $request)
     {
-        $data=Input::except('images');
-        $file = $request->file('images');
-        $filename = $file->getClientOriginalExtension();
-        $request->file = $filename;
-        $images = time().".".$filename;
-        $destinationPath = public_path('/images/upload/rooms');
-        $file->move($destinationPath, $images);
-        $data['images'] = $images;
+        $data=Input::all();
         
+        if ($request->hasFile('images') )
+        {
+            $file = $request->file('images');
+            $filename = $file->getClientOriginalExtension();
+            $request->file = $filename;
+            $images = time().".".$filename;
+            $destinationPath = public_path('/images/upload/rooms');
+            $file->move($destinationPath, $images);
+            $data['images'] = $images;
+        }
         if ($request->hasFile('images1') )
         {    
             $file1 = $request->file('images1');
@@ -161,7 +165,6 @@ class RoomController extends Controller
         }
 
         $room->update($data);
-
         return redirect('admins/')->withSuccess('Room has been updated');
     }
     public function deleteRoom(Room $room)
