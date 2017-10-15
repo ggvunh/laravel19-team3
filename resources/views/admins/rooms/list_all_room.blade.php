@@ -21,17 +21,17 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-striped table-hover">
-                <tr>
-				<th>#</th>
-				<th>Image</th>
-				<th>Room Name</th>
-				<th>Price</th>
-				<th>Status</th>
-				<th>Description</th>
-				<th>Amount People</th>
-				<th>Room Type</th>
-				<th>Action</th>
-			</tr>
+                  <tr>
+            				<th>#</th>
+            				<th>Image</th>
+            				<th>Room Name</th>
+            				<th>Price</th>
+            				<th>Status</th>
+            				<th>Description</th>
+            				<th>Amount People</th>
+            				<th>Room Type</th>
+            				<th>Action</th>
+          			</tr>
                 @foreach ($rooms as $room)
                 <tr>
 					<th scope="row">{!!$dem++!!}</th>

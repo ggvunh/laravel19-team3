@@ -16,8 +16,23 @@
 Route::get('/', 'RoomController@listAll');
 
 Route::get('/lotus/', 'RoomController@listAll');
+
 //------------------------Booking-------------------------
+//load luon danh sach rooms de booking
 Route::get('/lotus/bookings/search/', 'BookingController@search');
+
+//--------------------Shopping Cart----------------------------
+Route::get('/cart', 'BookingController@shop');
+
+Route::get('/cart/{id}/add', 'BookingController@add');
+
+Route::get('/cart/{id}/delete', 'BookingController@delete');
+
+Route::get('/checkout', 'BookingController@checkout');
+
+Route::get('/cart/destroy', 'BookingController@destroy');
+
+
 //-------------------------------------------------------------------
 
 Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
@@ -27,6 +42,7 @@ Route::get('/lotus/search','RoomController@search');
 Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
 //-----------------About------------
 Route::get('about', function(){
+
 	return view('hotels.about');
 });
 
