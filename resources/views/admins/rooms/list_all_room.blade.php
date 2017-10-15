@@ -46,11 +46,7 @@
 					<td>{!!$room->description!!}</td>
 					<td>{!!$room->amount_people!!}</td>
 					<td>{!!$room->room_types->type_of_bed!!}</td>
-					<td><a href="{{url('admins/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete<script>
-    $(".delete").on("submit", function(){
-        return confirm("Do you want to delete this item?");
-    });
-</script></a></td>
+					<td><a href="{{url('admins/'.$room->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/'.$room->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
 				</tr>
 				@endforeach			
               </table>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room_Type extends Model
 {
     protected $table = 'room_types';
-    protected $fillable = ['id', 'type_of_bed', 'description'];
+    protected $fillable = ['type_of_bed', 'description'];
     public $timestamps = false;
 
     public function rooms()
