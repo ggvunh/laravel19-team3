@@ -10,13 +10,12 @@ class Booking extends Model
     protected $fillable = ['user_id', 'check_in_date', 'check_out_date', 'status'];
     public $timestamps = false;
 
-    public function room()
-    {
-        return $this->belongsToMany('App\Room', 'book_rooms');
-    }
-
     public function user()
     {
     	return $this->belongsTo('App\User', 'user_id');
+    }
+    public function bookRooms()
+    {
+        return $this->hasMany('App\Book_Room');
     }
 }

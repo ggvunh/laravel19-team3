@@ -56,7 +56,10 @@ Route::get('/admins', 'RoomController@listall_room'); ///List All Room
 Route::get('admins/service','ServiceHotelController@viewService');// List All Service
 
 Route::get('admins/roomtypes','RoomTypeController@viewRoomType');// List All Room Type
+
 Route::get('admins/search','RoomController@search_room');// Search Room
+
+Route::get('admins/bookings','BookRoomConbtroller@view');
 
 //-----Room Management-----
 
