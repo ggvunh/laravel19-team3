@@ -23,26 +23,22 @@
               <table class="table table-striped table-hover">
                 <tr>
           					<th>#</th>
+                    <th>Booking Code</th>
+                    <th>Room Name</th>
           					<th>In Date</th>
           					<th>Out Date</th>
           					<th>Status</th>
           					<th>User</th>
-          					<th>Room</th>
 			         	</tr>
                 @foreach ($bookings as $bk)
                  <tr>
           					<th scope="row">{!!$dem++!!}</th>
-          					<td>{!!$bk->check_in_date!!}</td>
-          					<td>{!!$bk->check_out_date!!}</td>
-          					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
-          					<td>{!!$bk->user->username!!}</td>
-          					<td>
-                      <ul>
-                        @foreach ($bk->room as $rm)
-                        <li> {!!$rm->room_name!!}</li>                        
-                        @endforeach
-                        </ul>
-                    </td>
+                    <td><a href="#">{!! $bk->booking_code !!}</a></td>
+                    <td>{!! $bk->room->room_name !!}</td>
+          					<td>{!!$bk->booking->check_in_date!!}</td>
+          					<td>{!!$bk->booking->check_out_date!!}</td>
+          					<td>{!!$bk->booking->status ? 'Booking' : 'Cancel'!!}</td>
+          					<td>{!!$bk->booking->user->username!!}</td>
           				</tr>
 				        @endforeach			
               </table>

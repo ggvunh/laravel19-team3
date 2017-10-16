@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Book_Room;
 use App\Room;
 use Illuminate\Support\Facades\Input;
 
@@ -17,8 +18,12 @@ class BookingController extends Controller
    public function getBooking()
    {
    		$dem = 1;
-   		$bookings = Booking::all();
+   		$bookings = Book_Room::all();
    		return view('admins.bookings.view_booking' ,compact('bookings', 'dem'));
+   }
+   public function detailBooking(Book_room $booking)
+   {
+      return view('admins.bookings.detail',compact('booking'));
    }
 
    //function search from - to date
