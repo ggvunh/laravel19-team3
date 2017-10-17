@@ -140,22 +140,7 @@
         <!-- CHECK AVAILABILITY -->
         <section class="section-check-availability">
             <div class="container">
-                <div class="check-availability">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form action="{!!url('/lotus/bookings/search')!!}" method="get">
-                                <div class="availability-form">
-                                    <input type="text" name="arrival" class="awe-calendar from" placeholder="Arrival Date">
-                                    <input type="text" name="departure" class="awe-calendar to" placeholder="Departure Date"> 
-                                   <input type="text" name="person" class="awe-select" placeholder="Persons"">                                                        
-                                    <div class="vailability-submit">
-                                        <input type="submit" name="btnsearch" value="check-availability" class="awe-btn awe-btn-13">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                @yield('search_date')
             </div>
         </section>
         <!-- END / CHECK AVAILABILITY -->

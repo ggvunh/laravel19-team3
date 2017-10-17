@@ -24,6 +24,8 @@ Route::get('/lotus/bookings/search/', 'BookingController@search');
 //--------------------Shopping Cart----------------------------
 Route::get('/cart', 'BookingController@shop');
 
+Route::get('/cart/{room}', 'BookingController@detail_room');
+
 Route::get('/cart/{id}/add', 'BookingController@add');
 
 Route::get('/cart/{id}/delete', 'BookingController@delete');
@@ -40,6 +42,7 @@ Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
 Route::get('/lotus/search','RoomController@search');
 
 Route::get('/lotus/{room}', 'RoomController@viewDetailRoom');
+
 //-----------------About------------
 Route::get('about', function(){
 

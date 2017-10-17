@@ -38,6 +38,31 @@
 
 	    </ul>
 	</div>
+@stop
+@section('search_date')
+	<div class="check-availability">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <form action="{!!url('/lotus/bookings/search')!!}" method="get">
+	                <div class="availability-form">
+	                    <input type="text" name="arrival" class="awe-calendar from" placeholder="Arrival Date">
+	                    <input type="text" name="departure" class="awe-calendar to" placeholder="Departure Date"> 
+						<select class="awe-select" name="person">
+						    <option>Person</option>
+						    <option>1</option>
+						    <option>2</option>
+						    <option>3</option>
+						    <option>4</option>
+						    <option>5</option>
+						</select>                                                     
+	                    <div class="vailability-submit">
+	                        <input type="submit" name="btnsearch" value="check-availability" class="awe-btn awe-btn-13">
+	                    </div>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
 @stop                    
 @section('content-index')	
  <form class="box-tools" action="{{url('/lotus/search')}}" method="get" style="float: right; padding-right: 15px;">
