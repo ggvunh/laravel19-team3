@@ -17,141 +17,68 @@
                                 <!-- HEADING -->
                                 <h2 class="reservation-heading">Select Rooms</h2>
                                 <!-- END / HEADING -->
-
                                 <!-- ITEM -->
+                                @foreach(Cart::content() as $row)
                                 <div class="reservation-room-seleted_item">
-                                    <h6>ROOM 1</h6> <span class="apb-option">2 Adult, 1 Child</span>
+                                    <h6>{!!$row->options->room_name!!}</h6> <span class="apb-option">{!!$row->options->person!!} person</span>
+
                                     <div class="reservation-room-seleted_name">
-                                        <h2><a href="#">LUXURY ROOM</a></h2>
-                                        <span class="reservation-amout">$470.00</span>
+                                        <h2><a href="#">{!!$row->name!!}</a></h2>
+                                        <span class="reservation-amout">{!! number_format($row->price) !!}VND</span>
                                     </div>
-                                    <a href="#" class="reservation-room-seleted_change">Change Room</a>
                                 </div>
+                                
                                 <!-- END / ITEM -->
 
                                 <!-- CURRENT -->
                                 <div class="reservation-room-seleted_current bg-blue">
-                                    <h6>YOU ARE BOOKING ROOM 2</h6>  
-                                    <span>2 Adult, 1 Chirld</span>   
+                                    <h6>YOU HAVE BOOKED {!!Cart::count()!!} RoomS</h6>  
                                 </div>
                                 <!-- CURRENT -->
-                                
+                                @endforeach
                                 <!-- TOTAL -->
                                 <div class="reservation-room-seleted_total">
                                     <label>TOTAL</label>
-                                    <span class="reservation-total">$470.00</span>
+                                    <span class="reservation-total">{!!Cart::total()!!}VND</span>
                                 </div>
                                 <!-- END / TOTAL -->
 
                             </div>
 
                             <!-- END / ROOM SELECT -->
-
-                            <!-- SIDEBAR AVAILBBILITY -->
-                            <div class="reservation-sidebar_availability bg-gray">
+                             <!-- RESERVATION DATE -->
+                            <div class="reservation-date bg-gray">
 
                                 <!-- HEADING -->
-                                <h2 class="reservation-heading">YOUR RESERVATION</h2>
+                                <h2 class="reservation-heading">Dates</h2>
                                 <!-- END / HEADING -->
+                            
+                                <ul>
+                                    <li>
+                                        <span>Check-In</span>
+                                        <span></span>
+                                    </li>
 
-                                <h6 class="check_availability_title">your stay dates</h6>
-                                    
-                                <div class="check_availability-field">
-                                    <label>Arrive</label>
-                                    <input type="text" class="awe-calendar awe-input" placeholder="Arrive">
-                                </div>
-                                
-                                <div class="check_availability-field">
-                                    <label>Depature</label>
-                                    <input type="text" class="awe-calendar awe-input" placeholder="Depature">
-                                </div>
-                                
-                                <h6 class="check_availability_title">ROOMS &amp; GUest</h6>
-                                
-                                <div class="check_availability-field">
-                                    <label>ROOMS</label>
-                                    <select class="awe-select">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="check_availability_group">
-                                
-                                    <span class="label-group">ROOM 1</span>
-                                
-                                    <div class="check_availability-field_group">
-                                
-                                        <div class="check_availability-field">
-                                            <label>Adult</label>
-                                            <select class="awe-select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                            </select>
-                                        </div>
-                                
-                                        <div class="check_availability-field">
-                                            <label>Chirld</label>
-                                            <select class="awe-select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                            </select>
-                                        </div>
-                                
-                                    </div>
-                                
-                                </div>
-
-                                <div class="check_availability_group">
-                                
-                                    <span class="label-group">ROOM 2</span>
-                                
-                                    <div class="check_availability-field_group">
-                                
-                                        <div class="check_availability-field">
-                                            <label>Adult</label>
-                                            <select class="awe-select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                            </select>
-                                        </div>
-                                
-                                        <div class="check_availability-field">
-                                            <label>Chirld</label>
-                                            <select class="awe-select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                            </select>
-                                        </div>
-                                
-                                    </div>
-                                
-                                </div>
-
-                                <button class="awe-btn awe-btn-13">CHECK AVAILABLE</button>
+                                    <li>
+                                        <span>Check-Out</span>
+                                        <span>Sat 06/06/2015</span>
+                                    </li>
+                                    <li>
+                                        <span>Total Nights</span>
+                                        <span>2</span>
+                                    </li>
+                                    <li>
+                                        <span>Total Rooms</span>
+                                        <span>2 of 2</span>
+                                    </li>
+                                    <li>
+                                        <span>Total Guests</span>
+                                        <span>4 Adults 1 Children</span>
+                                    </li>
+                                </ul>
 
                             </div>
-                            <!-- END / SIDEBAR AVAILBBILITY -->
+                            <!-- END / RESERVATION DATE -->
 
                         </div>
 
@@ -179,7 +106,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td>
-                                        <p><strong>{!!$row->name!!}</strong></p>
+                                        <p><strong><a href="{!!url('/cart/'.$row->id)!!}">{!!$row->name!!}</a></strong></p>
 
                                         </td>
                                         <td><input type="text" value="{!!$row->qty = 1!!}" style="width: 30px;"></td>
@@ -198,8 +125,9 @@
                                 </tr>
                             </tfoot>
                         </table>
-                         <a href="{!!url('/cart/destroy')!!}" class="awe-btn awe-btn-6">Delete All Order</a>
-                        <a href="" class="awe-btn awe-btn-6">GO NEXT STEP</a>
+                         <a href="{!!url('/cart/destroy')!!}" class="btn btn-danger">Delete All Order</a>
+                        <a href="{!!url('lotus/bookings/search/')!!}" class="btn btn-success">Continue Order</a>
+                        <a href="{!!url('/checkout')!!}" class="btn btn-success">CheckOut</a>
                     </div>
                     <!-- END / CONTENT -->
                     
