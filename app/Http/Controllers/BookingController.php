@@ -18,11 +18,10 @@ class BookingController extends Controller
    public function getBooking()
    {
    		$dem = 1;
-   		$bookings = Book_Room::all();
+   		$bookings = Booking::all();
    		return view('admins.bookings.view_booking' ,compact('bookings', 'dem'));
    }
-
-   public function detailBooking(Book_room $booking)
+   public function detailBooking(Booking $booking)
    {
       return view('admins.bookings.detail',compact('booking'));
    }

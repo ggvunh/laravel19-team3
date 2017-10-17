@@ -15,12 +15,8 @@ class Room extends Model
     	return $this->belongsTo('App\Room_Type' , 'room_type_id');
     }
     
-    public function booking()
+    public function bookings()
     {
         return $this->belongsToMany('App\Booking', 'book_rooms');
-    }
-    public function bookRooms()
-    {
-        return $this->hasMany('App\Book_Room');
     }
 }
