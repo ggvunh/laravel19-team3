@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('header')
-	<h1>Booking Detail</h1>
+	<h1>{{$booking->booking_code}} Detail</h1>
 @stop
 @section('content')
 @stop
