@@ -58,7 +58,7 @@
                         @if(Auth::guest())<a href="{{ route('login') }}">Login</a>
                             <a href="{{ route('register') }}">register</a>
                         @else
-                            <a href="">{{ Auth::user()->username}}</a>
+                            <a href="">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
                             <a href="{{ route('logout') }}"
                                              onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">

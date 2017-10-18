@@ -12,7 +12,7 @@ class User extends Authenticatable
     protected $table = 'users';
     
     
-    protected $fillable = ['username', 'first_name', 'last_name', 'password', 'address','country', 'province', 'city',  'email', 'phone_number', 'role', 'deposit'];
+    protected $fillable = ['first_name', 'last_name', 'password', 'address','country', 'province', 'city',  'email', 'phone_number', 'role', 'deposit'];
     public $timestamps = false;
 
     // public function user_details()

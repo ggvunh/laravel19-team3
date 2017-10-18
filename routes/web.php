@@ -22,7 +22,10 @@ Route::get('/lotus/', 'RoomController@listAll');
 Route::get('/lotus/bookings/search/', 'BookingController@search');
 
 //--------------------Shopping Cart----------------------------
+
 Route::get('/cart', 'BookingController@shop');
+
+Route::get('/cart/destroy', 'BookingController@destroy');
 
 Route::get('/cart/{room}', 'BookingController@detail_room');
 
@@ -31,9 +34,7 @@ Route::get('/cart/{id}/add', 'BookingController@add');
 Route::get('/cart/{id}/delete', 'BookingController@delete');
 
 Route::get('/checkout', 'BookingController@checkout');
-
-Route::get('/cart/destroy', 'BookingController@destroy');
-
+Route::post('/checkout', 'BookingController@payment');
 
 //-------------------------------------------------------------------
 
