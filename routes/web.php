@@ -82,6 +82,10 @@ Route::get('/admins/{room}','RoomController@detail_room');
 
 //-----Booking Room-----
 Route::get('/admins/bookings', 'BookingController@getBooking');
+Route::get('admins/bookings/{booking_id}','BookingController@detailBooking');
+Route::get('admins/bookings/{booking_id}/{room_id}/addservice','BookingController@addService');
+Route::post('admins/bookings/{booking_id}/{room_id}','BookingController@saveService');
+Route::get('admins/bookings/{booking_id}/{room_id}','BookingController@detailRoom');
 
 
 //-----Room Type Management-----
@@ -117,3 +121,5 @@ Route::get('admins/service/{service}','ServiceHotelController@detailService');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

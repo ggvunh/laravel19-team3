@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Book_Room;
 use App\Room;
+
 use App\Room_Type;
+
+use App\Book_Room_Service;
+use App\Service_Hotel;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Session;
@@ -20,13 +25,35 @@ class BookingController extends Controller
 {
    public function getBooking()
    {
-   		$dem = 1;
    		$bookings = Booking::all();
-   		return view('admins.bookings.view_booking' ,compact('bookings', 'dem'));
+   		return view('admins.bookings.view_booking' ,compact('bookings'));
    }
-   public function detailBooking(Booking $booking)
+   public function detailBooking($booking_id)
    {
-      return view('admins.bookings.detail',compact('booking'));
+      $bookroom=Book_Room::where('booking_id', $booking_id)->get();
+      // dd($bookroom);
+      return view('admins.bookings.detail', compact('bookroom'));
+   }
+
+   public function detailRoom($booking_id, $room_id)
+   {
+      $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+      // dd($bookroom);
+      return view('admins.bookings.detailRoom',compact('bookroom'));
+   }
+   public function addService($booking_id, $room_id)
+   {
+      $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+      $services=Service_Hotel::all()->pluck('service_name','id');
+      return view('admins.bookings.addService',compact('bookroom','services'));
+   }
+   public function saveService($booking_id, $room_id)
+   {
+      $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+      $data=Input::all();
+      $data['book_room_id']=$bookroom->id;
+      $bookroomservice=Book_Room_Service::create($data);
+      return redirect('admins/bookings/'.$bookroom->booking_id.'/'.$bookroom->room_id)->withSuccess('Service has been added');
    }
 
    public function detail_room(Room $room)

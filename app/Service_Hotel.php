@@ -10,8 +10,8 @@ class Service_Hotel extends Model
     protected $fillable = ['service_name','service_price', 'description'];
     public $timestamps = false;
 
-    public function bookService()
+    public function bookrooms()
     {
-    	return $this->belongsTo('App\Book_Room_Service','service_id');
+        return $this->belongsToMany('App\Book_Room','book_room_services', 'book_room_id', 'service_id')->withPivot('unit');
     }
 }
