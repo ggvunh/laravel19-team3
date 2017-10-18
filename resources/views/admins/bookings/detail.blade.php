@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('header')
 	<h1> {{$bookroom[1]->booking->booking_code}} Detail</h1>
+	<a href="{{url('admins/bookings')}}" class="btn btn-primary">Back to booking list</a>
 @stop
 @section('content')
 
