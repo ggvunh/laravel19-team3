@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
+                               <a class="btn btn-link" href="{!!url('/register')!!}">Sign Up</a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}" style="display: none">
                                     Forgot Your Password?
                                 </a>

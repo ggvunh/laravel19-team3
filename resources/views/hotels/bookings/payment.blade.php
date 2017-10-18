@@ -9,43 +9,9 @@
                 <div class="row">
 
                     <!-- SIDEBAR -->
-                    <div class="col-md-4 col-lg-3">
+                    <div class="col-md-5 col-lg-4">
 
                         <div class="reservation-sidebar">
-
-                            <!-- RESERVATION DATE -->
-                            <div class="reservation-date bg-gray">
-
-                                <!-- HEADING -->
-                                <h2 class="reservation-heading">Dates</h2>
-                                <!-- END / HEADING -->
-                              
-                                <ul>
-                                    <li>
-                                        <span>Check-In</span>
-                                        <span></span>
-                                    </li>
-
-                                    <li>
-                                        <span>Check-Out</span>
-                                        <span>Sat 06/06/2015</span>
-                                    </li>
-                                    <li>
-                                        <span>Total Nights</span>
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <span>Total Rooms</span>
-                                        <span>2 of 2</span>
-                                    </li>
-                                    <li>
-                                        <span>Total Guests</span>
-                                        <span>4 Adults 1 Children</span>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <!-- END / RESERVATION DATE -->
                             
                             <!-- ROOM SELECT -->
                             <div class="reservation-room-selected bg-gray">
@@ -56,84 +22,48 @@
 
                                 <!-- ITEM -->
                                 <div class="reservation-room-seleted_item">
-
-                                    <h6>ROOM 1</h6> <span class="reservation-option">2 Adult, 1 Child</span>
+                                     @foreach(Cart::content() as $row)
+                                    <h6>ROOM {!!$row->options->room_name!!}</h6>
 
                                     <div class="reservation-room-seleted_name has-package">
-                                        <h2><a href="#">LUXURY ROOM</a></h2>
+                                        <h2><a href="#">{!!$row->name!!}</a></h2>
                                     </div>
 
                                     <div class="reservation-room-seleted_package">
                                         <h6>Space Price</h6>
                                         <ul>
                                             <li>
-                                                <span>3 June 2015</span>
-                                                <span>$250.00</span>
+                                                <span>Check-In</span>
+                                                <span>{!!session()->get('arrival')!!}</span>
                                             </li>
                                             <li>
-                                                <span>6 June 2015</span>
-                                                <span>$320.00</span>
+                                                <span>Check-Out</span>
+                                                <span>{!!session()->get('departure')!!}</span>
+                                            </li>
+                                            <li>
+                                                <span>Total Nights</span>
+                                                <span>                                       
+                                                    {!!
+                                                        (strtotime(session()->get('departure')) - strtotime(session()->get('arrival')))/3600/24
+                                                    !!}
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    Price
+                                                </span>
+                                                <span>
+                                                   <span class="reservation-amout">{!! number_format($row->price) !!}VND</span>
+                                                </span>
                                             </li>
                                         </ul>
-
-                                        <ul>
-                                            <li>
-                                                <span>Service</span>
-                                                <span>Free</span>
-                                            </li>
-                                            <li>
-                                                <span>Tax</span>
-                                                <span>$320.00</span>
-                                            </li>
-                                        </ul>
-
+                                        <div class="reservation-room-seleted_total-room">
+                                        TOTAL Room {!!$row->options->room_name!!}
+                                        <span class="reservation-amout">{!! (number_format($row->total))!!}</span>
                                     </div>
 
-                                    <div class="reservation-room-seleted_total-room">
-                                        TOTAL Room 1
-                                        <span class="reservation-amout">$470.00</span>
                                     </div>
-                                    
-                                </div>
-                                <!-- END / ITEM -->
-
-                                <!-- ITEM -->
-                                <div class="reservation-room-seleted_item">
-                                    <h6>ROOM 2</h6> <span class="reservation-option">2 Adult, 1 Child</span>
-                                    <div class="reservation-room-seleted_name has-package">
-                                        <h2><a href="#">LUXURY ROOM</a></h2>
-                                    </div>
-
-                                    <div class="reservation-room-seleted_package">
-                                        <h6>Space Price</h6>
-                                        <ul>
-                                            <li>
-                                                <span>3 June 2015</span>
-                                                <span>$250.00</span>
-                                            </li>
-                                            <li>
-                                                <span>6 June 2015</span>
-                                                <span>$320.00</span>
-                                            </li>
-                                        </ul>
-
-                                        <ul>
-                                            <li>
-                                                <span>Service</span>
-                                                <span>Free</span>
-                                            </li>
-                                            <li>
-                                                <span>Tax</span>
-                                                <span>$320.00</span>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="reservation-room-seleted_total-room">
-                                        TOTAL Room 2
-                                        <span class="reservation-amout">$470.00</span>
-                                    </div>
+                                     @endforeach
                                     
                                 </div>
                                 <!-- END / ITEM -->
@@ -141,7 +71,9 @@
                                 <!-- TOTAL -->
                                 <div class="reservation-room-seleted_total bg-blue">
                                     <label>TOTAL</label>
-                                    <span class="reservation-total">$470.00</span>
+                                    <span class="reservation-total">
+                                        {!!(Cart::total())!!} VND
+                                    </span>
                                 </div>
                                 <!-- END / TOTAL -->
 
@@ -154,104 +86,90 @@
                     <!-- END / SIDEBAR -->
                     
                     <!-- CONTENT -->
-                    <div class="col-md-8 col-lg-9">
+                    <div class="col-md-7 col-lg-8">
 
                         <div class="reservation_content">
                             
                             <div class="reservation-billing-detail">
 
-                                <p class="reservation-login">Returning customer? <a href="#">Click here to login</a></p>
+                                <p class="reservation-login">Returning customer? <a href="{!!url('/login')!!}">Click here to login</a></p>
 
                                 <h4>BILLING DETAILS</h4>
-
-                                <label>Country <sup>*</sup></label>
-                                <select class="awe-select">
-                                    <option>United Kingdom (Uk)</option>
-                                    <option>Viet Nam</option>
-                                    <option>Thai Lan</option>
-                                    <option>China</option>
-                                </select>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>First Name<sup>*</sup></label>
-                                        <input type="text" class="input-text">
+                                <form method="post" action="{!!url('/checkout')!!}">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>First Name<sup>*</sup></label>
+                                            <input type="text" class="input-text" name="txtfirst_name" value="{!!Auth::user()->first_name!!}">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Last Name<sup>*</sup></label>
+                                            <input type="text" class="input-text" value="{!!Auth::user()->last_name!!}" name="txtlast_name">
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label>Last Name<sup>*</sup></label>
-                                        <input type="text" class="input-text">
+                                    <label>Address<sup>*</sup></label>
+                                    <input type="text" class="input-text" value="{!!Auth::user()->address!!}" name="txtaddress">
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>Town / City<sup>*</sup></label>
+                                            <input type="text" class="input-text" name="txtcity" value="{!!Auth::user()->city!!}">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Province<sup>*</sup></label>
+                                            <input type="text" class="input-text" name="txtprovince" value="{!!Auth::user()->province!!}">
+                                        </div>
                                     </div>
-                                </div>
-
-                                <label>Company Name</label>
-                                <input type="text" class="input-text">
-
-                                <label>Address<sup>*</sup></label>
-                                <input type="text" class="input-text" placeholder="Street Address">
-                                <br><br>
-                                <input type="text" class="input-text" placeholder="Apartment, suite, unit etc. (Optional)">
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Town / City<sup>*</sup></label>
-                                        <input type="text" class="input-text">
+                                    <label>Country<sup>*</sup></label>
+                                    <input type="text" class="input-text" placeholder="Street Address" name="txtcountry" value="{!!Auth::user()->country!!}">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>Email Address<sup>*</sup></label>
+                                            <input type="email" class="input-text" name="txtemail" value="{!!Auth::user()->email!!}">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Phone<sup>*</sup></label>
+                                            <input type="tel" class="input-text" name="txtphone" value="{!!Auth::user()->phone_number!!}">
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label>Country<sup>*</sup></label>
-                                        <input type="text" class="input-text">
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Email Address<sup>*</sup></label>
-                                        <input type="text" class="input-text">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Phone<sup>*</sup></label>
-                                        <input type="text" class="input-text">
-                                    </div>
-                                </div>
+                                    <label class="label-radio">
+                                        <input type="radio" class="input-radio">
+                                        Create an account?
+                                    </label>
 
-                                <label>Order Notes</label>
-                                <textarea class="input-textarea" placeholder="Notes about your order, eg. special notes for delivery"></textarea>
+                                    <p class="reservation-code">
+                                        You have a coupon? <a href="#">Click here to enter your code</a>
+                                    </p>
 
-                                <label class="label-radio">
-                                    <input type="radio" class="input-radio">
-                                    Create an account?
-                                </label>
+                                    <ul class="option-bank">
+                                        <li>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank">
+                                                Direct Bank Transfer
+                                            </label>
+                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                        </li>
 
-                                <p class="reservation-code">
-                                    You have a coupon? <a href="#">Click here to enter your code</a>
-                                </p>
+                                        <li>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank">
+                                                Cheque Payment
+                                            </label>
+                                        </li>
 
-                                <ul class="option-bank">
-                                    <li>
-                                        <label class="label-radio">
-                                            <input type="radio" class="input-radio" name="chose-bank">
-                                            Direct Bank Transfer
-                                        </label>
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                    </li>
+                                        <li>
+                                            <label class="label-radio">
+                                                <input type="radio" class="input-radio" name="chose-bank">
+                                                Credit Card
+                                            </label>
 
-                                    <li>
-                                        <label class="label-radio">
-                                            <input type="radio" class="input-radio" name="chose-bank">
-                                            Cheque Payment
-                                        </label>
-                                    </li>
+                                            <img src="images/icon-card.jpg" alt="">
+                                        </li>
 
-                                    <li>
-                                        <label class="label-radio">
-                                            <input type="radio" class="input-radio" name="chose-bank">
-                                            Credit Card
-                                        </label>
-
-                                        <img src="images/icon-card.jpg" alt="">
-                                    </li>
-
-                                </ul>
-                                <button class="awe-btn awe-btn-13">PLACE ORDER</button>
+                                    </ul>
+                                    <button type="submit" class="awe-btn awe-btn-13">PLACE ORDER</button>
+                                </form>
                             </div>
 
                         </div>
