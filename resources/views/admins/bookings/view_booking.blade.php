@@ -24,21 +24,15 @@
                 <tr>
                     <th>#</th>
           					<th>Booking Code</th>
-                    <th>Room Name</th>
           					<th>In Date</th>
           					<th>Out Date</th>
           					<th>Status</th>
           					<th>User</th>
 			         	</tr>
-                @foreach ($bookings as $bk)
+                @foreach ($bookings as $index => $bk)
                  <tr>
-          					<th scope="row">{!!$dem++!!}</th>
+          					<th scope="row">{!!++$index!!}</th>
                     <td><a href="#">{!! $bk->booking_code !!}</a></td>
-                    <td>
-                      @foreach ($bk->rooms as $room)
-                      {!!$room->room_name!!}
-                      @endforeach
-                    </td>
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
           					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
