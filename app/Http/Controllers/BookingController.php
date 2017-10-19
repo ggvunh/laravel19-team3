@@ -76,21 +76,18 @@ class BookingController extends Controller
         $request->session()->put('person', $person);
 
     		$rooms = Room::where('room_status', '=', 1 )
-    			->where('amount_people', '=', $request->person)
-    			->whereDoesntHave('bookings', function($query) use($from){
-    				$query->where('check_in_date', '>=', $from);	
-  			})
-    			->whereDoesntHave('bookings', function($query) use($from){
-    				$query->where('check_out_date', '<=', $from);
-    			})
-    			->whereDoesntHave('bookings', function($query) use($to){
-    				$query->where('check_in_date', '>=', $to);
-    			})
-    			->whereDoesntHave('bookings', function($query) use($to){
-    				$query->where('check_out_date', '<=', $to);
-    			})
-  			->get();
+    			->where('amount_people', $request->person)        
+          ->whereDoesntHave('bookings', function($query) use($from){
+            $query->where('check_in_date', '<=', $from)->where('check_out_date', '>=', $from);  
+          })
+          ->whereDoesntHave('bookings', function($query) use($to){
+            $query->where('check_in_date', '<=', $to)->where('check_out_date', '>=', $to);;
+          })
+          ->ORwhereDoesntHave('bookings', function($query) use($from, $to){
+            $query->where('check_in_date', '>=', $from)->where('check_out_date', '>=', $to);
+          })
 
+  			->get();
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
 
@@ -119,7 +116,8 @@ class BookingController extends Controller
             'options' => 
               [
                 'room_name' => $room->room_name,
-                'person' => $room->amount_people,             
+                'person' => $room->amount_people,
+                'images' => $room->images            
               ]
           ]);
       return redirect('/cart');    
@@ -142,7 +140,7 @@ class BookingController extends Controller
   public function checkout(Request $request)
   {
 
-      return view('hotels.bookings.payment');
+      return view('hotels.bookings.checkout');
   }
 
   //payment
@@ -151,8 +149,22 @@ class BookingController extends Controller
     $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
     $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
 
+    $user = new User();
+    $user->first_name = $request->txtFirst_name;
+    $user->last_name = $request->txtLast_name;
+    $user->address = $request->txtAddress;
+    $user->city = $request->txtCity;
+    $user->province = $request->txtProvince;
+    $user->country = $request->txtCountry;
+    $user->email = $request->txtEmail;
+    $user->phone_number = $request->txtPhone;
+    $user->password = $request->txtPassword;
+    $user->role = 0;
+    $user->deposit = 0;
+    $user->save();
+
     $booking = new Booking();
-    $booking->user_id = Auth::id();
+    $booking->user_id = $user->id;
     $booking->check_in_date =  $arrival;
     $booking->check_out_date = $departure;
     $booking->total = (float)(Cart::total());

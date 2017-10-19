@@ -34,6 +34,7 @@ Route::get('/cart/{id}/add', 'BookingController@add');
 Route::get('/cart/{id}/delete', 'BookingController@delete');
 
 Route::get('/checkout', 'BookingController@checkout');
+
 Route::post('/checkout', 'BookingController@payment');
 
 //-------------------------------------------------------------------
