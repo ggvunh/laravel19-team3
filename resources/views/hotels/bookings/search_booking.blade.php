@@ -20,97 +20,23 @@
                                 
                             <div class="check_availability-field">
                                 <label>Arrive</label>
-                                <input type="text" class="awe-calendar awe-input" placeholder="Arrive">
+                                <input type="text" class="awe-calendar awe-input" value="{!!session()->get('arrival')!!}" >
                             </div>
                             
                             <div class="check_availability-field">
                                 <label>Depature</label>
-                                <input type="text" class="awe-calendar awe-input" placeholder="Depature">
+                                <input type="text" class="awe-calendar awe-input" value="{!!session()->get('departure')!!}">
                             </div>
                             
-                            <h6 class="check_availability_title">ROOMS &amp; GUest</h6>
                             
                             <div class="check_availability-field">
-                                <label>ROOMS</label>
+                                <label>PerSon</label>
                                 <select class="awe-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
+                                    <option>{!!session()->get('person')!!}</option>
                                 </select>
                             </div>
                             
-                            <div class="check_availability_group">
                             
-                                <span class="label-group">ROOM 1</span>
-                            
-                                <div class="check_availability-field_group">
-                            
-                                    <div class="check_availability-field">
-                                        <label>Adult</label>
-                                        <select class="awe-select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </select>
-                                    </div>
-                            
-                                    <div class="check_availability-field">
-                                        <label>Chirld</label>
-                                        <select class="awe-select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </select>
-                                    </div>
-                            
-                                </div>
-                            
-                            </div>
-
-                            <div class="check_availability_group">
-                            
-                                <span class="label-group">ROOM 2</span>
-                            
-                                <div class="check_availability-field_group">
-                            
-                                    <div class="check_availability-field">
-                                        <label>Adult</label>
-                                        <select class="awe-select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </select>
-                                    </div>
-                            
-                                    <div class="check_availability-field">
-                                        <label>Chirld</label>
-                                        <select class="awe-select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </select>
-                                    </div>
-                            
-                                </div>
-                            
-                            </div>
-
-                            <button class="awe-btn awe-btn-13">CHECK AVAILABLE</button>
 
                         </div>
                         <!-- END / SIDEBAR AVAILBBILITY -->
@@ -122,7 +48,7 @@
                 
                 <!-- CONTENT -->
                 <div class="col-md-8 col-lg-9">
-
+                  
                     <div class="reservation_content">
                         
                         <!-- RESERVATION ROOM -->

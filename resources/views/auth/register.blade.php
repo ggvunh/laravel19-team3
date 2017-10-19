@@ -10,20 +10,6 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">username</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
 
@@ -159,21 +145,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('deposit') ? ' has-error' : '' }}">
-                            <label for="deposit" class="col-md-4 control-label">deposit</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="deposit" value="{{ old('deposit') }}" required autofocus>
-
-                                @if ($errors->has('deposit'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('deposit') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

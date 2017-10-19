@@ -23,7 +23,7 @@
 							</div>
 
 							<div class="bot">
-								<span class="price">Starting <span class="amout">{!! $room->room_price !!} Vnd</span> /days</span>
+								<span class="price">Starting <span class="amout">{!! number_format($room->room_price) !!}Vnd</span> /days</span>
 								<a href="#" class="awe-btn awe-btn-13">{!! $room->amount_people ? 'Availabel' : 'Not Availabel' !!}</a>
 							</div>
 					</div>
@@ -39,32 +39,20 @@
 				            <h6>STARTING ROOM FROM</h6>
 				            
 				            <p class="price">
-				                <span class="amout">$260</span>  /days
+				                <span class="amout">{!! number_format($room->room_price) !!}</span>  /days
 				            </p>
 				        </div>
-				        
-				        <div class="room-detail_form">
-				            <label>Arrive</label>
-				            <input type="text" class="awe-calendar" placeholder="Arrive Date">
-				            <label>Depature</label>
-				            <input type="text" class="awe-calendar" placeholder="Departure Date">
-				            <label>Adult</label>
-				            <select class="awe-select">
-				                <option>1</option>
-				                <option>2</option>
-				                <option selected>3</option>
-				                <option>4</option>
-				            </select>
-				            <label>Chirld</label>
-				            <select class="awe-select">
-				                <option>1</option>
-				                <option>2</option>
-				                <option selected>3</option>
-				                <option>4</option>
-				            </select>
-				            <button class="awe-btn awe-btn-13">Book Now</button>
-				        </div>
-
+				        <form action="{!!url('/lotus/bookings/search')!!}" method="get">
+					        <div class="room-detail_form">
+					            <label>Arrive</label>
+					            <input type="text" name="arrival" class="awe-calendar" placeholder="Arrive Date">
+					            <label>Depature</label>
+					            <input type="text" name="departure" class="awe-calendar" placeholder="Departure Date">
+					            <label>Person</label>
+					             <input type="text" name="person" class="awe-select" placeholder="Persons"">    
+					            <button type="submit" name="btnsearch" class="awe-btn awe-btn-13">Book Now</button>
+					        </div>
+				    	</form>
 				    </div>
 				    <!-- END / FORM BOOK -->
 				</div>
