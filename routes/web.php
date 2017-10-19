@@ -59,6 +59,8 @@ Route::get('admins/roomtypes','RoomTypeController@viewRoomType');// List All Roo
 
 Route::get('admins/search','RoomController@search_room');// Search Room
 
+Route::get('admins/bookings/search','BookingController@searchbyUser');
+
 Route::get('admins/bookings','BookRoomConbtroller@view');
 
 //-----Room Management-----
