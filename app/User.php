@@ -25,7 +25,7 @@ class User extends Authenticatable
     // 	return $this->belongsTo('App\User_Code', 'user_id', 'id');
     // }
 
-    public function booings()
+    public function bookings()
     {
         return $this->hasMany('App\Booking', 'user_id');
     }
