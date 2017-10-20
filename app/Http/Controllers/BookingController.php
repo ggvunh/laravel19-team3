@@ -11,6 +11,10 @@ use App\Room_Type;
 
 use App\Book_Room_Service;
 use App\Service_Hotel;
+use App\User;
+use Illuminate\Support\Facades\Input;
+
+use Cart;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades;
@@ -56,6 +60,16 @@ class BookingController extends Controller
       $data['book_room_id']=$bookroom->id;
       $bookroomservice=Book_Room_Service::create($data);
       return redirect('admins/bookings/'.$bookroom->booking_id.'/'.$bookroom->room_id)->withSuccess('Service has been added');
+   }
+   public function searchbyUser()
+   {
+    $data= Input::all();
+    $search=$data['key_search'];
+    $bookings=Booking::whereHas('user', function($query) use($search){
+        $query->where('username', $search);
+    })->get();
+    dd($bookings);
+    return view('admins.bookings.search_user',compact('bookings'));
    }
 
    public function detail_room(Room $room)
