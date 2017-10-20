@@ -50,7 +50,6 @@
                 <div class="col-md-8 col-lg-9">
                   
                     <div class="reservation_content">
-                        
                         <!-- RESERVATION ROOM -->
                         <div class="reservation-room">
                           @foreach ($rooms as $rm)
@@ -89,7 +88,7 @@
                           @endforeach
                         </div>
                         <!-- END / RESERVATION ROOM -->
-
+                        {!!$rooms->links()!!}
                     </div>
 
                 </div>
