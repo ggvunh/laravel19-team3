@@ -21,8 +21,10 @@ use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 use Cart;
 use App\User;
+use App\Mail\SendMailController;
 
 
 class BookingController extends Controller
@@ -101,17 +103,18 @@ class BookingController extends Controller
             $query->where('check_in_date', '>=', $from)->where('check_out_date', '>=', $to);
           })
 
-  			->get();
+  			->paginate(5);
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
 
   //shoping
   public function shop(Request $request)
   {
+    $dem = 0;
     $arrival = $request->session()->get('arrival');
     $departure = $request->session()->get('departure');
     $person = $request->session()->get('person');
-    return view('hotels.bookings.shopping_cart', compact('arrival', 'departure', 'person'));
+    return view('hotels.bookings.shopping_cart', compact('arrival', 'departure', 'person', 'dem'));
   }
 
   //shopping cart
@@ -121,20 +124,23 @@ class BookingController extends Controller
       $arrival = strtotime($request->session()->get('arrival'));
       $departure = strtotime($request->session()->get('departure'));
       $room = Room::find($id);
+      $price = (double)$room->room_price;
+      // var_dump($price); exit();
         Cart::add(
           [
             'id' => $room->id,
             'name' => $room->room_types->type_of_bed,
             'qty' => ($departure - $arrival)/3600/24,
-            'price' => $room->room_price, 
+            'price' => $price, 
             'options' => 
               [
+                'id' => $room->id,
                 'room_name' => $room->room_name,
                 'person' => $room->amount_people,
                 'images' => $room->images            
               ]
           ]);
-      return redirect('/cart');    
+      return redirect('/cart');   
   }
 
   //delete 1 order
@@ -153,49 +159,102 @@ class BookingController extends Controller
   //checkout
   public function checkout(Request $request)
   {
-
       return view('hotels.bookings.checkout');
+  }
+
+  //
+  public function review()
+  {
+      if(Auth::check())
+      {
+        $bookings = Booking::where('user_id', Auth::id())->get();
+        foreach ($bookings as $bk)
+        {
+           if($bk->user_id == Auth::id())
+          {
+           return view('hotels.bookings.review_booking', compact('bookings'));
+          }
+        }       
+      }
+      else
+      {
+        return redirect('/login');
+      }
+  }
+
+  public function cancel($id)
+  {
+
+
+      $booking = Booking::find($id);
+      $booking->status = 0;
+      $user = $booking->user;
+      $user->deposit = $user->deposit + $booking->total*0.8;
+      $user->save();
+      $admin = User::where('role','=' ,1)->get();
+      foreach ($admin as $ad) 
+      {
+        $ad->deposit =   $ad->deposit + $booking->total*0.2;;
+         $ad->save();       
+      }
+     
+      $user->save();
+      $booking->save();
+      return redirect('/');
+      Session::forget('/cart');
+  }
+
+  public function message_deposit()
+  {
+    return view('hotels.bookings.message');
   }
 
   //payment
   public function payment(Request $request)
   {
-    $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
-    $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
 
-    $user = new User();
-    $user->first_name = $request->txtFirst_name;
-    $user->last_name = $request->txtLast_name;
-    $user->address = $request->txtAddress;
-    $user->city = $request->txtCity;
-    $user->province = $request->txtProvince;
-    $user->country = $request->txtCountry;
-    $user->email = $request->txtEmail;
-    $user->phone_number = $request->txtPhone;
-    $user->password = $request->txtPassword;
-    $user->role = 0;
-    $user->deposit = 0;
-    $user->save();
+          $data = Input::all();
+          $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
+          $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
+       $user = new User();
+        $user->first_name = $request->txtFirst_name;
+        $user->last_name = $request->txtLast_name;
+        $user->address = $request->txtAddress;
+        $user->city = $request->txtCity;
+        $user->province = $request->txtProvince;
+        $user->country = $request->txtCountry;
+        $user->email = $request->txtEmail;
+        $user->phone_number = $request->txtPhone;
+        $user->password = bcrypt($request->txtPassword);
+        $user->role = 0;
+        $user->deposit = 10000000;
+        $user->save();
+        $booking = new Booking();
+        $booking->user_id = $user->id;
+        $booking->check_in_date =  $arrival;
+        $booking->check_out_date = $departure;
+        $booking->total = (double)Cart::total();
+        if($user->deposit < $booking->total)
+        {
+           return redirect('message');
+        }
+        $booking->booking_code = str_random(6);
+        $code = $booking->booking_code;
+        $booking->status = 1;
+        $booking->save();
+        foreach (Cart::content() as $row) 
+        {
+          $book_room = new Book_Room();
+          $book_room->room_id = $row->id;
+          $book_room->booking_id = $booking->id;
+          $book_room->save();
+        }
+        $usermail = User::findOrFail($user->id);
+        $bookingmail = Booking::findOrFail($booking->id);
+        Mail::to($usermail)->send(new SendMailController($bookingmail));
+        Session::forget('/cart');
+      return redirect('/login');
 
-    $booking = new Booking();
-    $booking->user_id = $user->id;
-    $booking->check_in_date =  $arrival;
-    $booking->check_out_date = $departure;
-    $booking->total = (float)(Cart::total());
-    $booking->booking_code = str_random(6);
-    $booking->status = 1;
-    $booking->save();
-
-    foreach (Cart::content() as $row) 
-    {
-      $book_room = new Book_Room();
-      $book_room->room_id = $row->id;
-      $book_room->booking_id = $booking->id;
-      $book_room->save();
-    }
-
-    Session::forget('cart');
-    return redirect('/');
   }
 
   public function searchName()

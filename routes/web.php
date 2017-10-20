@@ -37,6 +37,13 @@ Route::get('/checkout', 'BookingController@checkout');
 
 Route::post('/checkout', 'BookingController@payment');
 
+//--------------Review Booking of customer--------------------------
+
+Route::get('/review', 'BookingController@review');
+
+Route::get('/review/cancel/{id}', 'BookingController@cancel');
+
+Route::get('/message', 'BookingController@message_deposit');
 //-------------------------------------------------------------------
 
 Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');
@@ -124,5 +131,7 @@ Route::get('admins/service/{service}','ServiceHotelController@detailService');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 

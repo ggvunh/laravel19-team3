@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6">
                                         <label>First Name*</label>
-                                        <input type="text" class="field-text" name="txtFirst_name" placeholder="Frist Name">
+                                        <input type="text" class="field-text" name="txtFirst_name"placeholder="Frist Name">
                                     </div>
 
                                     <div class="col-xs-6 col-sm-6">
@@ -113,9 +113,9 @@
                             </div>
 
                             <div class="checkout_cartinfo">
-                                <p><span>Cart Subtotal:</span> {!!Cart::subtotal()!!} VND</p>
+                                <p><span>Cart Subtotal:</span> {!!(number_format(Cart::subtotal()))!!} VND</p>
                                 <p><span>Shipping:</span> Free Shipping</p>
-                                <p><span>Order Total:</span> <span class="color-red">{!!Cart::total()!!} VND</span></p>
+                                <p><span>Order Total:</span> <span class="color-red">{!!(number_format(Cart::total()))!!} VND</span></p>
                             </div> 
                             
                             <div class="checkout_option">

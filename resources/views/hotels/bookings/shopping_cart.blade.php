@@ -19,7 +19,7 @@
                                 <!-- END / HEADING -->
                                 <!-- ITEM -->
                                 @foreach(Cart::content() as $row)
-                               
+                                
                                     <div class="reservation-room-seleted_item">
                                         <h6>{!!$row->options->room_name!!}</h6> <span class="apb-option">{!!$row->options->person!!} person</span>
 
@@ -41,7 +41,7 @@
                                 <!-- TOTAL -->
                                 <div class="reservation-room-seleted_total">
                                     <label>TOTAL</label>
-                                    <span class="reservation-total">{!!Cart::total()!!}VND</span>
+                                    <span class="reservation-total">{!! (number_format(Cart::total()))!!}VND</span>
                                 </div>
                                 <!-- END / TOTAL -->
 
@@ -104,26 +104,33 @@
                                 </tr>
                             </thead>
                         <tbody>
-                            @foreach(Cart::content() as $row)                        
+
+                            @foreach(Cart::content() as $row)
+                                           
                                     <tr>
-                                        <td>1</td>
+                                        <td>{!!++$dem!!}</td>
                                         <td>
                                         <p><strong><a href="{!!url('/cart/'.$row->id)!!}">{!!$row->name!!}</a></strong></p>
                                         </td>
-                                        <td><input type="text" value="{!!$row->qty!!}" style="width: 35px;" disabled></td>                                                                      
-                                     
+                                           @if($row->id === $row->options->id)  
+                                        <td><input type="text" value="{!! $row->qty!!}" style="width: 40px;" disabled></td>
+                                            @else
+                                        <td><input type="text" value="{!! $row->qty!!}" style="width: 40px;" disabled></td>
+                                        @endif  
+                                                                                                                                 
                                         <td>{!!number_format($row->price)!!}</td>
-                                           <td><a href="{!!url('/cart/'.$row->rowId.'/delete')!!}" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="{!!url('/cart/'.$row->rowId.'/delete')!!}" class="btn btn-danger">Delete</a></td>
                                         <td>{!!number_format($row->total)!!} VND</td>
 
                                     </tr>
+                                
                             @endforeach
                         </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="4">&nbsp;</td>
                                     <td><span class="btn btn-warning disabled">Total</span> </td>
-                                    <td><span class="btn btn-default disabled"> {!! Cart::total() !!}</span> VND</td>
+                                    <td><span class="btn btn-default disabled"> {!!  (number_format(Cart::total())) !!}</span> VND</td>
 
                                 </tr>
                             </tfoot>
