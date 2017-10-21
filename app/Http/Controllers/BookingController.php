@@ -54,7 +54,12 @@ class BookingController extends Controller
       $data=Input::all();
       $data['book_room_id']=$bookroom->id;
       $bookroomservice=Book_Room_Service::create($data);
-      return redirect('admins/bookings/'.$bookroom->booking_id.'/'.$bookroom->room_id)->withSuccess('Service has been added');
+      return redirect('admins/bookings/'.$bookroom->booking_id)->withSuccess('Service has been added');
+   }
+   public function deleteService($booking_id, $room_id, Book_Room_Service $service)
+   {
+      $service->delete();
+      return redirect('admins/bookings/'.$booking_id)->withSuccess('Service has been deleted');
    }
    public function searchbyUser()
    {

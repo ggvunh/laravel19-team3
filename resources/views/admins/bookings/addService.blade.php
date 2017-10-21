@@ -14,5 +14,6 @@
 			</div>
 	</div>
 	{!! Form::submit('Add Service',['class'=>'btn btn-primary pull-left']) !!}
+	<a href="{{url('admins/bookings/'.$bookroom->booking_id)}}" class="btn btn-primary pull-right">Cancel</a>
 {!!Form::close()!!}
 @stop

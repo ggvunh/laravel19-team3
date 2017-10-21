@@ -4,30 +4,36 @@
 	<a href="{{url('admins/bookings')}}" class="btn btn-primary">Back to booking list</a>
 @stop
 @section('content')
-
-	<div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Rooms at Booking Date</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-	            <table class="table table-striped table-hover">
-	                <tr>
-	          			<th>Room Name</th>
-	                    <th>Room Type</th>
-	                    <th>Room Price</th>
-	          		</tr>
-					@foreach($bookroom as $br)
+	@foreach($bookroom as $br)
 					<tr>						
-							<td><a href="{{ url('admins/bookings/'.$br->booking_id.'/'.$br->room_id) }}">{{$br->room->room_name}}</a></td>
-							<td>{{$br->room->room_types->type_of_bed}}</td>
-							<td>{{$br->room->room_price}}</td>						
+							<td>
+								<h3>{{$br->room->room_name}}</h3>
+								<p><strong>Room Types: </strong>{{$br->room->room_types->type_of_bed}}</p>
+								<p><strong>Room Prices: </strong>{{$br->room->room_price}} đ</p>
+								<div class="box">
+									<div class="box-header">
+										<p class="box-title">Services </p>
+									</div>									
+									<div class="box-body table-sm">
+										<table class="table table-sm table-hover">
+											<tr>
+												<th>Service Name</th>
+												<th>Unit</th>
+												<th>Action</th>
+											</tr>
+											@foreach($br->services as $service)									
+											<tr>
+												<td>{{$service->service_name}}</td>
+												<td>{{$service->pivot->unit}}</td>
+												<td>
+													<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/'.$service->id.'/delete')}}">Delete</a></td>
+											</tr>
+											@endforeach									
+										</table>
+										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-right'>Add Service</a>  	
+									</div>
+								</div>
+							</td>				
 					</tr>
 					@endforeach		
-          		</table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
 @stop
