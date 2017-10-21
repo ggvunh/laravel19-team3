@@ -4,7 +4,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">About {!!count($rooms)!!} results</h3>
+              <h3 class="box-title">About {!!count($bookings)!!} results</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -15,7 +15,8 @@
           					<th>In Date</th>
           					<th>Out Date</th>
           					<th>Status</th>
-          					<th>User</th>
+                    <th>First Name</th>
+          					<th>Last Name</th>
 			         	</tr>
                 @foreach ($bookings as $index => $bk)
                  <tr>
@@ -24,7 +25,8 @@
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
           					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
-          					<td>{!!$bk->user->username!!}</td>
+                    <td>{!!$bk->user->first_name!!}</td>
+          					<td>{!!$bk->user->last_name!!}</td>
           				</tr>
 				        @endforeach			
               </table>

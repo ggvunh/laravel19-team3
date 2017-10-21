@@ -27,7 +27,8 @@
           					<th>In Date</th>
           					<th>Out Date</th>
           					<th>Status</th>
-          					<th>User</th>
+                    <th>First Name</th>
+          					<th>Last Name</th>
 			         	</tr>
                 @foreach ($bookings as $index => $bk)
                  <tr>
@@ -36,7 +37,8 @@
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
           					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
-          					<td>{!!$bk->user->username!!}</td>
+                    <td>{!!$bk->user->first_name!!}</td>
+          					<td>{!!$bk->user->last_name!!}</td>
           				</tr>
 				        @endforeach			
               </table>
