@@ -19,7 +19,7 @@ Route::get('/lotus/', 'RoomController@listAll');
 
 //------------------------Booking-------------------------
 //load luon danh sach rooms de booking
-Route::get('/lotus/bookings/search/', 'BookingController@search');
+Route::get('/lotus/bookings/search/', 'BookingController@search')->name('search');
 
 //--------------------Shopping Cart----------------------------
 

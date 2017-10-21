@@ -44,7 +44,7 @@
                         </table>
                             <ul>
                                 <li>
-                                    When You cancel a booking the system will keep 20% booking value and return 80% to You.
+                                    When You cancel a booking the system will keep 20% booking value and return 80% to You. <strong><a href="{!!url('/')!!}" class="label label-info">Come Back Home</a></strong>
                                 </li>
                             </ul>
                     </div>

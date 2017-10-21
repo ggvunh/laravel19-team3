@@ -56,14 +56,15 @@
                     <div class="header_right float-right">
                         <span class="login-register">
                         @if(Auth::guest())<a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">register</a>
+                          
                         @else
                             <a href="">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
                             <a href="{{ route('logout') }}"
                                              onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">
                                              Logout
-                                        </a><form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                                        </a><a href="{!!url('/review')!!}">PAYMENT</a>
+                                        <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
                                              {{ csrf_field() }}
                             </form></li>
                         @endif    
