@@ -92,11 +92,16 @@ Route::get('/admins/{room}','RoomController@detail_room');
 
 //-----Booking Room-----
 Route::get('/admins/bookings', 'BookingController@getBooking');
+
 Route::get('admins/bookings/{booking_id}','BookingController@detailBooking');
+
 Route::get('admins/bookings/{booking_id}/{room_id}/addservice','BookingController@addService');
+
 Route::post('admins/bookings/{booking_id}/{room_id}','BookingController@saveService');
+
 Route::get('admins/bookings/{booking_id}/{room_id}/{service}/delete','BookingController@deleteService');
 
+Route::get('admins/bookings/{booking_id}/{room_id}/checkout','BookingController@checkoutAdmin');
 
 //-----Room Type Management-----
 

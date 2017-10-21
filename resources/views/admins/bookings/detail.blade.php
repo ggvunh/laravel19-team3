@@ -30,7 +30,8 @@
 											</tr>
 											@endforeach									
 										</table>
-										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-right'>Add Service</a>  	
+										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-right'>Add Service</a>
+										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/checkout')}}" class='btn btn-primary'>Check Out</a>  	
 									</div>
 								</div>
 							</td>				
