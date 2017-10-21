@@ -7,7 +7,7 @@
 	<div class="box">
 			<div class="box-header">
 		              <h3 class="box-title">Services Table</h3>
-		              <a href="#" class='btn btn-default'>Add Service</a>              
+		              <a href="{{url('admins/bookings/'.$bookroom->booking_id.'/'.$bookroom->room_id.'/addservice')}}" class='btn btn-default'>Add Service</a>              
 		            </div>
 			<div class="box-body table-responsive no-padding">
 			            <table class="table table-striped table-hover">
