@@ -61,6 +61,15 @@ class BookingController extends Controller
       $service->delete();
       return redirect('admins/bookings/'.$booking_id)->withSuccess('Service has been deleted');
    }
+   public function checkoutAdmin($booking_id,$room_id, Book_Room_Service $service)
+   {
+    $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
+    $sumservice=0;
+    foreach ($bookroom->services as $service) {
+      $sumservice += $service->service_price * $service->pivot->unit;
+    }
+    return view('admins.bookings.checkout',compact('bookroom','service','sumservice'));
+   }
    public function searchbyUser()
    {
     $data= Input::all();
