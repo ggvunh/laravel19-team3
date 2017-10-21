@@ -5,82 +5,6 @@
         <div class="container">
             <div class="checkout">
                 <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="checkout_head">
-                            <h3>BILLING DETAILS</h3>
-                        </div>
-
-                        <div class="checkout_form">
-                            <form method="post" action="{!!url('/checkout')!!}">
-                                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>First Name*</label>
-                                        <input type="text" class="field-text" name="txtFirst_name"placeholder="Frist Name">
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>Last Name*</label>
-                                        <input type="text" class="field-text" name="txtLast_name" placeholder="Last Name">
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <label>Address*</label>
-                                        <input type="text" class="field-text" placeholder="Street Address" name="txtAddress">
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>Town / City*</label>
-                                        <input type="text" class="field-text" name="txtCity" placeholder="Town / City">
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>Province*</label>
-                                        <input type="text" class="field-text" name="txtProvince" placeholder="Province">
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <label>Country*</label>
-                                        <input type="text" class="field-text" placeholder="Country" name="txtCountry">
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>Email Address*</label>
-                                        <input type="email" class="field-text" name="txtEmail" placeholder="Email Address">
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6">
-                                        <label>Phone*</label>
-                                        <input type="text" class="field-text" name="txtPhone" placeholder="Phone Number">
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <label>
-                                            <input type="radio" class="field-radio"> Create an account?
-                                        </label>
-
-                                        <p class="checkout_text">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <label>Account Password*</label>
-                                        <input type="password" class="field-text" name="txtPassword" placeholder="Please Press Password">
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12">
-                                        <label>&nbsp;</label>
-                                        <p class="code-enter">
-                                            You have a coupon? <a href="#">Click here to enter your code</a>
-                                        </p>
-                                    </div>
-
-                                </div>
-                         
-
-                        </div>
-                    </div> 
-
                     <div class="col-md-6">
 
                         <div class="checkout_head checkout_margin">
@@ -88,7 +12,8 @@
                         </div>
 
                         <div class="checkout_form checkout_margin">
-                        
+                          <form method="post" action="{!!url('/checkout')!!}">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="checkout_cart">
 
                                 <!-- ITEM -->
@@ -114,7 +39,6 @@
 
                             <div class="checkout_cartinfo">
                                 <p><span>Cart Subtotal:</span> {!!(number_format(Cart::subtotal()))!!} VND</p>
-                                <p><span>Shipping:</span> Free Shipping</p>
                                 <p><span>Order Total:</span> <span class="color-red">{!!(number_format(Cart::total()))!!} VND</span></p>
                             </div> 
                             

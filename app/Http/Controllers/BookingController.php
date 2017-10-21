@@ -110,7 +110,6 @@ class BookingController extends Controller
           ->ORwhereDoesntHave('bookings', function($query) use($from, $to){
             $query->where('check_in_date', '>=', $from)->where('check_out_date', '>=', $to);
           })
-
   			->paginate(5);
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
@@ -128,13 +127,12 @@ class BookingController extends Controller
   //shopping cart
   public function add(Request $request,$id)
   {
-
-      $arrival = strtotime($request->session()->get('arrival'));
-      $departure = strtotime($request->session()->get('departure'));
-      $room = Room::find($id);
-      $price = (double)$room->room_price;
-      // var_dump($price); exit();
-        Cart::add(
+          $arrival = strtotime($request->session()->get('arrival'));
+          $departure = strtotime($request->session()->get('departure'));
+          $room = Room::find($id);
+          $price = (double)$room->room_price;
+          // var_dump($price); exit();
+          Cart::add(
           [
             'id' => $room->id,
             'name' => $room->room_types->type_of_bed,
@@ -143,11 +141,12 @@ class BookingController extends Controller
             'options' => 
               [
                 'id' => $room->id,
+                'qty' => ($departure - $arrival)/3600/24,
                 'room_name' => $room->room_name,
                 'person' => $room->amount_people,
                 'images' => $room->images            
               ]
-          ]);
+          ]);    
       return redirect('/cart');   
   }
 
@@ -167,7 +166,15 @@ class BookingController extends Controller
   //checkout
   public function checkout(Request $request)
   {
-      return view('hotels.bookings.checkout');
+      if(!Auth::check())
+      {
+          return redirect('/register');
+      }
+      else
+      {
+        return view('hotels.bookings.checkout');
+      }
+      
   }
 
   //
@@ -193,7 +200,6 @@ class BookingController extends Controller
   public function cancel($id)
   {
 
-
       $booking = Booking::find($id);
       $booking->status = 0;
       $user = $booking->user;
@@ -204,12 +210,13 @@ class BookingController extends Controller
       {
         $ad->deposit =   $ad->deposit + $booking->total*0.2;;
          $ad->save();       
-      }
-     
+      }   
       $user->save();
       $booking->save();
-      return redirect('/');
       Session::forget('/cart');
+      Auth::logout();
+      return redirect('/');
+ 
   }
 
   public function message_deposit()
@@ -224,25 +231,13 @@ class BookingController extends Controller
           $data = Input::all();
           $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
           $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
-       $user = new User();
-        $user->first_name = $request->txtFirst_name;
-        $user->last_name = $request->txtLast_name;
-        $user->address = $request->txtAddress;
-        $user->city = $request->txtCity;
-        $user->province = $request->txtProvince;
-        $user->country = $request->txtCountry;
-        $user->email = $request->txtEmail;
-        $user->phone_number = $request->txtPhone;
-        $user->password = bcrypt($request->txtPassword);
-        $user->role = 0;
-        $user->deposit = 10000000;
-        $user->save();
+
         $booking = new Booking();
-        $booking->user_id = $user->id;
+        $booking->user_id = Auth::id();
         $booking->check_in_date =  $arrival;
         $booking->check_out_date = $departure;
         $booking->total = (double)Cart::total();
-        if($user->deposit < $booking->total)
+        if(Auth::user()->deposit < $booking->total)
         {
            return redirect('message');
         }
@@ -257,11 +252,11 @@ class BookingController extends Controller
           $book_room->booking_id = $booking->id;
           $book_room->save();
         }
-        $usermail = User::findOrFail($user->id);
+        $usermail = User::findOrFail(Auth::id());
         $bookingmail = Booking::findOrFail($booking->id);
         Mail::to($usermail)->send(new SendMailController($bookingmail));
         Session::forget('/cart');
-      return redirect('/login');
+      return redirect('/review');
 
   }
 

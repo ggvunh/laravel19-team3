@@ -112,10 +112,10 @@
                                         <td>
                                         <p><strong><a href="{!!url('/cart/'.$row->id)!!}">{!!$row->name!!}</a></strong></p>
                                         </td>
-                                           @if($row->id === $row->options->id)  
+                                           @if($row->id !== $row->options->id)  
                                         <td><input type="text" value="{!! $row->qty!!}" style="width: 40px;" disabled></td>
                                             @else
-                                        <td><input type="text" value="{!! $row->qty!!}" style="width: 40px;" disabled></td>
+                                        <td><input type="text" value="{!! $row->options->qty !!}" style="width: 40px;" disabled></td>
                                         @endif  
                                                                                                                                  
                                         <td>{!!number_format($row->price)!!}</td>
