@@ -215,7 +215,7 @@ class BookingController extends Controller
       $booking->save();
       Session::forget('/cart');
       Auth::logout();
-      return redirect('/');
+      return redirect('/')->with('cancel', 'You have cancel booing');
  
   }
 
@@ -256,7 +256,7 @@ class BookingController extends Controller
         $bookingmail = Booking::findOrFail($booking->id);
         Mail::to($usermail)->send(new SendMailController($bookingmail));
         Session::forget('/cart');
-      return redirect('/review');
+      return redirect('/review')->with('success', 'Payment Success');
 
   }
 
