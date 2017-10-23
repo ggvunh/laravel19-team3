@@ -98,17 +98,17 @@ class BookingController extends Controller
         $request->session()->put('person', $person);
 
     		$rooms = Room::where('room_status', '=', 1 )
-    			->where('amount_people', $request->person)        
+    			->where('amount_people','=',$request->person)        
           ->whereDoesntHave('bookings', function($query) use($from){
             $query->where('check_in_date', '<=', $from)->where('check_out_date', '>=', $from);  
           })
           ->whereDoesntHave('bookings', function($query) use($to){
             $query->where('check_in_date', '<=', $to)->where('check_out_date', '>=', $to);;
           })
-          ->ORwhereDoesntHave('bookings', function($query) use($from, $to){
-            $query->where('check_in_date', '>=', $from)->where('check_out_date', '>=', $to);
+          ->whereDoesntHave('bookings', function($query) use($from, $to){
+            $query->where('check_in_date', '>=', $from)->where('check_out_date', '<=', $to);
           })
-  			->paginate(5);
+  			->take(5)->paginate(5);
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
 
