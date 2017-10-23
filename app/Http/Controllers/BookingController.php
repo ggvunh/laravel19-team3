@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use App\Book_Room;
 use App\Room;
-
 use App\Room_Type;
-
 use App\Book_Room_Service;
 use App\Service_Hotel;
 use Illuminate\Support\Facades\Input;

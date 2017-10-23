@@ -23,15 +23,19 @@ Route::get('/lotus/bookings/search/', 'BookingController@search')->name('search'
 
 //--------------------Shopping Cart----------------------------
 
-Route::get('/cart', 'BookingController@shop');
+Route::group(['prefix' => 'cart'], function(){
 
-Route::get('/cart/destroy', 'BookingController@destroy');
+	Route::get('/', 'BookingController@shop');
 
-Route::get('/cart/{room}', 'BookingController@detail_room');
+	Route::get('/destroy', 'BookingController@destroy');
 
-Route::get('/cart/{id}/add', 'BookingController@add');
+	Route::get('/{room}', 'BookingController@detail_room');
 
-Route::get('/cart/{id}/delete', 'BookingController@delete');
+	Route::get('/{id}/add', 'BookingController@add');
+
+	Route::get('/{id}/delete', 'BookingController@delete');
+
+});
 
 Route::get('/checkout', 'BookingController@checkout');
 
@@ -59,79 +63,94 @@ Route::get('about', function(){
 });
 
 Route::get('contact', function(){
+
 	return view('hotels.contact');
 });
 //----------------------------Admin----------------------------
 
-Route::get('/admins', 'RoomController@listall_room'); ///List All Room
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('admins/service','ServiceHotelController@viewService');// List All Service
+    Route::group(['prefix' => 'admins'], function(){
 
-Route::get('admins/roomtypes','RoomTypeController@viewRoomType');// List All Room Type
+    	Route::get('/', 'RoomController@listall_room'); ///List All Room
 
-Route::get('admins/search','RoomController@search_room');// Search Room
+    	Route::get('/service','ServiceHotelController@viewService');// List All Service
 
-Route::get('admins/bookings/search','BookingController@searchbyUser');
+		Route::get('/roomtypes','RoomTypeController@viewRoomType');// List All Room Type
 
-Route::get('admins/bookings','BookRoomConbtroller@view');
+		Route::get('/search','RoomController@search_room');// Search Room
 
-//-----Room Management-----
+		Route::get('/bookings/search','BookingController@searchbyUser');
 
-Route::get('admins/create','RoomController@createRoom');
+		Route::get('/bookings','BookRoomConbtroller@view');
 
-Route::post('admins','RoomController@saveRoom');
+		//-----Room Management-----
 
-Route::get('admins/{room}/edit','RoomController@editRoom');
+		Route::get('create','RoomController@createRoom');
 
-Route::put('admins/{room}','RoomController@updateRoom');
+		Route::post('/','RoomController@saveRoom');
 
-Route::get('admins/{room}/delete','RoomController@deleteRoom');
+		Route::get('{room}/edit','RoomController@editRoom');
 
-Route::get('/admins/{room}','RoomController@detail_room');
+		Route::put('/{room}','RoomController@updateRoom');
 
+		Route::get('/{room}/delete','RoomController@deleteRoom');
 
-//-----Booking Room-----
-Route::get('/admins/bookings', 'BookingController@getBooking');
+		Route::get('/{room}','RoomController@detail_room');
 
-Route::get('admins/bookings/{booking_id}','BookingController@detailBooking');
+				//-----Booking Room-----
+		Route::group(['prefix' => 'bookings'], function(){
 
-Route::get('admins/bookings/{booking_id}/{room_id}/addservice','BookingController@addService');
+			Route::get('/', 'BookingController@getBooking');
 
-Route::post('admins/bookings/{booking_id}/{room_id}','BookingController@saveService');
+			Route::get('/{booking_id}','BookingController@detailBooking');
 
-Route::get('admins/bookings/{booking_id}/{room_id}/{service}/delete','BookingController@deleteService');
+			Route::get('/{booking_id}/{room_id}/addservice','BookingController@addService');
 
-Route::get('admins/bookings/{booking_id}/{room_id}/checkout','BookingController@checkoutAdmin');
+			Route::post('/{booking_id}/{room_id}','BookingController@saveService');
 
-//-----Room Type Management-----
+			Route::get('/{booking_id}/{room_id}/{service}/delete','BookingController@deleteService');
 
-Route::get('admins/roomtypes/create','RoomTypeController@createRoomType');
+			Route::get('/{booking_id}/{room_id}/checkout','BookingController@checkoutAdmin');
 
-Route::post('admins/roomtypes','RoomTypeController@saveRoomType');
+		});
+	
+		//-----Room Type Management-----
 
-Route::get('admins/roomtypes/{roomtype}/edit','RoomTypeController@editRoomType');
+		Route::group(['prefix' => 'roomtypes'], function(){
 
-Route::put('admins/roomtypes/{roomtype}','RoomTypeController@updateRoomType');
+			Route::get('/create','RoomTypeController@createRoomType');
 
-Route::get('admins/roomtypes/{roomtype}/delete','RoomTypeController@deleteRoomType');
+			Route::post('/','RoomTypeController@saveRoomType');
 
-Route::get('admins/roomtypes/{roomtype}','RoomTypeController@detailRoomType');
+			Route::get('/{roomtype}/edit','RoomTypeController@editRoomType');
 
-//-----Service Management-----
+			Route::put('/{roomtype}','RoomTypeController@updateRoomType');
 
+			Route::get('/{roomtype}/delete','RoomTypeController@deleteRoomType');
 
-Route::get('admins/service/create','ServiceHotelController@createService');
+			Route::get('/{roomtype}','RoomTypeController@detailRoomType');
 
-Route::post('admins/service','ServiceHotelController@saveService');
+		});
 
-Route::get('admins/service/{service}/edit','ServiceHotelController@editService');
+		//-----Service Management-----
 
-Route::put('admins/service/{service}','ServiceHotelController@updateService');
+		Route::group(['prefix' => 'service'], function(){
 
-Route::get('admins/service/{service}/delete','ServiceHotelController@deleteService');
+			Route::get('/create','ServiceHotelController@createService');
 
-Route::get('admins/service/{service}','ServiceHotelController@detailService');
+			Route::post('/','ServiceHotelController@saveService');
 
+			Route::get('/{service}/edit','ServiceHotelController@editService');
+
+			Route::put('/{service}','ServiceHotelController@updateService');
+
+			Route::get('/{service}/delete','ServiceHotelController@deleteService');
+
+			Route::get('/{service}','ServiceHotelController@detailService');
+		});
+    });
+});
 
 Auth::routes();
 

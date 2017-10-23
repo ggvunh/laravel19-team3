@@ -16,7 +16,7 @@
                                     <th>Total</th>
                                     <th>Code</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Do You Want Cancel?</th>
                                 </tr>
                             </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                         <td>{!!$bk->check_in_date!!}</td>
                                         <td>{!!$bk->check_out_date!!}</td>
                                         <td>{!!(strtotime($bk->check_out_date)-strtotime($bk->check_in_date))/3600/24!!}</td>
-                                        <td>{!!$bk->total!!} VND</td>
+                                        <td>{!! number_format($bk->total)!!} VND</td>
                                         <td>{!!$bk->booking_code!!}</td>
                                         <td>{!!$bk->status ? '<span class="btn btn-success disable">Booking</span>' : '<span class="btn btn-danger disable">Cancel</span>'!!}</td>
                                         <td> <button type="submit" class="btn btn-danger">Cancel  </button></td>
