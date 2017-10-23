@@ -26,7 +26,7 @@
 												<td>{{$service->service_name}}</td>
 												<td>{{$service->pivot->unit}}</td>
 												<td>
-													<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/'.$service->id.'/delete')}}">Delete</a></td>
+													<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/'.$service->id.'/delete')}}"><i class="fa fa-trash"></i> Delete</a></td>
 											</tr>
 											@endforeach									
 										</table>

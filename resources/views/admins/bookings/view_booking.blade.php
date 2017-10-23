@@ -36,7 +36,7 @@
                     <td><a href="{{ url('admins/bookings/'.$bk->id) }}">{!! $bk->booking_code !!}</a></td>
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
-          					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
+          					<td>{!!$bk->status ? '<span class="label label-success"> Booking' : '<span class="label label-danger"> Cancel'!!}</td>
                     <td>{!!$bk->user->first_name!!}</td>
           					<td>{!!$bk->user->last_name!!}</td>
           				</tr>

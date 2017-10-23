@@ -73,7 +73,7 @@ class BookingController extends Controller
     $data= Input::all();
     $search=$data['key_search'];
     $bookings=Booking::whereHas('user', function($query) use($search){
-        $query->where('last_name', $search);
+        $query->where('last_name', 'like',"%$search%")->orWhere('booking_code','like',"%$search%");
     })->get();
     return view('admins.bookings.search_user',compact('bookings'));
    }
