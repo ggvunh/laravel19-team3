@@ -20,11 +20,11 @@
                                 </tr>
                             </thead>
                         <tbody>
-                        @foreach($bookings as $bk)
+                        @foreach($bookings as $key => $bk)
                             <form method="get" action="{!!url('/review/cancel/'.$bk->id)!!}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">                     
                                     <tr>
-                                        <td>1</td>
+                                        <td>{!!++$key!!}</td>
                                         <td>{!!$bk->check_in_date!!}</td>
                                         <td>{!!$bk->check_out_date!!}</td>
                                         <td>{!!(strtotime($bk->check_out_date)-strtotime($bk->check_in_date))/3600/24!!}</td>
