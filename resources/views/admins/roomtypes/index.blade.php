@@ -17,6 +17,7 @@
 				<th>#</th>
 				<th>Room Type Name</th>
 				<th>Description</th>
+        <th>Action</th>
 			</tr>
                 @foreach ($roomtypes as $roomtype)
                 <tr>

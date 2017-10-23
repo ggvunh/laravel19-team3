@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Service_Hotel;
 use App\Http\Requests\serviceRequest;
+use App\Http\Requests\editServiceRequest;
 
 class ServiceHotelController extends Controller
 {
@@ -33,7 +34,7 @@ class ServiceHotelController extends Controller
 	{
 		return view('admins.services.edit',compact('service'));
 	}
-	public function updateService(Service_Hotel $service,serviceRequest $request)
+	public function updateService(Service_Hotel $service,editServiceRequest $request)
 	{
 		$data=Input::all();
 		$service->update($data);

@@ -46,7 +46,7 @@
 	</div>
 
 	{!! Form::label('images','Upload Image') !!}
-	<div class="form-controls {{ $errors->has('room_price') ? 'has-error' : '' }}">
+	<div class="form-controls {{ $errors->has('images') ? 'has-error' : '' }}">
 		{!! Form::file('images',['class'=>'form-control', 'id' => 'imageUpload']) !!}
 	@if ( $errors->has('images') )
 	    <span class="text-warning">
