@@ -35,13 +35,6 @@ class BookingController extends Controller
       // dd($bookroom);
       return view('admins.bookings.detail', compact('bookroom'));
    }
-
-   public function detailRoom($booking_id, $room_id)
-   {
-      $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
-      // dd($bookroom);
-      return view('admins.bookings.detailRoom',compact('bookroom'));
-   }
    public function addService($booking_id, $room_id)
    {
       $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
@@ -61,14 +54,28 @@ class BookingController extends Controller
       $service->delete();
       return redirect('admins/bookings/'.$booking_id)->withSuccess('Service has been deleted');
    }
-   public function checkoutAdmin($booking_id,$room_id, Book_Room_Service $service)
+   public function checkoutAdmin($booking_id)
    {
-    $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
-    $sumservice=0;
-    foreach ($bookroom->services as $service) {
-      $sumservice += $service->service_price * $service->pivot->unit;
+    $bookroom=Book_Room::where('booking_id',$booking_id)->get();
+    $servicetotal=0;
+    $roomtotal=0;
+    foreach ($bookroom as $br) {
+      $roomtotal += $br->room->room_price;
+      foreach ($br->services as $service) {
+        $servicetotal += $service->service_price*$service->pivot->unit; 
+      }
     }
-    return view('admins.bookings.checkout',compact('bookroom','service','sumservice'));
+    return view('admins.bookings.checkout',compact('bookroom','servicetotal','roomtotal'));
+   }
+   public function confirmCheckout($booking_id)
+   {
+    $booking=Booking::where('id',$booking_id)->update(['status'=>'2']);
+    return redirect('admins/bookings')->withSuccess('Booking has been checked out');
+   }
+   public function cancelCheckout($booking_id)
+   {
+    $booking=Booking::where('id',$booking_id)->update(['status'=>'0 ']);
+    return redirect('admins/bookings')->withSuccess('Booking has been canceled');
    }
    public function searchbyUser()
    {

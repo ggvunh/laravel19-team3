@@ -19,22 +19,25 @@
 											<tr>
 												<th>Service Name</th>
 												<th>Unit</th>
+												<th>Price</th>
 												<th>Action</th>
 											</tr>
 											@foreach($br->services as $service)									
 											<tr>
 												<td>{{$service->service_name}}</td>
 												<td>{{$service->pivot->unit}}</td>
+												<td>{{number_format($service->service_price*$service->pivot->unit)}}đ</td>
 												<td>
 													<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/'.$service->id.'/delete')}}">Delete</a></td>
 											</tr>
 											@endforeach									
 										</table>
-										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-right'>Add Service</a>
-										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/checkout')}}" class='btn btn-primary'>Check Out</a>  	
+										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-left'>Add Service</a>
 									</div>
 								</div>
 							</td>				
 					</tr>
-					@endforeach		
+	@endforeach		
+	<a href="{{url('admins/bookings/'.$br->booking_id.'/checkout')}}" class='btn btn-primary'>Check Out</a>  	
+	<a href="{{url('admins/bookings/'.$br->booking_id.'/cancel')}}" class='btn btn-primary' style="margin-left: 5px">Cancel Booking</a>  	
 @stop

@@ -101,7 +101,9 @@ Route::post('admins/bookings/{booking_id}/{room_id}','BookingController@saveServ
 
 Route::get('admins/bookings/{booking_id}/{room_id}/{service}/delete','BookingController@deleteService');
 
-Route::get('admins/bookings/{booking_id}/{room_id}/checkout','BookingController@checkoutAdmin');
+Route::get('admins/bookings/{booking_id}/checkout','BookingController@checkoutAdmin');
+Route::get('admins/bookings/{booking_id}/checkout/confirm','BookingController@confirmCheckout');
+Route::get('admins/bookings/{booking_id}/cancel','BookingController@cancelCheckout');
 
 //-----Room Type Management-----
 

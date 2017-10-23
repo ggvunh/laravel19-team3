@@ -36,7 +36,12 @@
                     <td><a href="{{ url('admins/bookings/'.$bk->id) }}">{!! $bk->booking_code !!}</a></td>
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
-          					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
+          					<td>@if($bk->status == 1)
+                      Booking
+                      @elseif($bk->status == 2)
+                      Checked Out
+                      @else Cancel
+                    @endif</td>
                     <td>{!!$bk->user->first_name!!}</td>
           					<td>{!!$bk->user->last_name!!}</td>
           				</tr>
