@@ -48,11 +48,15 @@
                 
                 <!-- CONTENT -->
                 <div class="col-md-8 col-lg-9">
-                  
+
                     <div class="reservation_content">
+                        <div >
+                                About <strong class="label label-info">{{($rooms->total())}} </strong>Rooms
+                        </div>
                         <!-- RESERVATION ROOM -->
                         <div class="reservation-room">
                           @foreach ($rooms as $rm)
+
                             <!-- ITEM -->
                             <div class="reservation-room_item">
 
@@ -88,7 +92,7 @@
                           @endforeach
                         </div>
                         <!-- END / RESERVATION ROOM -->
-                        {!!$rooms->links()!!}
+                        {!!$rooms->appends(['arrival' => session()->get('arrival'), 'departure' => session()->get('departure'), 'person' => session()->get('person')])->links()!!}
                     </div>
 
                 </div>
