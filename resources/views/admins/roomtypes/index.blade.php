@@ -22,7 +22,7 @@
                 @foreach ($roomtypes as $roomtype)
                 <tr>
 					<th scope="row">{!!$dem++!!}</th>
-					<td><a href="{{url('admins/roomtypes/'.$roomtype->id)}}">{!!$roomtype->type_of_bed!!}</a></td>
+					<td>{!!$roomtype->type_of_bed!!}</td>
 					<td>{!!$roomtype->description!!}</td>
 					<td><a href="{{url('admins/roomtypes/'.$roomtype->id.'/edit')}}" ><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/roomtypes/'.$roomtype->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
 				</tr>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('header')
-	<h1> {{$bookroom[1]->booking->booking_code}} Detail</h1>
+	<h1> {{$booking->booking_code}} Detail</h1>
 	<a href="{{url('admins/bookings')}}" class="btn btn-primary">Back to booking list</a>
 @stop
 @section('content')
@@ -30,11 +30,12 @@
 											</tr>
 											@endforeach									
 										</table>
-										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-right'>Add Service</a>
-										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/checkout')}}" class='btn btn-primary'>Check Out</a>  	
+										<a href="{{url('admins/bookings/'.$br->booking_id.'/'.$br->room_id.'/addservice')}}" class='btn btn-default pull-left'>Add Service</a>
+										  	
 									</div>
 								</div>
 							</td>				
 					</tr>
-					@endforeach		
+	@endforeach
+	<a href="{{url('admins/bookings/'.$booking->id.'/checkout')}}" class='btn btn-primary'>Check Out</a>	
 @stop
