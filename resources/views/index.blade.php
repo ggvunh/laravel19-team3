@@ -98,7 +98,7 @@
 		                    <div class="text">
 		                        <h2><a href="{!!url('/lotus/'.$rm->id)!!}">{!!$rm->room_types->type_of_bed!!}</a></h2>
 		                        <p class="price">
-		                            <span class="amout">{!!$rm->room_price!!} Vnd</span>/days
+		                            <span class="amout">{!!number_format($rm->room_price) !!} Vnd</span>/days
 		                        </p>
 		                    </div>
 		                </div>

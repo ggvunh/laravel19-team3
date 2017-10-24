@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use Cart;
 use App\User;
 use App\Mail\SendMailController;
+use Twilio;
 
 
 class BookingController extends Controller
@@ -231,9 +232,9 @@ class BookingController extends Controller
   public function payment(Request $request)
   {
 
-          $data = Input::all();
-          $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
-          $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
+        $data = Input::all();
+        $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
+        $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
 
         $booking = new Booking();
         $booking->user_id = Auth::id();
@@ -244,7 +245,7 @@ class BookingController extends Controller
         {
            return redirect('message');
         }
-        $booking->booking_code = str_random(6);
+        $booking->booking_code = (strtoupper(str_random(6)));
         $code = $booking->booking_code;
         $booking->status = 1;
         $booking->save();
@@ -258,6 +259,7 @@ class BookingController extends Controller
         $usermail = User::findOrFail(Auth::id());
         $bookingmail = Booking::findOrFail($booking->id);
         Mail::to($usermail)->send(new SendMailController($bookingmail));
+        Twilio::message('+84'.Auth::user()->phone_number,'Code Booking of '.$code);
         Session::forget('/cart');
       return redirect('/review');
 
