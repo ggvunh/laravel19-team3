@@ -6,6 +6,7 @@
                 <div class="row">
                     <!-- CONTENT -->
                     <div class="col-md-12 col-lg-12">
+                       
                         <table class="table" style="margin-top: 50px;">
                             <thead>
                                 <tr class="blue-grey lighten-4">
@@ -46,7 +47,13 @@
                                 <li>
                                     When You cancel a booking the system will keep 20% booking value and return 80% to You. <strong><a href="{!!url('/')!!}" class="label label-info">Come Back Home</a></strong>
                                 </li>
+
                             </ul>
+                            @if(Session('success'))
+                            <div class="alert alert-success">
+                                {!!Session('success')!!}
+                            </div>
+                            @endif
                     </div>
                     <!-- END / CONTENT -->
                 </div>

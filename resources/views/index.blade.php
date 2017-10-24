@@ -65,6 +65,7 @@
 	</div>
 @stop                    
 @section('content-index')	
+
  <form class="box-tools" action="{{url('/lotus/search')}}" method="get" style="float: right; padding-right: 15px;">
 				<div class="input-group input-group-sm" style="width: 350px;">
 					  <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
@@ -78,7 +79,11 @@
 	<div class="col-md-12">
 		<div class="accomd-modations-header">			
 			 <h2 class="heading">ROOMS</h2>
-			
+			@if(Session('cancel'))
+				<div class="alert alert-danger">
+					{!!Session('cancel')!!}
+				</div>
+			@endif
 			<img src="{!!asset('images/icon-accmod.png')!!}" alt="icon">
 			<p>Semper ac dolor vitae accumsan. Cras interdum hendrerit lacinia. Phasellus accumsan urna vitae molestie interdum. Nam sed placerat libero, non eleifend dolor.</p>
 		</div>

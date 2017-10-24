@@ -219,7 +219,7 @@ class BookingController extends Controller
       $booking->save();
       Session::forget('/cart');
       Auth::logout();
-      return redirect('/');
+      return redirect('/')->with('cancel', 'You have cancel booing');
  
   }
 
@@ -261,7 +261,7 @@ class BookingController extends Controller
         Mail::to($usermail)->send(new SendMailController($bookingmail));
         Twilio::message('+84'.Auth::user()->phone_number,'Code Booking of '.$code);
         Session::forget('/cart');
-      return redirect('/review');
+      return redirect('/review')->with('success', 'Payment Success');
 
   }
 
