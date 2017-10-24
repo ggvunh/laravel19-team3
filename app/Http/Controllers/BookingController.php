@@ -30,8 +30,8 @@ class BookingController extends Controller
    public function detailBooking($booking_id)
    {
       $bookroom=Book_Room::where('booking_id', $booking_id)->get();
-      // dd($bookroom);
-      return view('admins.bookings.detail', compact('bookroom'));
+      $booking=Booking::where('id',$booking_id)->first();
+      return view('admins.bookings.detail', compact('bookroom','booking'));
    }
 
    public function detailRoom($booking_id, $room_id)
@@ -59,14 +59,19 @@ class BookingController extends Controller
       $service->delete();
       return redirect('admins/bookings/'.$booking_id)->withSuccess('Service has been deleted');
    }
-   public function checkoutAdmin($booking_id,$room_id, Book_Room_Service $service)
+   public function checkoutAdmin($booking_id, Book_Room_Service $service)
    {
-    $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
-    $sumservice=0;
-    foreach ($bookroom->services as $service) {
-      $sumservice += $service->service_price * $service->pivot->unit;
+    $booking=Booking::where('id',$booking_id)->first();
+    $bookroom=Book_Room::where('booking_id',$booking_id)->get();
+    $roomtotal = 0 ;
+    $servicetotal= 0 ;
+    foreach ($bookroom as $br) {
+      $roomtotal += $br->room->room_price;
+      foreach ($br->services as $service) {
+              $servicetotal += $service->service_price * $service->pivot->unit;
+            }      
     }
-    return view('admins.bookings.checkout',compact('bookroom','service','sumservice'));
+    return view('admins.bookings.checkout',compact('booking','bookroom','roomtotal','servicetotal'));
    }
    public function searchbyUser()
    {

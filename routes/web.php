@@ -111,7 +111,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 			Route::get('/{booking_id}/{room_id}/{service}/delete','BookingController@deleteService');
 
-			Route::get('/{booking_id}/{room_id}/checkout','BookingController@checkoutAdmin');
+			Route::get('/{booking_id}/checkout','BookingController@checkoutAdmin');
 
 		});
 	
