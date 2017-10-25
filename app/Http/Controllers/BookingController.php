@@ -19,6 +19,7 @@ use Cart;
 use App\User;
 use App\Mail\SendMailController;
 use Twilio;
+use App\Promotion;
 
 
 class BookingController extends Controller
@@ -89,7 +90,7 @@ class BookingController extends Controller
       return view('hotels.bookings.detail_room', compact('room'));
    }
 
-   //function search from - to date
+   //function search from - to date----------------------------------------------------
   public function search(Request $request)
   {  	
     		$data = Input::all();
@@ -114,11 +115,11 @@ class BookingController extends Controller
           ->whereDoesntHave('bookings', function($query) use($from, $to){
             $query->where('check_in_date', '>=', $from)->where('check_out_date', '<=', $to);
           })
-  			->take(5)->paginate(5);
+  			  ->take(5)->paginate(5);
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
 
-  //shoping
+  //------------------------------shoping--------------------------------------
   public function shop(Request $request)
   {
     $dem = 0;
@@ -203,24 +204,19 @@ class BookingController extends Controller
 
   public function cancel($id)
   {
-
       $booking = Booking::find($id);
       $booking->status = 0;
+      $admin = User::where('role','=' ,1)->first();
+      $deposit = $admin->deposit - ( $booking->total - $booking->total*0.2);
+      $admin->deposit = $deposit;
+      $admin->save();
       $user = $booking->user;
-      $user->deposit = $user->deposit + $booking->total*0.8;
-      $user->save();
-      $admin = User::where('role','=' ,1)->get();
-      foreach ($admin as $ad) 
-      {
-        $ad->deposit =   $ad->deposit + $booking->total*0.2;;
-         $ad->save();       
-      }   
-      $user->save();
+      $user->deposit = $user->deposit + $booking->total - $booking->total*0.2;
+      $user->save(); 
       $booking->save();
       Session::forget('/cart');
       Auth::logout();
       return redirect('/');
- 
   }
 
   public function message_deposit()
@@ -240,7 +236,13 @@ class BookingController extends Controller
         $booking->user_id = Auth::id();
         $booking->check_in_date =  $arrival;
         $booking->check_out_date = $departure;
-        $booking->total = (double)Cart::total();
+     
+        $promotion = Promotion::where('code', $data['promotion_code'])->first();
+        $booking->total = (double)Cart::total() + ((double)Cart::total())*$promotion->discount;
+        $user = User::where('role',1)->first();
+          $user->deposit =  $user->deposit + $booking->total;
+          $user->save();
+
         if(Auth::user()->deposit < $booking->total)
         {
            return redirect('message');
@@ -249,6 +251,7 @@ class BookingController extends Controller
         $code = $booking->booking_code;
         $booking->status = 1;
         $booking->save();
+        
         foreach (Cart::content() as $row) 
         {
           $book_room = new Book_Room();
@@ -256,6 +259,7 @@ class BookingController extends Controller
           $book_room->booking_id = $booking->id;
           $book_room->save();
         }
+
         $usermail = User::findOrFail(Auth::id());
         $bookingmail = Booking::findOrFail($booking->id);
         Mail::to($usermail)->send(new SendMailController($bookingmail));
