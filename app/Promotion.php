@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Promotion extends Model
 {
     protected $table = 'promotions';
-    protected $fillable = ['code', 'discount'];
+    protected $fillable = ['code', 'discount', 'description'];
     public $timestamps = false;
     
     public function booking_room()

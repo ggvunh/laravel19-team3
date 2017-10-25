@@ -36,17 +36,19 @@
                                 <!-- END / ITEM -->
 
                             </div>
-
+ 
                             <div class="checkout_cartinfo">
                                 <p><span>Cart Subtotal:</span> {!!(number_format(Cart::subtotal()))!!} VND</p>
+
+                                <p><span>Promotion Code: </span><input type="text" name="promotion_code"></p>
                                 <p><span>Order Total:</span> <span class="color-red">{!!(number_format(Cart::total()))!!} VND</span></p>
                             </div> 
                             
                             <div class="checkout_option">
                                 <ul>
                                     <li>
-                                        <input type="radio" class="radio payment-methor" name="payment">
-                                        <h6>Direct Bank Transfer</h6>
+                                       
+                                        <h6>You will discount 10% if you have <span class="label label-warning">code promotion</span></h6>
                                         <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                                     </li>
                                     <li>
