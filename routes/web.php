@@ -156,6 +156,25 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//route promotion
+
+Route::get('admins/promotions/', 'PromotionController@get');
+
+Route::get('admins/promotions/index', 'PromotionController@get')->name('admins/promotions/index');
+Route::get('admins/promotions/show/{id}', 'PromotionController@show')->name('admins.promotions.show');
+
+Route::get('admins/promotions/create', 'PromotionController@create');
+
+ Route::get('admins/promotions/{id}', 'PromotionController@show');
+
+Route::get('admins/promotions/{id}/delete', 'PromotionController@delete')->name('admins/promotions/delete');
+
+Route::post('admins/promotions', 'PromotionController@save');
+
+Route::get('admins/promotions/edit/{id}', 'PromotionController@edit')->name('admins/promotions/edit');
+Route::get('admins/promotions/update/{id}', 'PromotionController@update')->name('admins/promotions/update');
+
+Route::put('admins/promotions/{promotion}', 'PromotionController@update');
 
 
 
