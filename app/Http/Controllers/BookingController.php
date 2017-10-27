@@ -93,19 +93,19 @@ class BookingController extends Controller
    //function search from - to date----------------------------------------------------
   public function search(Request $request)
   {  	
-    		$data = Input::all();
-    		$arrival = $data['arrival']; 
-  		  $from = date("Y-m-d", strtotime($arrival));
-    		$departure = $data['departure'];
-    		$to = date("Y-m-d", strtotime($departure));
-        $person = $data['person'];
+    		  $data = Input::all();
+          $arrival = $data['arrival']; 
+          $from = date("Y-m-d", strtotime($arrival));
+          $departure = $data['departure'];
+          $to = date("Y-m-d", strtotime($departure));
+          $person = $data['person'];
 
-        $request->session()->put('arrival', $arrival);
-        $request->session()->put('departure', $departure);
-        $request->session()->put('person', $person);
+          $request->session()->put('arrival', $arrival);
+          $request->session()->put('departure', $departure);
+          $request->session()->put('person', $person);
 
-    		$rooms = Room::where('room_status', '=', 1 )
-    			->where('amount_people','=',$request->person)        
+          $rooms = Room::where('room_status', '=', 1 )
+          ->where('amount_people','=',$request->person)        
           ->whereDoesntHave('bookings', function($query) use($from){
             $query->where('check_in_date', '<=', $from)->where('check_out_date', '>=', $from);  
           })
@@ -115,7 +115,12 @@ class BookingController extends Controller
           ->whereDoesntHave('bookings', function($query) use($from, $to){
             $query->where('check_in_date', '>=', $from)->where('check_out_date', '<=', $to);
           })
-  			  ->take(5)->paginate(5);
+          ->take(5)->paginate(5);
+          if(count($rooms) == 0)
+          {
+            return redirect('/message');
+          }
+          else
     		  return view('hotels.bookings.search_booking', compact('rooms'));
   }
 
@@ -188,6 +193,7 @@ class BookingController extends Controller
       if(Auth::check())
       {
         $bookings = Booking::where('user_id', Auth::id())->get();
+
         foreach ($bookings as $bk)
         {
            if($bk->user_id == Auth::id())
@@ -219,15 +225,18 @@ class BookingController extends Controller
       return redirect('/');
   }
 
-  public function message_deposit()
+  public function message_room()
   {
     return view('hotels.bookings.message');
   }
 
+  public function message_deposit()
+  {
+    return view('hotels.bookings.check_deposit');
+  }
   //payment
   public function payment(Request $request)
   {
-
         $data = Input::all();
         $arrival = date("Y-m-d",strtotime($request->session()->get('arrival')));
         $departure = date("Y-m-d",strtotime($request->session()->get('departure')));
@@ -238,14 +247,25 @@ class BookingController extends Controller
         $booking->check_out_date = $departure;
      
         $promotion = Promotion::where('code', $data['promotion_code'])->first();
-        $booking->total = (double)Cart::total() + ((double)Cart::total())*$promotion->discount;
+        $request->session()->put('promotion_code', $data['promotion_code']);
+        if(count($promotion) > 0)
+        {
+          $booking->promotion_id = $promotion->id;
+          $booking->total = (double)Cart::total() + ((double)Cart::total())*$promotion->discount;
+        }
+        else
+        {
+            
+            $booking->total = (double)Cart::total();
+        }
+        
         $user = User::where('role',1)->first();
           $user->deposit =  $user->deposit + $booking->total;
           $user->save();
 
         if(Auth::user()->deposit < $booking->total)
         {
-           return redirect('message');
+           return redirect('check_deposit');
         }
         $booking->booking_code = (strtoupper(str_random(6)));
         $code = $booking->booking_code;

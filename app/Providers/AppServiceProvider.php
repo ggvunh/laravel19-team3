@@ -13,8 +13,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
          \Schema::defaultStringLength(191);
-          // $menu = Room_Type::all();
-          // View::share('menu', $menu);
+          $menu = Room_Type::all();
+          View::share('menu', $menu);
     }
     /**
      * Register any application services.

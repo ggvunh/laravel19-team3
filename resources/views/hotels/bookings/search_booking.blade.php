@@ -55,8 +55,8 @@
                         </div>
                         <!-- RESERVATION ROOM -->
                         <div class="reservation-room">
+                        
                           @foreach ($rooms as $rm)
-
                             <!-- ITEM -->
                             <div class="reservation-room_item">
 
@@ -90,6 +90,7 @@
                             </div>
                             <!-- END / ITEM -->
                           @endforeach
+                      
                         </div>
                         <!-- END / RESERVATION ROOM -->
                         {!!$rooms->appends(['arrival' => session()->get('arrival'), 'departure' => session()->get('departure'), 'person' => session()->get('person')])->links()!!}
