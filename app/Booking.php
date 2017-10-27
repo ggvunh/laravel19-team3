@@ -28,6 +28,6 @@ class Booking extends Model
 
     public function promotion()
     {
-        return $this->belongsTo('App\Promotion', 'promotion_id');
+        return $this->belongsTo('App\Promotion', 'promotion_id', 'id');
     }
 }

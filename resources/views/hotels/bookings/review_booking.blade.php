@@ -14,7 +14,8 @@
                                     <th>Check Out Day</th>
                                     <th>Days</th>
                                     <th>Total</th>
-                                    <th>Code</th>
+                                    <th>Code Booking</th>
+                                    <th>Code Discount</th>
                                     <th>Status</th>
                                     <th>Do You Want Cancel?</th>
                                 </tr>
@@ -22,7 +23,7 @@
                         <tbody>
                         @foreach($bookings as $key => $bk)
                             <form method="get" action="{!!url('/review/cancel/'.$bk->id)!!}">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">                     
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">                
                                     <tr>
                                         <td>{!!++$key!!}</td>
                                         <td>{!!$bk->check_in_date!!}</td>
@@ -30,15 +31,16 @@
                                         <td>{!!(strtotime($bk->check_out_date)-strtotime($bk->check_in_date))/3600/24!!}</td>
                                         <td>{!! number_format($bk->total)!!} VND</td>
                                         <td>{!!$bk->booking_code!!}</td>
-                                        <td>{!!$bk->status ? '<span class="btn btn-success disable">Booking</span>' : '<span class="btn btn-danger disable">Cancel</span>'!!}</td>
+
+                                        <td>{!!(Session::get('promotion_code'))? $bk->promotion->code : 0!!}</td>
+                                        <td>{!!$bk->status ? '<span class="label label-success disable">Booking</span>' : '<span class="label label-danger disable">Cancel</span>'!!}</td>
                                         <td> <button type="submit" class="btn btn-danger">Cancel  </button></td>
                                     </tr>
                             </form>         
                         @endforeach
                         <tr>
                             <td colspan="6">&nbsp;</td>
-                            <td>
-                                
+                            <td>                               
                             </td> 
                         </tr>
                         </table>
