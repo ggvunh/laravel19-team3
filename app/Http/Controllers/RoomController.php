@@ -8,6 +8,7 @@ use App\Room;
 use App\Room_Type;
 use App\Service_Hotel;
 use App\Image;
+use App\Book_Room;
 use Illuminate\Pagination\Paginator;
 use App\Http\Requests\roomRequest;
 use App\Http\Requests\editRoomRequest;
@@ -57,7 +58,9 @@ class RoomController extends Controller
 
     public function detail_room(Room $room)
     {
-    	return view('admins.rooms.detail_room', compact('room')); 
+        $calendar=Book_Room::where('room_id',$room->id)->get();
+        // dd($calendar);
+    	return view('admins.rooms.detail_room', compact('room','calendar')); 
     }
 
     public function search_room(Request $search)
