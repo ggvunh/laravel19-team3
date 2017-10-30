@@ -39,7 +39,7 @@
 						<img src="{!!url('/images/upload/rooms/'.$room->images)!!}" alt="" style='width: 50px; height: 30px;''>
 					</td>
 					<td><a href="{!!url('admins/'.$room->id)!!}">{!!$room->room_name!!}</a></td>
-					<td>{!!number_format($room->room_price)!!}VND</td>
+					<td>{!!number_format($room->room_price)!!}đ</td>
 					<td>						
 						{!!$room->room_status ? '<span class="label label-success">Available</span>' : '<span class="label label-danger">Not Available</span>'!!}
 					</td>

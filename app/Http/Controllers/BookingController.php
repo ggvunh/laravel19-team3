@@ -39,7 +39,6 @@ class BookingController extends Controller
    public function detailRoom($booking_id, $room_id)
    {
       $bookroom=Book_Room::where('booking_id',$booking_id)->where('room_id',$room_id)->first();
-      // dd($bookroom);
       return view('admins.bookings.detailRoom',compact('bookroom'));
    }
    public function addService($booking_id, $room_id)
