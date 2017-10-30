@@ -72,7 +72,7 @@
                                             <span>{!!(strtotime(session()->get('departure')) - strtotime(session()->get('arrival')))/3600/24!!} days - ROOM  {!!$row->options->room_name!!} </span> <b>{!! number_format($row->total) !!}VND</b>
                                         </p>
                                     </div>
-                                    <a href="#" class="remove"><i class="fa fa-close"></i></a>
+                                    <a href="{!!url('/cart/'.$row->rowId.'/delete_in_payment')!!}" class="remove"><i class="fa fa-close"></i></a>
                                
                                 </div>
                                  @endforeach

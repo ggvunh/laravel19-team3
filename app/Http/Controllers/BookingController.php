@@ -167,6 +167,13 @@ class BookingController extends Controller
       return redirect('/cart');
   }
 
+  //delete 1 order in checkout
+  public function delete_in_payment($id)
+  {
+      Cart::remove($id);
+      return redirect('/checkout');
+  }
+
   public function destroy()
   {
       Cart::destroy();
@@ -182,6 +189,9 @@ class BookingController extends Controller
       }
       else
       {
+        if(count(Cart::content()) == 0)
+          return redirect('/cart');
+        else
         return view('hotels.bookings.checkout');
       }
       

@@ -32,7 +32,12 @@ class SendMailController extends Mailable
     public function build()
     {
 
-        return $this->view('hotels.bookings.sendmail')->with(['userMail' => $this->booking->booking_code]);
+        return $this->view('hotels.bookings.sendmail')->with([
+            'userMail' => $this->booking->booking_code,
+            'formdate' => $this->booking->check_in_date,
+            'to' => $this->booking->check_out_date,
+            'total' => $this->booking->total,
+        ]);
 
     }
 }

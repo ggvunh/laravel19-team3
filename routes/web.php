@@ -34,6 +34,8 @@ Route::group(['prefix' => 'cart'], function(){
 	Route::get('/{id}/add', 'BookingController@add');
 
 	Route::get('/{id}/delete', 'BookingController@delete');
+	
+	Route::get('/{id}/delete_in_payment', 'BookingController@delete_in_payment');
 
 });
 
