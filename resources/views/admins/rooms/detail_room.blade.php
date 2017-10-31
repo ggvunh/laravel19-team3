@@ -9,10 +9,10 @@
 		</div>	
 		<div class="box-body">
 			<div class="row">
-				<div class="col-md-4">
-					<img src="{!!url('/images/upload/rooms/'.$room->images)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray; text-align: center;''>
+				<div class="col-md-5">
+					<img src="{!!url('/images/upload/rooms/'.$room->images)!!}" alt="" style='width: 550px; height: 300px; border:5px solid gray;''>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<ul style="padding-top: 15px;">
 				<li>
 					<strong>Room Type </strong>: {!!$room->room_types->type_of_bed!!}
@@ -30,14 +30,14 @@
 				<li>
 					<strong>Amount Person </strong>: <span class="label label-warning">{!!$room->amount_people!!}</span></li>
 				<li>
-					<strong>Decription </strong>:{!!$room->description!!}
+					<strong>Description </strong>:{!!$room->description!!}
 				</li>
 			</ul>
 				</div>
 			</div>
 		</div>	
 	</div>
-	<div class="box-footer">
+	<div class="box box-default">
 		<div class="box-header with-border">
 		<h3 class="box-title"><strong>Booking Calendar</strong></h3>
 	</div>
@@ -71,7 +71,7 @@
 			        {
 			          title          : '{{$cld->booking->booking_code}}',
 			          start          : '{{$cld->booking->check_in_date}}',
-			          end            : '{{$cld->booking->check_out_date}}',
+			          end            : "{{$cld->booking->check_out_date}}",
 			          allDay         : true,
 			          backgroundColor: '#3c8dbc',
 			          borderColor    : '#f39c12',

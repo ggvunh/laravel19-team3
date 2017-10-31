@@ -5,12 +5,20 @@
 @stop
 @section('content')
 	@foreach($bookroom as $br)
-					<tr>						
-							<td>
-								<h3>{{$br->room->room_name}}</h3>
+		<div class="box box-default collapsed-box">
+			<div class="box-header with-border">
+				<h3 class="box-title">{{$br->room->room_name}}</h3>
+	            <div class="box-tools pull-right">
+	              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+	              </button>
+	            </div>				
+			</div>
+			<div class="box-body">
+				<tr>						
+							<td>								
 								<p><strong>Room Types: </strong>{{$br->room->room_types->type_of_bed}}</p>
-								<p><strong>Room Prices: </strong>{{$br->room->room_price}} đ</p>
-								<div class="box">
+								<p><strong>Room Prices: </strong>{{number_format($br->room->room_price)}} đ</p>
+								<div class="box box-primary">
 									<div class="box-header">
 										<p class="box-title">Services </p>
 									</div>									
@@ -36,6 +44,9 @@
 								</div>
 							</td>				
 					</tr>
+			</div>
+		</div>
+					
 	@endforeach
 	<a href="{{url('admins/bookings/'.$booking->id.'/checkout')}}" class='btn btn-primary'>Check Out</a>	
 @stop
