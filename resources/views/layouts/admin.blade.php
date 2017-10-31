@@ -110,7 +110,7 @@ desired effect
       </div>
 
       <!-- search form (Optional) -->
-      <form action="{{asset('admins/search')}}" method="get" class="sidebar-form">
+      <form action="{!!url('admins/bookings/search')!!}" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="key_search" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -292,7 +292,7 @@ desired effect
 <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{asset('bower_components/moment/moment.js')}}"></script>
 <script src="{{asset('bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
-<script src="{{asset('dist/js/demo.js')}}"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 @yield('script')
 </body>
 </html>

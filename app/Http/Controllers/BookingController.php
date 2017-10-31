@@ -79,7 +79,7 @@ class BookingController extends Controller
     $data= Input::all();
     $search=$data['key_search'];
     $bookings=Booking::whereHas('user', function($query) use($search){
-        $query->where('last_name', 'like',"%$search%")->orWhere('booking_code','like',"%$search%");
+        $query->where('last_name', 'like',"%$search%")->orWhere('booking_code','like',"$search")->orWhere('first_name','like',"%$search%");
     })->get();
     return view('admins.bookings.search_user',compact('bookings'));
    }
@@ -109,7 +109,7 @@ class BookingController extends Controller
             $query->where('check_in_date', '<=', $from)->where('check_out_date', '>=', $from);  
           })
           ->whereDoesntHave('bookings', function($query) use($to){
-            $query->where('check_in_date', '<=', $to)->where('check_out_date', '>=', $to);;
+            $query->where('check_in_date', '<=', $to)->where('check_out_date', '>=', $to);
           })
           ->whereDoesntHave('bookings', function($query) use($from, $to){
             $query->where('check_in_date', '>=', $from)->where('check_out_date', '<=', $to);
