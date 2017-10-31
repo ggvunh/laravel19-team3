@@ -154,6 +154,11 @@ desired effect
               <i class="fa fa-exclamation-triangle"></i> <span>REPORTS</span>
             </a>
           </li>
+          <li>
+             <a href="{{ route('admins/promotions/index') }}">
+              <i class="fa fa-percent"></i><span>PROMOTIONS</span>
+            </a></li>
+          <li>
      </ul>
       <!-- /.sidebar-menu -->
     </section>
