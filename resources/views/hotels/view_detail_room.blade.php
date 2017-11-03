@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content-index')
-		<div class="container">
+		<div class="container" style="padding-top: 70px;">
 			<div class="room-wrap-1">
 				<div class="row">
 				<!-- ITEM -->
@@ -34,13 +34,8 @@
 				    <div class="room-detail_book">
 
 				        <div class="room-detail_total">
-				            <img src="images/icon-logo.png" alt="" class="icon-logo">
-				            
-				            <h6>STARTING ROOM FROM</h6>
-				            
-				            <p class="price">
-				                <span class="amout">{!! number_format($room->room_price) !!}</span>  /days
-				            </p>
+				            <img src="images/icon-logo.png" alt="" class="icon-logo">				  
+				            <h6>STARTING ROOM FROM</h6>    
 				        </div>
 				        <form action="{!!url('/lotus/bookings/search')!!}" method="get">
 					        <div class="room-detail_form">

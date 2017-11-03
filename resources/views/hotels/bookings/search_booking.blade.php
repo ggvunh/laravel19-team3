@@ -60,10 +60,10 @@
                             <!-- ITEM -->
                             <div class="reservation-room_item">
 
-                                <h2 class="reservation-room_name"><a href="#">{!!$rm->room_types->type_of_bed!!}</a></h2>
+                                <h2 class="reservation-room_name"><a href="{!!url('/cart/'.$rm->id)!!}">{!!$rm->room_types->type_of_bed!!}</a></h2>
 
                                 <div class="reservation-room_img">
-                                    <a href="#"><img src="{!!url('/images/upload/rooms/'.$rm->images)!!}" alt=""></a>
+                                    <a href="{!!url('/cart/'.$rm->id)!!}"><img src="{!!url('/images/upload/rooms/'.$rm->images)!!}" alt=""></a>
                                 </div>
 
                                 <div class="reservation-room_text">
@@ -77,7 +77,7 @@
                                              
                                         </ul>
                                     </div>
-                                    <a href="#" class="reservation-room_view-more">View More Infomation</a>
+                                    <a href="{!!url('/cart/'.$rm->id)!!}" class="reservation-room_view-more">View More Infomation</a>
 
                                     <div class="clear"></div>
 
