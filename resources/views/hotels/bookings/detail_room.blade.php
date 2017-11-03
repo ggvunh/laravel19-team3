@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content-index')
-		<div class="container">
+		<div class="container" style="padding-top: 70px;">
 			<div class="room-wrap-1">
 				<div class="row">
 				<!-- ITEM -->

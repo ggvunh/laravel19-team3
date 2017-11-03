@@ -243,6 +243,7 @@ class BookingController extends Controller
   {
     return view('hotels.bookings.check_deposit');
   }
+
   //payment
   public function payment(Request $request)
   {
@@ -263,24 +264,23 @@ class BookingController extends Controller
           $booking->total = (double)Cart::total() + ((double)Cart::total())*$promotion->discount;
         }
         else
-        {
-            
-            $booking->total = (double)Cart::total();
-        }
-        
+        {            
+          $booking->total = (double)Cart::total();
+        }       
         $user = User::where('role',1)->first();
           $user->deposit =  $user->deposit + $booking->total;
+          Auth::user()->deposit =  Auth::user()->deposit - $booking->total;
           $user->save();
+          Auth::user()->save();
 
         if(Auth::user()->deposit < $booking->total)
-        {
-           return redirect('check_deposit');
+        { 
+          return redirect('check_deposit');
         }
         $booking->booking_code = (strtoupper(str_random(6)));
         $code = $booking->booking_code;
         $booking->status = 1;
-        $booking->save();
-        
+        $booking->save();       
         foreach (Cart::content() as $row) 
         {
           $book_room = new Book_Room();
@@ -288,7 +288,6 @@ class BookingController extends Controller
           $book_room->booking_id = $booking->id;
           $book_room->save();
         }
-
         $usermail = User::findOrFail(Auth::id());
         $bookingmail = Booking::findOrFail($booking->id);
         Mail::to($usermail)->send(new SendMailController($bookingmail));
@@ -300,18 +299,17 @@ class BookingController extends Controller
 
   public function searchName()
   {
-        $data = Input::all();        
-        if($data['key_search'] != '')
-        {
-            $dem = 1;
-            $bookings = Booking::where('bookings.user_id', 'like', $search->key_search)
-                ->paginate(4);
-            return view('admins.bookings.search', compact('bookings', 'dem'));
-        }
-        else
-            return redirect('/admins');
+      $data = Input::all();        
+      if($data['key_search'] != '')
+      {
+          $dem = 1;
+          $bookings = Booking::where('bookings.user_id', 'like', $search->key_search)
+              ->paginate(4);
+          return view('admins.bookings.search', compact('bookings', 'dem'));
+      }
+      else
+          return redirect('/admins');
   }
-
 }
 
   			
