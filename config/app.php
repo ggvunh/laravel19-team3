@@ -165,7 +165,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Aloha\Twilio\Support\Laravel\ServiceProvider::class,
-
+        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Package Service Providers...
