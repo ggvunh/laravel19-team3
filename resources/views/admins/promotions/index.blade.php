@@ -33,9 +33,9 @@
                                 <div>{{$promotion->discount}}</div>
                             </td>
                             <td>
-                                <a href="{{ route('admins.promotions.show', $promotion->id) }}" class="label label-success">show</a>
-                                <a href="{{ route('admins/promotions/edit', $promotion->id) }}" class="label label-success">edit</a>
-                                <a href="{{ route('admins/promotions/delete', $promotion->id) }}" class="label label-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                <a href="{{ route('admins.promotions.show', $promotion->id) }}" class="label btn-primary">show</a>
+                                <a href="{{ route('admins/promotions/edit', $promotion->id) }}" class="label btn-primary">edit</a>
+                                <a href="{{ route('admins/promotions/delete', $promotion->id) }}" class="label btn-primary" onclick="return confirm('Are you sure to delete?')">Delete</a>
                             </td>
                         </tr>
                     @endforeach

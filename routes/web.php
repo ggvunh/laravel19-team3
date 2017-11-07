@@ -11,10 +11,34 @@
 |
 */
 
+// test
+// Route::get('admins/push', function(){
+
+//   $options = array(
+//       'cluster' => 'ap1',
+//       'encrypted' => true
+//     );
+//     $pusher = new Pusher\Pusher(
+//       '1480092650b366b09835',
+//       '135aa5b1613c443ab9ab',
+//       '421428',
+//       $options
+//     );
+
+//     $data['message'] = 'hello world';
+//     $pusher->trigger('my-channel', 'my-event', $data);
+
+//     echo 'ok';
+// });
+
+
+// Route::get('admins/get-push', function(){
+// 	return view('admins.promotions.push');
+// });
 
 //--------------------------Home Page-------------------------
 Route::get('/', 'RoomController@listAll');
-
+route::get('/index/', 'RoomController@listAll')->name('index');
 Route::get('/lotus/', 'RoomController@listAll');
 
 //------------------------Booking-------------------------
@@ -149,32 +173,61 @@ Route::group(['middleware' => ['auth']], function () {
 
 			Route::get('/{service}','ServiceHotelController@detailService');
 		});
+
+		//route promotion
+		Route::group(['prefix' => 'promotions'], function(){
+
+			Route::get('/', 'PromotionController@get');
+
+			Route::get('/index', 'PromotionController@get')->name('admins/promotions/index');
+			Route::get('/show/{id}', 'PromotionController@show')->name('admins.promotions.show');
+
+			Route::get('/create', 'PromotionController@create');
+
+			 Route::get('/{id}', 'PromotionController@show');
+
+			Route::get('/{id}/delete', 'PromotionController@delete')->name('admins/promotions/delete');
+
+			Route::post('/', 'PromotionController@save');
+
+			Route::get('/edit/{id}', 'PromotionController@edit')->name('admins/promotions/edit');
+			Route::get('/update/{id}', 'PromotionController@update')->name('admins/promotions/update');
+
+			Route::put('/{promotion}', 'PromotionController@update');
+		});
+
+
+		//route user management
+		Route::group(['prefix' => 'user_management'], function(){
+			Route::get('/', 'UserController@index')->name('admins/user_management');
+			Route::get('/index', 'UserController@index')->name('admins/user_management/index');
+
+			Route::get('/create', 'UserController@create')->name('admins/user_management/create');
+			Route::post('/', 'UserController@save');
+
+			Route::get('/show/{id}', 'UserController@show')->name('admins/user_management/show');
+
+			Route::get('/{id}/delete', 'UserController@delete')->name('admins/user_management/delete');
+			Route::get('/edit/{id}', 'UserController@edit')->name('admins/user_management/edit');
+			Route::get('/update/{id}', 'UserController@update')->name('admins/user_management/update');
+
+			Route::put('/{user}', 'UserController@update');
+		});
     });
 });
 
-Auth::routes();
+		Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+		Route::get('/home', 'HomeController@index')->name('home');
 
-//route promotion
+//route report
+		route::get('/report/', function(){
+			return view('admins.report.user');
+		})->name('report');
+		route::get('report/get/', 'ReportController@getBooking')->name('report/get');
 
-Route::get('admins/promotions/', 'PromotionController@get');
-
-Route::get('admins/promotions/index', 'PromotionController@get')->name('admins/promotions/index');
-Route::get('admins/promotions/show/{id}', 'PromotionController@show')->name('admins.promotions.show');
-
-Route::get('admins/promotions/create', 'PromotionController@create');
-
- Route::get('admins/promotions/{id}', 'PromotionController@show');
-
-Route::get('admins/promotions/{id}/delete', 'PromotionController@delete')->name('admins/promotions/delete');
-
-Route::post('admins/promotions', 'PromotionController@save');
-
-Route::get('admins/promotions/edit/{id}', 'PromotionController@edit')->name('admins/promotions/edit');
-Route::get('admins/promotions/update/{id}', 'PromotionController@update')->name('admins/promotions/update');
-
-Route::put('admins/promotions/{promotion}', 'PromotionController@update');
-
-
+		route::get('/admins/report/admin', function(){
+			return view('admins.report.admin');
+		})->name('admins/report/admin');
+		route::get('admins/report/get/', 'ReportController@setBookingAdmin')->name('admins/report/get');
 

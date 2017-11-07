@@ -29,6 +29,8 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -84,7 +86,11 @@ desired effect
             </a>
           </li>
               <li class="user-footer">
-                  <a href="#" class="btn btn-default bg-navy fa fa-sign-out">Sign out</a>
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();" class="btn btn-default bg-navy fa fa-sign-out">Sign out</a>
+                                                      <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                                             {{ csrf_field() }}
+                            </form>
               </li>
 
         </ul>
@@ -143,12 +149,12 @@ desired effect
             </a></li>
           <li>
           <li>
-            <a href="#">
+            <a href="{{route('admins/user_management/index')}}">
               <i class="fa fa-users"></i> <span>USERS</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{ route('admins/report/admin') }}">
               <i class="fa fa-exclamation-triangle"></i> <span>REPORTS</span>
             </a>
           </li>
@@ -293,5 +299,6 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+ 
 </body>
 </html>

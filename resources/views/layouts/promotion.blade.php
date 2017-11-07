@@ -1,4 +1,5 @@
 {{ csrf_field() }}
+<div class="col-md-4">
 <div class="form-group">
   {!! Form::label('code', 'Code ') !!}
   <div class="form-controls">
@@ -24,3 +25,5 @@
 </div>
 
 {!! Form::submit('ok', ['class' => 'btn btn-primary']) !!}
+<a href="{{ url('admins/promotions/index') }}" class="label label-primary" style="padding: 10px">Back</a>
+</div>

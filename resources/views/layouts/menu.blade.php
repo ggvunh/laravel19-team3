@@ -1,4 +1,4 @@
-@if(isset($menu) && is_array($menu))
+<!-- @if(isset($menu) && is_array($menu)) -->
 @foreach ($menu as $rm)
 			<li>
 				
@@ -6,4 +6,4 @@
 				</a>
 			</li>
 @endforeach	
-@endif
+<!-- @endif -->

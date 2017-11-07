@@ -20,7 +20,6 @@ class RoomController extends Controller
     {
         $rooms = Room::OrderBy('id' , 'desc')->paginate(9);
         return view('index', compact('rooms'));
-
     }
 
     public function viewDetailRoom(Room $room)

@@ -83,6 +83,11 @@
                                 <li><a href="#">VND</a></li>
                             </ul>
                         </div>
+
+                        <div class="header_right float-right">
+                            <span class="login-register">
+                            <a href="{{ route('report') }}">REPORT</a></span>
+                        </div>
                     </div>
                 </div>
             </div>
