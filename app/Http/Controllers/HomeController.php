@@ -31,6 +31,6 @@ class HomeController extends Controller
         if($role == 1)
             return redirect('/admins');
         else
-            return redirect('/cart');
+            return redirect('/index');
     }
 }
