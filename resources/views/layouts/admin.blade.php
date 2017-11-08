@@ -88,13 +88,14 @@ desired effect
             </a>
           </li>
               <li class="user-footer">
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                      document.getElementById('logout-form').submit();" class="btn btn-default bg-navy fa fa-sign-out">Sign out</a>
-                                                      <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                  <a href="{{ route('logout') }}"
+                                             onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                             Logout
+                                        </a><form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
                                              {{ csrf_field() }}
                             </form>
               </li>
-
         </ul>
       </div>
     </nav>

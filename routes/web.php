@@ -174,6 +174,7 @@ Route::group(['middleware' => ['isadmin']], function (){
 			Route::get('/edit/{id}', 'PromotionController@edit')->name('admins/promotions/edit');
 			Route::get('/update/{id}', 'PromotionController@update')->name('admins/promotions/update');
 
+
 			Route::put('/{promotion}', 'PromotionController@update');
 		});
 
@@ -182,6 +183,7 @@ Route::group(['middleware' => ['isadmin']], function (){
 		Route::group(['prefix' => 'user_management'], function(){
 			Route::get('/', 'UserController@index')->name('admins/user_management');
 			Route::get('/index', 'UserController@index')->name('admins/user_management/index');
+
 
 			Route::get('/create', 'UserController@create')->name('admins/user_management/create');
 			Route::post('/', 'UserController@save');
@@ -223,4 +225,3 @@ Route::group(['middleware' => ['isadmin']], function (){
 		route::get('user_management/editprofile/{id}', 'UserController@editProfile')->name('user_management/editprofile');
 		Route::get('user_management/update/{id}', 'UserController@updateProfile');
 		Route::put('user_management/{id}', 'UserController@updateProfile')->name('user_management/update');
-

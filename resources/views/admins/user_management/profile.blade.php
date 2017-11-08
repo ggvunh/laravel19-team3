@@ -50,7 +50,7 @@
             {{ $user->phone_number }}
             @elseif(isset($userupdate))
             @foreach($userupdate as $value)
-                {{ $value->phone }}
+                {{ $value->phone_number }}
             @endforeach
             @endif
         </div>

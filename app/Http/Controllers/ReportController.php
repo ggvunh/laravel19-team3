@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Booking;
 use App\Book_Room;
@@ -10,7 +8,6 @@ use App\Service_Hotel;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\DATEDIFF;
-
 class ReportController extends Controller
 {
 	public function getBooking(){
@@ -19,7 +16,6 @@ class ReportController extends Controller
   		$from = date("Y-m-d", strtotime($arrival));
     	$departure = $data['departure'];
     	$to = date("Y-m-d", strtotime($departure));
-
 	    	$book_room_service1 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -43,8 +39,6 @@ class ReportController extends Controller
 	    	$days1= $days1 + ((strtotime($value->check_out_date) - strtotime($value->check_in_date)) / (60 * 60 * 24));
 	   		}
 	   		$room_price1 = $room_price1*$days1;
-
-
 	    	$book_room_service2 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -63,10 +57,6 @@ class ReportController extends Controller
 	   		}
 	   		$room_price2 = $room_price2*$days2;
 	   		$count = count($book_room_service2) + $count;
-
-
-
-
 	    	$book_room_service3 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -86,9 +76,6 @@ class ReportController extends Controller
 	   		}
 	   		$room_price3 = $room_price3*$days3;
 	   		$count = count($book_room_service3) + $count;
-
-
-
 	    	$book_room_service4 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -108,10 +95,6 @@ class ReportController extends Controller
 	   		
 	   		$room_price4 = $room_price4*$days4;
 	   		$count = count($book_room_service4) + $count;
-
-
-
-
 	   		$service_price = $service_price1 + $service_price2 + $service_price3 + $service_price4;
 	   		$room_price = $room_price1 + $room_price2 + $room_price3 + $room_price4;
 	   		$total = $service_price + $room_price;
@@ -126,7 +109,6 @@ class ReportController extends Controller
   		$from = date("Y-m-d", strtotime($arrival));
     	$departure = $data['departure'];
     	$to = date("Y-m-d", strtotime($departure));
-
 	    	$book_room_service1 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -150,8 +132,6 @@ class ReportController extends Controller
 	    	$days1= $days1 + ((strtotime($value->check_out_date) - strtotime($value->check_in_date)) / (60 * 60 * 24));
 	   		}
 	   		$room_price1 = $room_price1*$days1;
-
-
 	    	$book_room_service2 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -159,6 +139,7 @@ class ReportController extends Controller
 	    	->join('rooms', 'rooms.id', '=', 'book_rooms.room_id')
 	    	->select('book_room_services.*', 'book_rooms.*', 'bookings.*','rooms.*', 'service_hotels.*')
 	    	->where('bookings.check_in_date', '>=', $from)
+	    	->where('bookings.check_in_date', '<=', $to)
 	    	->where('bookings.check_out_date', '>', $to)
 	    	->get();
 	    	$room_price2 = 0;
@@ -170,10 +151,6 @@ class ReportController extends Controller
 	   		}
 	   		$room_price2 = $room_price2*$days2;
 	   		$count = count($book_room_service2) + $count;
-
-
-
-
 	    	$book_room_service3 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -193,9 +170,6 @@ class ReportController extends Controller
 	   		}
 	   		$room_price3 = $room_price3*$days3;
 	   		$count = count($book_room_service3) + $count;
-
-
-
 	    	$book_room_service4 = DB::table('book_room_services')
 	    	->join('book_rooms', 'book_room_services.book_room_id', '=', 'book_rooms.id')
 	    	->join('service_hotels', 'service_hotels.id', '=', 'book_room_services.service_id')
@@ -215,10 +189,6 @@ class ReportController extends Controller
 	   		
 	   		$room_price4 = $room_price4*$days4;
 	   		$count = count($book_room_service4) + $count;
-
-
-
-
 	   		$service_price = $service_price1 + $service_price2 + $service_price3 + $service_price4;
 	   		$room_price = $room_price1 + $room_price2 + $room_price3 + $room_price4;
 	   		$total = $service_price + $room_price;

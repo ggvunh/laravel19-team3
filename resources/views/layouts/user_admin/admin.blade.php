@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">register</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -14,7 +14,7 @@
                             <label for="first_name" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus @if (isset($user)) placeholder="{{ $user->first_name }}" @endif>
+                                <input type="text" class="form-control" name="first_name" required autofocus @if (isset($user)) value="{{ $user->first_name }}" @endif>
 
                                 @if ($errors->has('first_name'))
                                     <span class="help-block">
@@ -28,7 +28,7 @@
                             <label for="last_name" class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus @if (isset($user)) placeholder="{{ $user->last_name }}" @endif>
+                                <input type="text" class="form-control" name="last_name" required autofocus @if (isset($user)) value="{{ $user->last_name }}" @endif>
 
                                 @if ($errors->has('last_name'))
                                     <span class="help-block">
@@ -42,7 +42,7 @@
                             <label for="email" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus @if (isset($user)) placeholder="{{ $user->email }}" @endif>
+                                <input type="text" class="form-control" name="email" required autofocus @if (isset($user)) value="{{ $user->email }}" @endif>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -56,7 +56,7 @@
                             <label for="phone_number" class="col-md-4 control-label">phone number</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="phone_number" value="{{ old('phone_number') }}" required autofocus @if (isset($user)) placeholder="{{ $user->phone_number }}" @endif>
+                                <input type="text" class="form-control" name="phone_number"  required autofocus @if (isset($user)) value="{{ $user->phone_number }}" @endif>
 
                                 @if ($errors->has('phone_number'))
                                     <span class="help-block">
@@ -93,7 +93,7 @@
                             <label for="address" class="col-md-4 control-label">address</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="address" value="{{ old('address') }}"  autofocus @if (isset($user)) placeholder="{{ $user->address }}" @endif>
+                                <input type="text" class="form-control" name="address"   autofocus @if (isset($user)) value="{{ $user->address }}" @endif>
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
@@ -109,7 +109,7 @@
                             <label for="country" class="col-md-4 control-label">country</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="country" value="{{ old('country') }}" autofocus @if (isset($user)) placeholder="{{ $user->country }}" @endif>
+                                <input type="text" class="form-control" name="country"  autofocus @if (isset($user)) value="{{ $user->country }}" @endif>
 
                                 @if ($errors->has('country'))
                                     <span class="help-block">
@@ -123,7 +123,7 @@
                             <label for="province" class="col-md-4 control-label">province</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="province" value="{{ old('province') }}"  autofocus @if (isset($user)) placeholder="{{ $user->province }}" @endif>
+                                <input type="text" class="form-control" name="province"   autofocus @if (isset($user)) value="{{ $user->province }}" @endif>
 
                                 @if ($errors->has('province'))
                                     <span class="help-block">
@@ -138,7 +138,7 @@
                             <label for="city" class="col-md-4 control-label">city</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="city" value="{{ old('city') }}" required autofocus @if (isset($user)) placeholder="{{ $user->city }}" @endif>
+                                <input type="text" class="form-control" name="city"  required autofocus @if (isset($user)) value="{{ $user->city }}" @endif>
 
                                 @if ($errors->has('city'))
                                     <span class="help-block">

@@ -1,4 +1,4 @@
-@extends('layouts.master')            
+@extends('layouts.admin')            
 @section('content-index')
 <div class="container" style="margin-top: 150px">
     <div class="row">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" style="display: none">
+                        <!-- <div class="form-group" style="display: none">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
@@ -53,12 +53,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-                               <a class="btn btn-link" href="{!!url('/register')!!}">register</a>
+                               <a class="btn btn-link" href="{!!url('/register')!!}">Sign Up</a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}" style="display: none">
                                     Forgot Your Password?
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>

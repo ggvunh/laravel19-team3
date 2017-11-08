@@ -62,7 +62,7 @@ class RegisterController extends Controller
     {
         $data['password'] = bcrypt($data['password']);
         $data['role'] = 0;
-        $data['deposit'] = 15000000;
+        $data['deposit'] = 0;
        
         return User::create($data);
     }

@@ -108,7 +108,6 @@ class UserController extends Controller
         $data['deposit']=0;
         $id->update($data);
          $userupdate = User::find($id);
-
          foreach ($userupdate as $value) {
            $id = $value->id;
          }

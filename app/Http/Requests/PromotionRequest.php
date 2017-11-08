@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
-class promotionRequest extends FormRequest
+
+class PromotionRequest extends FormRequest
 {
-   /**
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -12,6 +15,7 @@ class promotionRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,8 +24,8 @@ class promotionRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|min:2|max:6',
-            'discount' => 'required|integer',
+            'code_name' => 'required|string|min:6|max:6',
+            'promotion' => 'required|integer|max:99|min:1',
         ];
     }
 }
