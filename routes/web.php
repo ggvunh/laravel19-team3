@@ -214,6 +214,15 @@ Route::group(['middleware' => ['isadmin']], function (){
 
 			Route::put('/{user}', 'UserController@update');
 		});
+
+		//route report
+		Route::group(['prefix' => 'report'], function(){
+			route::get('/admin', function(){
+			return view('admins.report.admin');
+										})->name('admins/report/admin');
+		route::get('/get/', 'ReportController@setBookingAdmin')->name('admins/report/get');
+
+		});
     });
 });
 });
@@ -228,14 +237,10 @@ Route::group(['middleware' => ['isadmin']], function (){
 		})->name('report');
 		route::get('report/get/', 'ReportController@getBooking')->name('report/get');
 
-		route::get('/admins/report/admin', function(){
-			return view('admins.report.admin');
-		})->name('admins/report/admin');
-		route::get('admins/report/get/', 'ReportController@setBookingAdmin')->name('admins/report/get');
+//route user management
 
 		route::get('user_management/profile/{id}', 'UserController@getprofile')->name('user/profile');
-		route::get('user_management/edit/{id}', 'UserController@editProfile')->name('user_management/edit');
+		route::get('user_management/editprofile/{id}', 'UserController@editProfile')->name('user_management/editprofile');
 		Route::get('user_management/update/{id}', 'UserController@updateProfile');
-
 		Route::put('user_management/{id}', 'UserController@updateProfile')->name('user_management/update');
 

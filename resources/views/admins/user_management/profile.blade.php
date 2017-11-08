@@ -9,7 +9,9 @@
         <div class="pull-right">
             <a href="{{ url('index') }}" class="label label-primary pull-right">come back</a>
             @if(isset($user))
-            <a href="{{ route('user_management/edit', $user->id) }}" class="label label-primary pull-right">edit</a>
+            <a href="{{ route('user_management/editprofile', $user->id) }}" class="label label-primary pull-right">edit</a>
+            @elseif(isset($id))
+            <a href="{{ route('user_management/editprofile', $id) }}" class="label label-primary pull-right">edit</a>
             @endif
         </div>
     </div>
@@ -20,7 +22,7 @@
             <strong>first name :</strong>
             @if(isset($user))
             {{ $user->first_name }}
-            @elseif(isset($userupdate)){
+            @elseif(isset($userupdate))
             @foreach($userupdate as $value)
                 {{ $value->first_name }}
         

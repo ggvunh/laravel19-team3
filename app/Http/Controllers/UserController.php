@@ -108,6 +108,10 @@ class UserController extends Controller
         $data['deposit']=0;
         $id->update($data);
          $userupdate = User::find($id);
-        return view('admins.user_management.profile', compact('userupdate'));
+
+         foreach ($userupdate as $value) {
+           $id = $value->id;
+         }
+        return view('admins.user_management.profile', compact('userupdate', 'id'));
     }
 }
