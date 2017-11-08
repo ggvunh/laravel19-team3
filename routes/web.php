@@ -93,6 +93,7 @@ Route::get('contact', function(){
 //----------------------------Admin----------------------------
 
 Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['isadmin']], function (){
 
     Route::group(['prefix' => 'admins'], function(){
 
@@ -215,6 +216,7 @@ Route::group(['middleware' => ['auth']], function () {
 		});
     });
 });
+});
 
 		Auth::routes();
 
@@ -230,4 +232,10 @@ Route::group(['middleware' => ['auth']], function () {
 			return view('admins.report.admin');
 		})->name('admins/report/admin');
 		route::get('admins/report/get/', 'ReportController@setBookingAdmin')->name('admins/report/get');
+
+		route::get('user_management/profile/{id}', 'UserController@getprofile')->name('user/profile');
+		route::get('user_management/edit/{id}', 'UserController@editProfile')->name('user_management/edit');
+		Route::get('user_management/update/{id}', 'UserController@updateProfile');
+
+		Route::put('user_management/{id}', 'UserController@updateProfile')->name('user_management/update');
 

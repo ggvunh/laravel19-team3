@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
 	// {
 	// 	$this->middleware('auth');
 	// }
-    function index()
+    public function index()
     {
     	$users = User::all();
     	return view('admins.user_management.index', compact('users'));
@@ -49,6 +50,7 @@ class UserController extends Controller
         else{
         	$rolename = "user";
         }
+        
         echo $rolename;
        
         return view('admins.user_management.show', compact(['user', 'rolename']));
@@ -81,5 +83,31 @@ class UserController extends Controller
         $data['password'] = bcrypt($data['password']);
         $user->update($data);
         return redirect('admins/user_management/index');
+    }
+
+    public function getprofile($id)
+    {
+        $user = User::find($id);    
+        return view('admins.user_management.profile', compact('user'));
+    }
+
+      public function editProfile($id)
+    {
+      $user = User::find($id);
+      return view('admins.user_management.editprofile', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateProfile(User $id, UserRequest $request)
+    {
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $data['role']=0;
+        $data['deposit']=0;
+        $id->update($data);
+         $userupdate = User::find($id);
+        return view('admins.user_management.profile', compact('userupdate'));
     }
 }

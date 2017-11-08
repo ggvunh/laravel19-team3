@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body">
                 <form action="{{ url('admins/user_management/') }}" method="POST" class="form-horizontal" autocomplete="off">
-                    @include('layouts.user_management')
+                    @include('layouts.user_admin.admin')
                 </form>
             </div>
         </div>

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DATEDIFF;
 
 class ReportController extends Controller
 {
-	function getBooking(){
+	public function getBooking(){
 		$data = input::all();
 		$arrival = $data['arrival']; 
   		$from = date("Y-m-d", strtotime($arrival));
@@ -120,7 +120,7 @@ class ReportController extends Controller
 		}
 			
 		
-	function setBookingAdmin(){
+	public function setBookingAdmin(){
 		$data = input::all();
 		$arrival = $data['arrival']; 
   		$from = date("Y-m-d", strtotime($arrival));
