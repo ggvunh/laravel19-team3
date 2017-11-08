@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('header')
-<h1>Edit {{!!$service->service_name!!}} </h1>
+<h1>Edit {!!$service->service_name!!} </h1>
 @stop
 @section('content')
 	{!! Form::model($service,['url'=>'admins/service/'.$service->id,'method'=>'put']) !!}

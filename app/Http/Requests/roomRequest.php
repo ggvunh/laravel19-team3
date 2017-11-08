@@ -27,7 +27,10 @@ class roomRequest extends FormRequest
             'room_name' => 'required|unique:rooms,room_name',
             'room_price'=> 'required|numeric',
             'amount_people'=>'required|max:2',
-            'images'=>'required',
+            'images'=>'required|mimes:jpeg,png,jpg,gif,svg',
+            'images1'=>'mimes:jpeg,png,jpg,gif,svg',
+            'images2'=>'mimes:jpeg,png,jpg,gif,svg',
+
         ];
     }
 }

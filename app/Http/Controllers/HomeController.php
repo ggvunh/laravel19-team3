@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Mail\SendMailController;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -25,9 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
-        if($role==1)
+        if($role == 1)
             return redirect('/admins');
         else
-            return redirect('/');
+            return redirect('/index');
     }
 }

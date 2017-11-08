@@ -56,32 +56,20 @@
                     <div class="header_right float-right">
                         <span class="login-register">
                         @if(Auth::guest())<a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">register</a>
+                          
                         @else
                             <a href="">{{Auth::user()->first_name}} {{ Auth::user()->last_name}}</a>
                             <a href="{{ route('logout') }}"
                                              onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">
                                              Logout
-                                        </a><form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
+                                        </a><a href="{!!url('/review')!!}">PAYMENT</a>
+                                        <form id="logout-form" action="{{   route('logout') }}" method="POST" style="display: none;">
                                              {{ csrf_field() }}
                             </form></li>
                         @endif    
                         </span>
-                        <div class="dropdown currency">
-                            <span>USD <i class="fa fa"></i></span>
-                            <ul>
-                                <li class="active"><a href="#">USD</a></li>
-                                <li><a href="#">VND</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown language">
-                            <span>ENG</span>
-                            <ul>
-                                <li class="active"><a href="#">ENG</a></li>
-                                <li><a href="#">VND</a></li>
-                            </ul>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
@@ -180,7 +168,7 @@
                             <div class="widget widget_logo">
                                 <div class="widget-logo">
                                     <div class="img">
-                                        <a href="#"><img src="{{asset('images/logo-footer.png')}}" alt=""></a>
+                                        <a href="{{url('/')}}"><img src="{{asset('images/logo-footer.png')}}" alt=""></a>
                                     </div>
                                     <div class="text">
                                         <p><i class="lotus-icon-location"></i> 92 Quang Trung, Hai Chau, Da Nang, Viet Nam</p>

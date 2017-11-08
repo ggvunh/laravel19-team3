@@ -8,7 +8,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Bookings Table</h3>
-              <form class="box-tools" action="{!!asset('admins/bookings/search')!!}" method="get">
+              <form class="box-tools" action="{!!url('admins/bookings/search')!!}" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="key_search" class="form-control pull-right" placeholder="Search">
                   
@@ -27,7 +27,8 @@
           					<th>In Date</th>
           					<th>Out Date</th>
           					<th>Status</th>
-          					<th>User</th>
+                    <th>First Name</th>
+          					<th>Last Name</th>
 			         	</tr>
                 @foreach ($bookings as $index => $bk)
                  <tr>
@@ -35,8 +36,9 @@
                     <td><a href="{{ url('admins/bookings/'.$bk->id) }}">{!! $bk->booking_code !!}</a></td>
           					<td>{!!$bk->check_in_date!!}</td>
           					<td>{!!$bk->check_out_date!!}</td>
-          					<td>{!!$bk->status ? 'Booking' : 'Cancel'!!}</td>
-          					<td>{!!$bk->user->username!!}</td>
+          					<td>{!!$bk->status ? '<span class="label label-success"> Booking' : '<span class="label label-danger"> Cancel'!!}</td>
+                    <td>{!!$bk->user->first_name!!}</td>
+          					<td>{!!$bk->user->last_name!!}</td>
           				</tr>
 				        @endforeach			
               </table>

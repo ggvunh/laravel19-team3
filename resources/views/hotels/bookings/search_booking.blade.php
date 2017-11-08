@@ -48,19 +48,22 @@
                 
                 <!-- CONTENT -->
                 <div class="col-md-8 col-lg-9">
-                  
+
                     <div class="reservation_content">
-                        
+                        <div >
+                                About <strong class="label label-info">{{($rooms->total())}} </strong>Rooms
+                        </div>
                         <!-- RESERVATION ROOM -->
                         <div class="reservation-room">
+                        
                           @foreach ($rooms as $rm)
                             <!-- ITEM -->
                             <div class="reservation-room_item">
 
-                                <h2 class="reservation-room_name"><a href="#">{!!$rm->room_types->type_of_bed!!}</a></h2>
+                                <h2 class="reservation-room_name"><a href="{!!url('/cart/'.$rm->id)!!}">{!!$rm->room_types->type_of_bed!!}</a></h2>
 
                                 <div class="reservation-room_img">
-                                    <a href="#"><img src="{!!url('/images/upload/rooms/'.$rm->images)!!}" alt=""></a>
+                                    <a href="{!!url('/cart/'.$rm->id)!!}"><img src="{!!url('/images/upload/rooms/'.$rm->images)!!}" alt=""></a>
                                 </div>
 
                                 <div class="reservation-room_text">
@@ -74,7 +77,7 @@
                                              
                                         </ul>
                                     </div>
-                                    <a href="#" class="reservation-room_view-more">View More Infomation</a>
+                                    <a href="{!!url('/cart/'.$rm->id)!!}" class="reservation-room_view-more">View More Infomation</a>
 
                                     <div class="clear"></div>
 
@@ -87,9 +90,10 @@
                             </div>
                             <!-- END / ITEM -->
                           @endforeach
+                      
                         </div>
                         <!-- END / RESERVATION ROOM -->
-
+                        {!!$rooms->appends(['arrival' => session()->get('arrival'), 'departure' => session()->get('departure'), 'person' => session()->get('person')])->links()!!}
                     </div>
 
                 </div>
