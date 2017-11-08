@@ -186,7 +186,7 @@
                             <div class="widget widget_logo">
                                 <div class="widget-logo">
                                     <div class="img">
-                                        <a href="#"><img src="{{asset('images/logo-footer.png')}}" alt=""></a>
+                                        <a href="{{url('/')}}"><img src="{{asset('images/logo-footer.png')}}" alt=""></a>
                                     </div>
                                     <div class="text">
                                         <p><i class="lotus-icon-location"></i> 92 Quang Trung, Hai Chau, Da Nang, Viet Nam</p>

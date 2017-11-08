@@ -58,6 +58,8 @@ Route::group(['prefix' => 'cart'], function(){
 	Route::get('/{id}/add', 'BookingController@add');
 
 	Route::get('/{id}/delete', 'BookingController@delete');
+	
+	Route::get('/{id}/delete_in_payment', 'BookingController@delete_in_payment');
 
 });
 
@@ -71,7 +73,9 @@ Route::get('/review', 'BookingController@review');
 
 Route::get('/review/cancel/{id}', 'BookingController@cancel');
 
-Route::get('/message', 'BookingController@message_deposit');
+Route::get('/message', 'BookingController@message_room');
+
+Route::get('/check_deposit', 'BookingController@message_deposit');
 //-------------------------------------------------------------------
 
 Route::get('/lotus/type/{type}', 'RoomTypeController@getRoomType');

@@ -57,27 +57,27 @@
                                 
                                 <ul>
                                     <li>
-                                        <span>Check-In</span>
+                                        <span><strong>Check-In</strong></span>
                                         <span>{!!$arrival!!}</span>
                                     </li>
 
                                     <li>
-                                        <span>Check-Out</span>
+                                        <span><strong>Check-Out</strong></span>
                                         <span>{!!$departure!!}</span>
                                     </li>
                                     <li>
-                                        <span>Total Nights</span>
+                                        <span><strong>Total Nights</strong></span>
                                         <span>                                       
                                             {!!(strtotime($departure) - strtotime($arrival))/3600/24!!}
                                         </span>
                                         
                                     </li>
                                     <li>
-                                        <span>Total Rooms</span>
+                                        <span><strong>Total Rooms</strong></span>
                                         <span>{!!count(Cart::content())!!}</span>
                                     </li>
                                     <li>
-                                        <span>Total Guests</span>
+                                        <span><strong>Total Guests</strong></span>
                                         <span>{!!$person!!}</span>
                                     </li>
                                 </ul>
@@ -104,7 +104,6 @@
                                 </tr>
                             </thead>
                         <tbody>
-
                             @foreach(Cart::content() as $row)
                                            
                                     <tr>
@@ -116,8 +115,7 @@
                                                 <td><input type="text" value="{!! $row->qty!!}" style="width: 40px;" disabled></td>
                                                 <td>{!!number_format($row->price)!!}</td>
                                             @else
-                                                <td><input type="text" value="{!! $row->options->qty !!}" style="width: 40px;" disabled></td>
-                                              
+                                                <td><input type="text" value="{!! $row->options->qty !!}" style="width: 40px;" disabled></td>                                           
                                         @endif  
                                         <td>{!!number_format($row->price)!!}</td>
                                                  <td><a href="{!!url('/cart/'.$row->rowId.'/delete')!!}" class="btn btn-danger">Delete</a></td>

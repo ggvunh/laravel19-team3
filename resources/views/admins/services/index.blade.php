@@ -21,7 +21,7 @@
                 <tr>
 					<th scope="row">{!!$dem++!!}</th>
 					<td><a href="{{url('admins/service/'.$service->id)}}">{!!$service->service_name!!}</a></td>
-					<td>{!!number_format($service->service_price)!!}VND</td>
+					<td>{!!number_format($service->service_price)!!}đ</td>
 					<td>{!!$service->description!!}</td>
 					<td><a href="{{url('admins/service/'.$service->id.'/edit')}}"><i class="fa fa-edit"></i>Edit</a> - <a href="{{url('admins/service/'.$service->id.'/delete')}}"><i class="fa fa-trash"></i>Delete</a></td>
 				</tr>
