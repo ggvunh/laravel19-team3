@@ -11,30 +11,6 @@
 |
 */
 
-// test
-// Route::get('admins/push', function(){
-
-//   $options = array(
-//       'cluster' => 'ap1',
-//       'encrypted' => true
-//     );
-//     $pusher = new Pusher\Pusher(
-//       '1480092650b366b09835',
-//       '135aa5b1613c443ab9ab',
-//       '421428',
-//       $options
-//     );
-
-//     $data['message'] = 'hello world';
-//     $pusher->trigger('my-channel', 'my-event', $data);
-
-//     echo 'ok';
-// });
-
-
-// Route::get('admins/get-push', function(){
-// 	return view('admins.promotions.push');
-// });
 
 //--------------------------Home Page-------------------------
 Route::get('/', 'RoomController@listAll');
